@@ -1,0 +1,125 @@
+.section {
+  padding-block: var(--space-4xl);
+  background: linear-gradient(
+    180deg,
+    var(--color-bg) 0%,
+    var(--color-bg-alt) 100%
+  );
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  padding: var(--space-2xl);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-border);
+  background:
+    radial-gradient(
+      circle at 10% 0%,
+      rgba(154, 123, 45, 0.12),
+      transparent 45%
+    ),
+    var(--color-bg-elevated);
+  box-shadow: var(--shadow-md);
+}
+
+@media (min-width: 900px) {
+  .panel {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-3xl);
+  }
+}
+
+.content {
+  max-width: 52ch;
+}
+
+.title {
+  margin: 0 0 var(--space-md);
+  font-family: var(--font-serif);
+  font-size: clamp(1.65rem, 2.4vw, 2.1rem);
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--color-text);
+}
+
+.text {
+  margin: 0;
+  font-size: 1.02rem;
+  line-height: 1.65;
+  color: var(--color-text-muted);
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  flex-shrink: 0;
+}
+
+@media (min-width: 520px) {
+  .actions {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.primary {
+  min-height: 48px;
+  padding: 0 1.25rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-warm-white);
+  background: var(--color-teal-deep);
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  transition:
+    background var(--transition-fast),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.primary:hover,
+.primary:focus-visible {
+  background: #142e2c;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.primary:active {
+  transform: translateY(0);
+}
+
+.secondary {
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.75rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--color-text);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  background: transparent;
+  transition:
+    border-color var(--transition-fast),
+    transform var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.secondary:hover,
+.secondary:focus-visible {
+  border-color: var(--color-teal-deep);
+  color: var(--color-teal-deep);
+  transform: translateY(-2px);
+}

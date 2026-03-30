@@ -1,0 +1,232 @@
+.page {
+  padding-bottom: var(--space-4xl);
+}
+
+.hero {
+  padding-block: var(--space-3xl) var(--space-2xl);
+  background: radial-gradient(
+      circle at 0% 0%,
+      rgba(154, 123, 45, 0.1),
+      transparent 45%
+    ),
+    var(--color-bg);
+}
+
+.heroRow {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-2xl);
+  align-items: end;
+}
+
+@media (min-width: 900px) {
+  .heroRow {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.55fr);
+    gap: var(--space-3xl);
+  }
+}
+
+.kicker {
+  margin: 0 0 var(--space-md);
+  font-size: 0.78rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.title {
+  margin: 0 0 var(--space-lg);
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 3.4vw, 2.85rem);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  max-width: 22ch;
+  color: var(--color-text);
+}
+
+.lead {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+  max-width: 58ch;
+}
+
+.heroPanel {
+  padding: var(--space-xl);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-elevated);
+  box-shadow: var(--shadow-sm);
+  transform: rotate(-0.75deg);
+}
+
+.panelLabel {
+  margin: 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.panelValue {
+  margin: var(--space-sm) 0 var(--space-md);
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  line-height: 1.25;
+  color: var(--color-text);
+}
+
+.panelNote {
+  margin: 0 0 var(--space-lg);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+.panelCta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 1rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--color-warm-white);
+  background: var(--color-teal-deep);
+  border-radius: var(--radius-md);
+  transition:
+    background var(--transition-fast),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.panelCta:hover,
+.panelCta:focus-visible {
+  background: #142e2c;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.team {
+  padding-bottom: var(--space-3xl);
+}
+
+.teamGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-xl);
+}
+
+@media (min-width: 640px) {
+  .teamGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1100px) {
+  .teamGrid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-elevated);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    box-shadow 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-md);
+}
+
+.portrait {
+  overflow: hidden;
+  aspect-ratio: 640 / 800;
+  background: var(--color-bg-alt);
+}
+
+.portraitImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.45s var(--ease-smooth);
+}
+
+.card:hover .portraitImage {
+  transform: scale(1.05);
+}
+
+.cardBody {
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  flex: 1;
+}
+
+.name {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--color-text);
+}
+
+.role {
+  margin: 0;
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-teal-deep);
+}
+
+.focus {
+  margin: 0 0 var(--space-md);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  flex: 1;
+}
+
+.cardLink {
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--color-text);
+  border-bottom: 1px solid var(--color-border-strong);
+  align-self: flex-start;
+  transition:
+    color var(--transition-fast),
+    transform var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.cardLink:hover,
+.cardLink:focus-visible {
+  color: var(--color-teal-deep);
+  border-color: var(--color-teal-deep);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 899px) {
+  .heroPanel {
+    transform: none;
+  }
+}

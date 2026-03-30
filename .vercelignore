@@ -1,0 +1,5 @@
+backend/
+docs/
+admin/node_modules/
+admin/src/
+admin/dist/

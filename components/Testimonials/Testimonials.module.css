@@ -1,0 +1,146 @@
+.section {
+  padding-block: var(--space-4xl);
+  background: var(--color-bg);
+}
+
+.header {
+  max-width: 640px;
+  margin-bottom: var(--space-2xl);
+}
+
+.kicker {
+  margin: 0 0 var(--space-md);
+  font-size: 0.78rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(1.85rem, 3vw, 2.5rem);
+  font-weight: 500;
+  line-height: 1.15;
+  color: var(--color-text);
+}
+
+.stage {
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-elevated);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-2xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+@media (min-width: 769px) {
+  .stage {
+    padding: var(--space-3xl);
+  }
+}
+
+.viewport {
+  overflow: hidden;
+  min-height: 220px;
+}
+
+.track {
+  display: flex;
+  width: 100%;
+  will-change: transform;
+  transition: transform 0.55s var(--ease-smooth);
+}
+
+.slide {
+  flex: 0 0 100%;
+  width: 100%;
+  margin: 0;
+  padding-right: var(--space-md);
+  box-sizing: border-box;
+  opacity: 0.4;
+  transition: opacity 0.45s var(--ease-smooth);
+}
+
+.slideActive {
+  opacity: 1;
+}
+
+.quoteText {
+  margin: 0 0 var(--space-xl);
+  font-family: var(--font-serif);
+  font-size: clamp(1.35rem, 2.2vw, 1.75rem);
+  line-height: 1.45;
+  color: var(--color-text);
+  max-width: 52ch;
+}
+
+.attribution {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.name {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--color-text);
+}
+
+.role {
+  font-size: 0.92rem;
+  color: var(--color-text-muted);
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  align-items: center;
+}
+
+.dot {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.dot::after {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: var(--color-border-strong);
+  transition:
+    transform 0.35s var(--ease-smooth),
+    background 0.35s var(--ease-smooth);
+}
+
+.dot:hover::after,
+.dot:focus-visible::after {
+  transform: scale(1.15);
+  background: var(--color-accent);
+}
+
+.dotActive::after {
+  background: var(--color-teal-deep);
+  transform: scale(1.2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    transition: none;
+  }
+
+  .slide {
+    opacity: 1;
+    transition: none;
+  }
+}
