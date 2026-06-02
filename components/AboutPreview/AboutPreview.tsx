@@ -16,10 +16,10 @@ export function AboutPreview() {
           >
             <div className={styles.frame}>
               <Image
-                src="https://i.pinimg.com/736x/6c/0c/1a/6c0c1a2cfd0ad0bb01476acfced51420.jpg"
-                alt="Two people at a table exchanging keys during a home purchase"
-                width={736}
-                height={981}
+                src="/images/team/samirah-sulleiman-portrait.png"
+                alt="Samirah Sulleiman, Founder & Lead Strategist of Heist"
+                width={697}
+                height={1024}
                 className={styles.image}
                 sizes="(max-width: 900px) 100vw, 44vw"
               />
