@@ -43,8 +43,9 @@ export default function TeamPage() {
               >
                 <div className={styles.portrait}>
                   <Image
-                    src={`https://picsum.photos/seed/${member.imageSeed}/640/800`}
+                    src={member.imageSrc}
                     alt={`Portrait of ${member.name}`}
+                    style={{ objectPosition: "top center" }}
                     width={640}
                     height={800}
                     className={styles.portraitImage}

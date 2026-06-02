@@ -192,7 +192,7 @@ export default function AboutPage() {
           <div className={styles.founderInner}>
             <ScrollReveal variant="fadeRight" className={styles.founderVisual}>
               <Image
-                src={`https://picsum.photos/seed/${founder.imageSeed}/640/760`}
+                src={founder.imageSrc}
                 alt={`Portrait of ${founder.name}`}
                 width={640}
                 height={760}
@@ -223,12 +223,59 @@ export default function AboutPage() {
               <ScrollReveal as="p" variant="fadeUp" delayMs={190} className={styles.founderText}>
                 {founder.focus}
               </ScrollReveal>
-              <ScrollReveal variant="fadeUp" delayMs={230}>
-                <Link href="/team" className={styles.mentalityLink}>
-                  Meet the full team
-                </Link>
-              </ScrollReveal>
             </div>
+          </div>
+        </Container>
+      </section>
+
+      <section className={styles.team} aria-labelledby="team-heading">
+        <Container>
+          <div className={styles.teamHead}>
+            <ScrollReveal as="p" variant="fadeUp" className={styles.eyebrow}>
+              Our People
+            </ScrollReveal>
+            <ScrollReveal
+              as="h2"
+              variant="fadeUp"
+              delayMs={70}
+              id="team-heading"
+              className={styles.teamTitle}
+            >
+              The team behind every Heist project
+            </ScrollReveal>
+            <ScrollReveal as="p" variant="fadeUp" delayMs={130} className={styles.teamLead}>
+              Strategy, marketing, sales, and construction — a close-knit team
+              that carries each project from first conversation to final handover.
+            </ScrollReveal>
+          </div>
+          <div className={styles.teamGrid}>
+            {team
+              .filter((member) => !member.featured)
+              .map((member, i) => (
+                <ScrollReveal
+                  key={member.id}
+                  as="article"
+                  variant="fadeUp"
+                  staggerIndex={i % 4}
+                  className={styles.memberCard}
+                >
+                  <div className={styles.memberPortrait}>
+                    <Image
+                      src={member.imageSrc}
+                      alt={`Portrait of ${member.name}`}
+                      width={640}
+                      height={800}
+                      className={styles.memberImage}
+                      sizes="(max-width: 600px) 100vw, (max-width: 980px) 50vw, 25vw"
+                    />
+                  </div>
+                  <div className={styles.memberBody}>
+                    <h3 className={styles.memberName}>{member.name}</h3>
+                    <p className={styles.memberRole}>{member.title}</p>
+                    <p className={styles.memberFocus}>{member.focus}</p>
+                  </div>
+                </ScrollReveal>
+              ))}
           </div>
         </Container>
       </section>

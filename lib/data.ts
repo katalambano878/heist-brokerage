@@ -403,43 +403,51 @@ export type TeamMember = {
   name: string;
   title: string;
   focus: string;
-  imageSeed: string;
+  imageSrc: string;
   featured?: boolean;
 };
 
 export const team: TeamMember[] = [
   {
-    id: "a1",
+    id: "samirah-sulleiman",
     name: "Samirah Sulleiman",
     title: "Founder & Lead Strategist",
     focus:
       "With a background in urban development and hands-on real estate experience, Samirah founded Heist to help clients navigate property decisions strategically and confidently — known for identifying opportunities early and negotiating with precision.",
-    imageSeed: "heist-team-1",
+    imageSrc: "/images/team/samirah-sulleiman.png",
     featured: true,
   },
   {
-    id: "a2",
-    name: "Project & Construction Lead",
-    title: "Head of Construction",
+    id: "abdul-rashid-abubakar-kabena",
+    name: "Abdul-Rashid Abubakar Kabena",
+    title: "Chief Marketing Officer",
     focus:
-      "Oversees every build from groundwork to finishing, ensuring craftsmanship, structural integrity, and on-time delivery.",
-    imageSeed: "heist-team-2",
+      "Drives Heist's brand and marketing strategy — positioning every property and project to reach the right audience and stand out in a competitive market.",
+    imageSrc: "/images/team/abdul-rashid-abubakar-kabena.png",
   },
   {
-    id: "a3",
-    name: "Design Director",
-    title: "Interior & Exterior Design",
+    id: "joseph-opoku",
+    name: "Joseph Opoku",
+    title: "Sales Associate",
     focus:
-      "Leads design concepts that balance beauty, comfort, and functionality across residential and commercial spaces.",
-    imageSeed: "heist-team-3",
+      "Guides clients through listings, viewings, and negotiations, pairing market knowledge with a client-first approach to every deal.",
+    imageSrc: "/images/team/joseph-opoku.png",
   },
   {
-    id: "a4",
-    name: "Investment Advisor",
-    title: "Real Estate & Capital Strategy",
+    id: "kwame-pilimana",
+    name: "Kwame Pilimana",
+    title: "Site Manager",
     focus:
-      "Guides clients through acquisitions, ROI planning, and long-term portfolio growth across the Accra market.",
-    imageSeed: "heist-team-4",
+      "Runs construction sites day to day, keeping builds on schedule, on standard, and safely delivered from groundwork to finishing.",
+    imageSrc: "/images/team/kwame-pilimana.png",
+  },
+  {
+    id: "issah-sumaila",
+    name: "Issah Sumaila",
+    title: "Personal Assistant & Sales Associate",
+    focus:
+      "Keeps operations running smoothly behind the scenes while supporting clients through the sales journey with care and attention to detail.",
+    imageSrc: "/images/team/issah-sumaila.png",
   },
 ];
 
