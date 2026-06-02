@@ -112,8 +112,103 @@
   box-shadow: var(--shadow-md);
 }
 
+.eyebrow {
+  margin: 0 0 var(--space-md);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+/* ---------- Ethos / culture split ---------- */
+.ethos {
+  padding-block: var(--space-4xl);
+  background: var(--color-bg);
+}
+
+.ethosInner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-2xl);
+}
+
+@media (min-width: 900px) {
+  .ethosInner {
+    grid-template-columns: minmax(0, 0.5fr) minmax(0, 1fr);
+    gap: var(--space-3xl);
+    align-items: start;
+  }
+
+  .ethosHeader {
+    position: sticky;
+    top: 100px;
+  }
+}
+
+.ethosTitle {
+  margin: 0 0 var(--space-md);
+  font-family: var(--font-serif);
+  font-size: clamp(1.9rem, 3vw, 2.6rem);
+  font-weight: 500;
+  line-height: 1.12;
+  color: var(--color-text);
+}
+
+.ethosLead {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+}
+
+.ethosBody {
+  display: flex;
+  flex-direction: column;
+}
+
+.ethosQuote {
+  margin: 0 0 var(--space-xl);
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+  line-height: 1.4;
+  font-weight: 400;
+  color: var(--color-text);
+}
+
+.ethosText {
+  margin: 0 0 var(--space-md);
+  font-size: 1.02rem;
+  line-height: 1.75;
+  color: var(--color-text-muted);
+  max-width: 60ch;
+}
+
+/* ---------- Grid header ---------- */
 .team {
   padding-block: var(--space-2xl) var(--space-3xl);
+  background: var(--color-bg-alt);
+}
+
+.teamHead {
+  max-width: 680px;
+  margin-bottom: var(--space-2xl);
+}
+
+.teamTitle {
+  margin: 0 0 var(--space-md);
+  font-family: var(--font-serif);
+  font-size: clamp(1.9rem, 4vw, 2.7rem);
+  font-weight: 500;
+  line-height: 1.1;
+  color: var(--color-text);
+}
+
+.teamLead {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--color-text-muted);
 }
 
 .teamGrid {

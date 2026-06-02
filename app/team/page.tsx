@@ -31,8 +31,53 @@ export default function TeamPage() {
         actions={[{ label: "Book a Strategy Call", href: "/contact" }]}
       />
 
+      <section className={styles.ethos} aria-labelledby="ethos-heading">
+        <Container>
+          <div className={styles.ethosInner}>
+            <ScrollReveal variant="fadeRight" className={styles.ethosHeader}>
+              <p className={styles.eyebrow}>What Unites Us</p>
+              <h2 id="ethos-heading" className={styles.ethosTitle}>
+                One team, one standard
+              </h2>
+              <p className={styles.ethosLead}>
+                Strategy, marketing, sales, and construction — different
+                disciplines, one shared obsession with getting it right.
+              </p>
+            </ScrollReveal>
+            <div className={styles.ethosBody}>
+              <ScrollReveal as="p" variant="fadeUp" className={styles.ethosQuote}>
+                &ldquo;We&apos;d rather be the team that tells you the truth and
+                delivers, than the one that tells you what you want to hear.&rdquo;
+              </ScrollReveal>
+              <ScrollReveal as="p" variant="fadeUp" delayMs={120} className={styles.ethosText}>
+                Every person at Heist owns their part of the journey — from the
+                first conversation and the marketing that surrounds a property,
+                to the negotiation table and the construction site. Nothing gets
+                handed off and forgotten.
+              </ScrollReveal>
+              <ScrollReveal as="p" variant="fadeUp" delayMs={160} className={styles.ethosText}>
+                That accountability is what lets us promise clarity, precision,
+                and execution — and actually keep it, project after project.
+              </ScrollReveal>
+            </div>
+          </div>
+        </Container>
+      </section>
+
       <section className={styles.team} aria-label="Team members">
         <Container>
+          <div className={styles.teamHead}>
+            <ScrollReveal as="p" variant="fadeUp" className={styles.eyebrow}>
+              Our People
+            </ScrollReveal>
+            <ScrollReveal as="h2" variant="fadeUp" delayMs={70} className={styles.teamTitle}>
+              The people behind every Heist project
+            </ScrollReveal>
+            <ScrollReveal as="p" variant="fadeUp" delayMs={130} className={styles.teamLead}>
+              A close-knit team that carries each project from first conversation
+              to final handover.
+            </ScrollReveal>
+          </div>
           <div className={styles.teamGrid}>
             {team.map((member, i) => (
               <ScrollReveal

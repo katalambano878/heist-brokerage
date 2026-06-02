@@ -77,6 +77,26 @@ export default function ContactPage() {
         </Container>
       </section>
 
+      <section className={styles.promise} aria-labelledby="promise-heading">
+        <Container>
+          <div className={styles.promiseInner}>
+            <ScrollReveal as="p" variant="fadeUp" className={styles.promiseEyebrow}>
+              What Happens Next
+            </ScrollReveal>
+            <ScrollReveal
+              as="h2"
+              variant="fadeUp"
+              delayMs={70}
+              id="promise-heading"
+              className={styles.promiseText}
+            >
+              You&apos;ll hear back from a real person — with a clear, strategic
+              next step, not a generic reply.
+            </ScrollReveal>
+          </div>
+        </Container>
+      </section>
+
       <section className={styles.mapSection} aria-label="Office location map">
         <Container>
           <ScrollReveal variant="blur" className={styles.mapFrame}>
