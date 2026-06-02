@@ -8,7 +8,7 @@ import { useCountUp } from "@/hooks/useCountUp";
 import { trustStats } from "@/lib/data";
 import styles from "./StatsSection.module.css";
 
-const BG_IMAGE = "/images/services/service-real-estate.png";
+const BG_IMAGE = "/images/services/service-real-estate.jpg";
 
 type StatProps = {
   label: string;

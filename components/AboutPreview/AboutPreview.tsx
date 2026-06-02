@@ -16,7 +16,7 @@ export function AboutPreview() {
           >
             <div className={styles.frame}>
               <Image
-                src="/images/team/samirah-sulleiman-portrait.png"
+                src="/images/team/samirah-sulleiman-portrait.jpg"
                 alt="Samirah Sulleiman, Founder & Lead Strategist of Heist"
                 width={697}
                 height={1024}

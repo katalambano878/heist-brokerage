@@ -147,7 +147,7 @@ export default function ServicesPage() {
             <ScrollReveal variant="fadeLeft" className={styles.overviewVisual}>
               <div className={styles.overviewFrame}>
                 <Image
-                  src="/images/services/service-real-estate.png"
+                  src="/images/services/service-real-estate.jpg"
                   alt="A modern luxury home exterior at golden hour"
                   width={820}
                   height={540}
@@ -221,7 +221,7 @@ export default function ServicesPage() {
         items={whyChoose}
         columns={4}
         numbered
-        backgroundImage="/images/services/service-design.png"
+        backgroundImage="/images/services/service-design.jpg"
         backgroundAlt="An elegant modern interior"
       />
 

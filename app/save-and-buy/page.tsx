@@ -154,7 +154,7 @@ export default function SaveAndBuyPage() {
             <ScrollReveal variant="fadeLeft" className={styles.overviewVisual}>
               <div className={styles.overviewFrame}>
                 <Image
-                  src="/images/save-and-buy/saveandbuy-overview.png"
+                  src="/images/save-and-buy/saveandbuy-overview.jpg"
                   alt="An advisor reviewing a flexible payment plan with a young couple"
                   width={820}
                   height={540}
@@ -237,7 +237,7 @@ export default function SaveAndBuyPage() {
         items={benefits}
         columns={4}
         numbered
-        backgroundImage="/images/services/service-real-estate.png"
+        backgroundImage="/images/services/service-real-estate.jpg"
         backgroundAlt="A modern luxury home"
       />
 
@@ -254,7 +254,7 @@ export default function SaveAndBuyPage() {
         text="A flexible path to ownership designed for forward-thinking homeowners and investors. Start today. Pay in stages. Build with confidence."
         ctaLabel="Join Save & Buy Today"
         ctaHref="/contact"
-        imageSrc="/images/save-and-buy/saveandbuy-spotlight.png"
+        imageSrc="/images/save-and-buy/saveandbuy-spotlight.jpg"
         imageAlt="A modern residential development at dusk"
       />
     </div>

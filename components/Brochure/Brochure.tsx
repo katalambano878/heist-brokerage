@@ -41,7 +41,7 @@ export function Brochure() {
           <ScrollReveal variant="fadeLeft" delayMs={120} className={styles.visual}>
             <div className={styles.frame}>
               <Image
-                src="/images/properties/coastal-glass-pavilion.png"
+                src="/images/properties/coastal-glass-pavilion.jpg"
                 alt="A modern multi-storey Heist residential development surrounded by greenery"
                 width={1000}
                 height={640}

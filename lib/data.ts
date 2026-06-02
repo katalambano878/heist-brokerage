@@ -8,7 +8,7 @@ export type Property = {
   sqft: string;
   /** Picsum seed when `imageSrc` is not set */
   imageSeed: string;
-  /** Optional path under `/public` (e.g. `/images/properties/foo.png`) */
+  /** Optional path under `/public` (e.g. `/images/properties/foo.jpg`) */
   imageSrc?: string;
   tag: string;
   type: string;
@@ -39,7 +39,7 @@ export const featuredProperties: Property[] = [
     baths: 6,
     sqft: "6,200",
     imageSeed: "heist-1",
-    imageSrc: "/images/properties/skyline-atelier.png",
+    imageSrc: "/images/properties/skyline-atelier.jpg",
     tag: "New listing",
     type: "Detached Villa",
     description:
@@ -54,7 +54,7 @@ export const featuredProperties: Property[] = [
     baths: 5,
     sqft: "5,100",
     imageSeed: "heist-2",
-    imageSrc: "/images/properties/limestone-townhouse.png",
+    imageSrc: "/images/properties/limestone-townhouse.jpg",
     tag: "Premium build",
     type: "Townhouse",
     description:
@@ -69,7 +69,7 @@ export const featuredProperties: Property[] = [
     baths: 4,
     sqft: "4,050",
     imageSeed: "heist-3",
-    imageSrc: "/images/properties/coastal-glass-pavilion.png",
+    imageSrc: "/images/properties/coastal-glass-pavilion.jpg",
     tag: "Waterfront",
     type: "Waterfront Home",
     description:
@@ -84,7 +84,7 @@ export const featuredProperties: Property[] = [
     baths: 4,
     sqft: "3,890",
     imageSeed: "heist-4",
-    imageSrc: "/images/properties/tribeca-loft-compound.png",
+    imageSrc: "/images/properties/tribeca-loft-compound.jpg",
     tag: "Investment-grade",
     type: "Loft Compound",
     description:
@@ -99,7 +99,7 @@ export const featuredProperties: Property[] = [
     baths: 4,
     sqft: "3,200",
     imageSeed: "heist-5",
-    imageSrc: "/images/properties/central-park-gallery.png",
+    imageSrc: "/images/properties/central-park-gallery.jpg",
     tag: "Flagship",
     type: "Gallery Residence",
     description:
@@ -114,7 +114,7 @@ export const featuredProperties: Property[] = [
     baths: 3,
     sqft: "3,600",
     imageSeed: "heist-6",
-    imageSrc: "/images/properties/brooklyn-heights-brownstone.png",
+    imageSrc: "/images/properties/brooklyn-heights-brownstone.jpg",
     tag: "Save & Buy ready",
     type: "Heritage Home",
     description:
@@ -129,7 +129,7 @@ export const featuredProperties: Property[] = [
     baths: 2,
     sqft: "2,980",
     imageSeed: "heist-7",
-    imageSrc: "/images/properties/soho-cast-iron-loft.png",
+    imageSrc: "/images/properties/soho-cast-iron-loft.jpg",
     tag: "Commercial",
     type: "Commercial Loft",
     description:
@@ -144,7 +144,7 @@ export const featuredProperties: Property[] = [
     baths: 3,
     sqft: "2,650",
     imageSeed: "heist-8",
-    imageSrc: "/images/properties/battery-park-sky-residence.png",
+    imageSrc: "/images/properties/battery-park-sky-residence.jpg",
     tag: "Skyline views",
     type: "Sky Residence",
     description:
@@ -159,7 +159,7 @@ export const featuredProperties: Property[] = [
     baths: 4,
     sqft: "3,740",
     imageSeed: "heist-9",
-    imageSrc: "/images/properties/west-village-garden-duplex.png",
+    imageSrc: "/images/properties/west-village-garden-duplex.jpg",
     tag: "Build in Stages",
     type: "Garden Duplex",
     description:
@@ -181,7 +181,7 @@ export const services: Service[] = [
     title: "Real Estate",
     description:
       "Premium property sales, acquisitions, and rentals tailored to modern homeowners and investors. Every transaction is guided by market insight, strategic positioning, and a commitment to securing lasting value.",
-    imageSrc: "/images/services/service-real-estate.png",
+    imageSrc: "/images/services/service-real-estate.jpg",
     imageAlt: "A modern luxury home exterior at golden hour",
   },
   {
@@ -189,7 +189,7 @@ export const services: Service[] = [
     title: "Construction",
     description:
       "From luxury residences to commercial developments, we deliver projects defined by craftsmanship, structural integrity, and refined design — executed with meticulous attention to detail and quality.",
-    imageSrc: "/images/services/service-construction.png",
+    imageSrc: "/images/services/service-construction.jpg",
     imageAlt: "A premium building under construction with steel framework and a crane",
   },
   {
@@ -197,7 +197,7 @@ export const services: Service[] = [
     title: "Renovation & Demolition",
     description:
       "Whether restoring existing spaces or preparing for new development, we handle renovations and demolitions with professionalism, safety, and precision.",
-    imageSrc: "/images/services/service-renovation.png",
+    imageSrc: "/images/services/service-renovation.jpg",
     imageAlt: "A home interior mid-renovation with new finishes and materials",
   },
   {
@@ -205,7 +205,7 @@ export const services: Service[] = [
     title: "Save & Buy Program",
     description:
       "A smarter path to property ownership. Our Save & Buy Program allows clients to secure properties and build progressively through structured payment plans designed for flexibility and peace of mind.",
-    imageSrc: "/images/services/service-save-and-buy.png",
+    imageSrc: "/images/services/service-save-and-buy.jpg",
     imageAlt: "A happy couple holding house keys in front of a modern home",
   },
   {
@@ -213,7 +213,7 @@ export const services: Service[] = [
     title: "Interior & Exterior Design",
     description:
       "We create spaces that balance beauty, comfort, and functionality. From elegant interiors to striking exterior concepts, every design reflects intentional living and timeless aesthetics.",
-    imageSrc: "/images/services/service-design.png",
+    imageSrc: "/images/services/service-design.jpg",
     imageAlt: "An elegant modern living room with refined furniture and designer lighting",
   },
   {
@@ -221,7 +221,7 @@ export const services: Service[] = [
     title: "Importation & Product Sourcing",
     description:
       "Through our global sourcing network, we connect clients to premium finishes, fixtures, materials, and branded products that elevate residential and commercial spaces.",
-    imageSrc: "/images/services/service-sourcing.png",
+    imageSrc: "/images/services/service-sourcing.jpg",
     imageAlt: "A curated flat-lay of premium tiles, stone, and brass fixtures",
   },
 ];
@@ -414,7 +414,7 @@ export const team: TeamMember[] = [
     title: "Founder & Lead Strategist",
     focus:
       "With a background in urban development and hands-on real estate experience, Samirah founded Heist to help clients navigate property decisions strategically and confidently — known for identifying opportunities early and negotiating with precision.",
-    imageSrc: "/images/team/samirah-sulleiman.png",
+    imageSrc: "/images/team/samirah-sulleiman.jpg",
     featured: true,
   },
   {
@@ -423,7 +423,7 @@ export const team: TeamMember[] = [
     title: "Chief Marketing Officer",
     focus:
       "Drives Heist's brand and marketing strategy — positioning every property and project to reach the right audience and stand out in a competitive market.",
-    imageSrc: "/images/team/abdul-rashid-abubakar-kabena.png",
+    imageSrc: "/images/team/abdul-rashid-abubakar-kabena.jpg",
   },
   {
     id: "joseph-opoku",
@@ -431,7 +431,7 @@ export const team: TeamMember[] = [
     title: "Sales Associate",
     focus:
       "Guides clients through listings, viewings, and negotiations, pairing market knowledge with a client-first approach to every deal.",
-    imageSrc: "/images/team/joseph-opoku.png",
+    imageSrc: "/images/team/joseph-opoku.jpg",
   },
   {
     id: "kwame-pilimana",
@@ -439,7 +439,7 @@ export const team: TeamMember[] = [
     title: "Site Manager",
     focus:
       "Runs construction sites day to day, keeping builds on schedule, on standard, and safely delivered from groundwork to finishing.",
-    imageSrc: "/images/team/kwame-pilimana.png",
+    imageSrc: "/images/team/kwame-pilimana.jpg",
   },
   {
     id: "issah-sumaila",
@@ -447,7 +447,7 @@ export const team: TeamMember[] = [
     title: "Personal Assistant & Sales Associate",
     focus:
       "Keeps operations running smoothly behind the scenes while supporting clients through the sales journey with care and attention to detail.",
-    imageSrc: "/images/team/issah-sumaila.png",
+    imageSrc: "/images/team/issah-sumaila.jpg",
   },
 ];
 
@@ -465,28 +465,28 @@ export const exclusiveProjects: ExclusiveProject[] = [
     name: "Skyline Atelier",
     location: "East Legon Hills, Accra",
     soldPercentage: 100,
-    imageSrc: "/images/properties/skyline-atelier.png",
+    imageSrc: "/images/properties/skyline-atelier.jpg",
   },
   {
     id: "p2",
     name: "The Cube Residences",
     location: "Cantonments, Accra",
     soldPercentage: 90,
-    imageSrc: "/images/properties/tribeca-loft-compound.png",
+    imageSrc: "/images/properties/tribeca-loft-compound.jpg",
   },
   {
     id: "p3",
     name: "Viera Residences",
     location: "Airport Residential, Accra",
     soldPercentage: 100,
-    imageSrc: "/images/properties/central-park-gallery.png",
+    imageSrc: "/images/properties/central-park-gallery.jpg",
   },
   {
     id: "p4",
     name: "Gate Eleven",
     location: "Labone, Accra",
     soldPercentage: 70,
-    imageSrc: "/images/properties/coastal-glass-pavilion.png",
+    imageSrc: "/images/properties/coastal-glass-pavilion.jpg",
   },
 ];
 
