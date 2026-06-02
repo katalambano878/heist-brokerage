@@ -7,17 +7,18 @@ import styles from "./FeaturedListings.module.css";
 export function FeaturedListings() {
   return (
     <section className={styles.section} aria-labelledby="featured-heading">
-      <Container>
+      <Container className={styles.wide}>
         <div className={styles.header}>
           <ScrollReveal as="p" variant="fadeUp" className={styles.kicker}>
-            Curated inventory
+            Featured Listings
           </ScrollReveal>
           <ScrollReveal as="h2" variant="fadeUp" delayMs={80} id="featured-heading" className={styles.title}>
-            Residences with architectural clarity
+            Properties positioned to perform
           </ScrollReveal>
           <ScrollReveal as="p" variant="fadeUp" delayMs={140} className={styles.lead}>
-            A shortlist of homes that balance light, proportion, and location.
-            Full diligence packets and private tours are available on request.
+            A selection of premium homes and investment-grade properties across
+            Accra. Strategy packets, site visits, and Save &amp; Buy options are
+            available on request.
           </ScrollReveal>
         </div>
         <div className={styles.grid}>

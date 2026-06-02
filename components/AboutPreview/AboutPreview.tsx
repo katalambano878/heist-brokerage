@@ -25,13 +25,13 @@ export function AboutPreview() {
               />
             </div>
             <div className={styles.badge}>
-              <span className={styles.badgeLabel}>Est.</span>
-              <span className={styles.badgeValue}>1998</span>
+              <span className={styles.badgeLabel}>The</span>
+              <span className={styles.badgeValue}>Heist</span>
             </div>
           </ScrollReveal>
           <div className={styles.copy}>
             <ScrollReveal as="p" variant="fadeRight" className={styles.kicker}>
-              Practice
+              Our Philosophy
             </ScrollReveal>
             <ScrollReveal
               as="h2"
@@ -40,7 +40,7 @@ export function AboutPreview() {
               id="about-preview-heading"
               className={styles.title}
             >
-              A brokerage built for long horizons
+              The Heist Mentality
             </ScrollReveal>
             <ScrollReveal
               as="p"
@@ -48,9 +48,10 @@ export function AboutPreview() {
               delayMs={120}
               className={styles.text}
             >
-              Luxury Estate began as a small advisory desk for owners who wanted
-              discretion as much as square footage. Today we still cap caseloads so
-              every client gets senior attention from first tour to closing.
+              We believe success in real estate comes down to timing, strategy,
+              and execution. We approach every project and transaction with
+              precision — helping clients make informed decisions, maximize value,
+              and move confidently in competitive markets.
             </ScrollReveal>
             <ScrollReveal
               as="p"
@@ -58,9 +59,9 @@ export function AboutPreview() {
               delayMs={170}
               className={styles.text}
             >
-              Whether you are upgrading in Accra or placing capital for the long
-              term, we pair curated inventory with board-ready documentation and a
-              transaction rhythm that respects your calendar.
+              No guesswork. No unnecessary risk. Just smart moves backed by
+              expertise. This is more than real estate — this is strategic
+              property development.
             </ScrollReveal>
             <ScrollReveal
               variant="fadeRight"
@@ -68,10 +69,10 @@ export function AboutPreview() {
               className={styles.actions}
             >
               <Link href="/about" className={styles.primary}>
-                Read our story
+                About Heist
               </Link>
-              <Link href="/agents" className={styles.secondary}>
-                Meet advisors
+              <Link href="/services" className={styles.secondary}>
+                Our Services
               </Link>
             </ScrollReveal>
           </div>

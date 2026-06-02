@@ -56,15 +56,16 @@ export function Hero({ onPrimaryClick }: HeroProps) {
       <Container className={styles.inner}>
         <div className={styles.copy}>
           <p className={`${styles.kicker} ${styles.enterKicker}`}>
-            Private residences and investment-grade homes
+            Real Estate, Reimagined.
           </p>
           <h1 className={`${styles.title} ${styles.enterTitle}`}>
-            Homes measured by light, proportion, and quiet confidence.
+            Trusted by Clients. Defined by Results.
           </h1>
           <p className={`${styles.sub} ${styles.enterSub}`}>
-            Luxury Estate connects buyers, sellers, and renters with curated
-            inventory, board-ready counsel, and a transaction rhythm that
-            respects your calendar.
+            Strategic real estate and construction solutions for homeowners,
+            investors, and visionaries who expect more. From luxury homes to
+            high-value investments, Heist delivers precision, trust, and premium
+            execution at every stage.
           </p>
           <div className={`${styles.actions} ${styles.enterActions}`}>
             <button
@@ -72,10 +73,10 @@ export function Hero({ onPrimaryClick }: HeroProps) {
               className={styles.primary}
               onClick={onPrimaryClick}
             >
-              Request a private tour
+              Book a Strategy Call
             </button>
             <a href="/properties" className={styles.secondary}>
-              View current listings
+              View Listings
             </a>
           </div>
         </div>

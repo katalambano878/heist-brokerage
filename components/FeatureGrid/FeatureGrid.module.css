@@ -1,0 +1,136 @@
+.section {
+  padding-block: var(--space-4xl);
+  background: var(--color-bg-alt);
+}
+
+.dark {
+  background: var(--color-ink);
+  color: var(--color-warm-white);
+}
+
+.hasBg {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hasBg .header,
+.hasBg .grid {
+  position: relative;
+  z-index: 1;
+}
+
+.header {
+  max-width: 760px;
+  margin-bottom: var(--space-3xl);
+}
+
+.kicker {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin: 0 0 var(--space-md);
+}
+
+.dark .kicker {
+  color: rgba(255, 252, 247, 0.7);
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.9rem, 4vw, 2.9rem);
+  line-height: 1.1;
+  font-weight: 500;
+  margin: 0 0 var(--space-md);
+}
+
+.lead {
+  font-size: 1.08rem;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.dark .lead {
+  color: rgba(255, 252, 247, 0.72);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+}
+
+@media (min-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 980px) {
+  .grid[data-columns="3"] {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .grid[data-columns="4"] {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.card {
+  padding: var(--space-xl);
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.dark .card {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: none;
+}
+
+.dark .card:hover {
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.index {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  color: var(--color-accent);
+  margin-bottom: var(--space-sm);
+}
+
+.dark .index {
+  color: rgba(255, 252, 247, 0.55);
+}
+
+.cardTitle {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin: 0 0 var(--space-sm);
+}
+
+.cardText {
+  font-size: 0.96rem;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.dark .cardText {
+  color: rgba(255, 252, 247, 0.72);
+}

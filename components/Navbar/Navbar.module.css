@@ -24,26 +24,10 @@
 }
 
 .brandMark {
-  width: 36px;
-  height: 36px;
-  border: 1px solid var(--color-border-strong);
-  border-radius: var(--radius-sm);
-  background: linear-gradient(
-    135deg,
-    var(--color-warm-white) 0%,
-    var(--color-bg-alt) 100%
-  );
-  position: relative;
+  width: auto;
+  height: 38px;
+  object-fit: contain;
   flex-shrink: 0;
-}
-
-.brandMark::after {
-  content: "";
-  position: absolute;
-  inset: 8px;
-  border-left: 2px solid var(--color-accent);
-  border-bottom: 2px solid var(--color-teal-deep);
-  transform: skewX(-8deg);
 }
 
 .brandText {
@@ -60,10 +44,11 @@
 }
 
 .brandLineMuted {
-  font-size: 0.7rem;
-  letter-spacing: 0.28em;
+  font-size: 0.6rem;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--color-text-muted);
+  white-space: nowrap;
 }
 
 .nav {
@@ -73,7 +58,7 @@
 .navList {
   display: flex;
   align-items: center;
-  gap: var(--space-xl);
+  gap: var(--space-lg);
   list-style: none;
   margin: 0;
   padding: 0;
@@ -81,9 +66,10 @@
 
 .navLink {
   position: relative;
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   font-weight: 500;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
   padding-block: var(--space-xs);
   text-decoration: none;
   color: var(--color-text-muted);
@@ -151,7 +137,7 @@
 
 .cta:hover,
 .cta:focus-visible {
-  background: #142e2c;
+  background: #1c1c1c;
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }
@@ -298,11 +284,11 @@
 
 .drawerCta:hover,
 .drawerCta:focus-visible {
-  background: #142e2c;
+  background: #1c1c1c;
   transform: translateY(-2px);
 }
 
-@media (min-width: 769px) {
+@media (min-width: 1024px) {
   .nav {
     display: block;
   }

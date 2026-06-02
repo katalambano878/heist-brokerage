@@ -3,135 +3,237 @@ import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/Container/Container";
 import { ScrollReveal } from "@/components/ScrollReveal/ScrollReveal";
+import { PageHero } from "@/components/PageHero/PageHero";
+import { FeatureGrid } from "@/components/FeatureGrid/FeatureGrid";
+import { StatsSection } from "@/components/StatsSection/StatsSection";
+import { CtaBannerWrapper } from "@/components/CtaBanner/CtaBannerWrapper";
+import { values, differentiators, team } from "@/lib/data";
 import styles from "./page.module.css";
 
-// Local copy of pin.it/22dIOsEBG — keys on driveway (see /public/images/about-keys.jpg)
-const ABOUT_KEYS_SRC = "/images/about-keys.jpg";
-const ABOUT_KEYS_ALT =
-  "Golden house keys and a house-shaped keychain on a dark paved driveway";
-const ABOUT_KEYS_W = 736;
-const ABOUT_KEYS_H = 736;
-
 export const metadata: Metadata = {
-  title: "About the practice",
+  title: "About Heist",
   description:
-    "Learn how Luxury Estate advises buyers, sellers, and renters with discretion, research, and a calm transaction rhythm.",
+    "Founded on strategy, precision, and execution, Heist Brokerage & Construction redefines the real estate and construction experience — strategic partners committed to helping clients move with confidence.",
   openGraph: {
-    title: "About the practice | Luxury Estate",
+    title: "About Heist | Heist Brokerage & Construction",
     description:
-      "Learn how Luxury Estate advises buyers, sellers, and renters with discretion, research, and a calm transaction rhythm.",
+      "Founded on strategy, precision, and execution to redefine real estate and construction.",
     url: "/about",
   },
 };
 
+const founder = team.find((member) => member.featured) ?? team[0];
+
+const principles = [
+  {
+    t: "Precision over guesswork",
+    d: "Every project and transaction is approached with discipline — helping clients make informed decisions, maximize value, and move confidently in competitive markets.",
+  },
+  {
+    t: "Clarity, strategy, results",
+    d: "Buying your first home, developing a property, selling an investment, or planning long-term growth — our role stays the same: deliver clarity, strategy, and measurable results.",
+  },
+  {
+    t: "Smart moves, backed by expertise",
+    d: "No guesswork. No unnecessary risk. Just considered decisions guided by people who understand the market. This is strategic property development, done properly.",
+  },
+];
+
 export default function AboutPage() {
   return (
     <div className={styles.page}>
-      <section className={styles.hero} aria-labelledby="about-hero-heading">
+      <PageHero
+        kicker="About Heist"
+        title="More than brokers and builders"
+        lead="We believe every property holds untapped potential — an opportunity waiting to be transformed into lasting value. Founded on strategy, precision, and execution, Heist was created to redefine the real estate and construction experience."
+        headingId="about-hero-heading"
+        imageSrc="https://picsum.photos/seed/heist-about/1920/1080"
+        actions={[
+          { label: "Work With Us", href: "/contact" },
+          { label: "Our Services", href: "/services", variant: "outline" },
+        ]}
+      />
+
+      <section className={styles.intro} aria-labelledby="intro-heading">
         <Container>
-          <div className={styles.heroGrid}>
-            <div className={styles.heroCopy}>
-              <ScrollReveal as="p" variant="fadeUp" className={styles.kicker}>
-                Since 1998
-              </ScrollReveal>
-              <ScrollReveal
-                as="h1"
-                variant="fadeUp"
-                delayMs={80}
-                id="about-hero-heading"
-                className={styles.heroTitle}
-              >
-                Editorial rigor applied to real estate
-              </ScrollReveal>
-              <ScrollReveal
-                as="p"
-                variant="fadeUp"
-                delayMs={140}
-                className={styles.heroLead}
-              >
-                We treat each mandate like an editorial assignment: research,
-                clear writing, and a calm hand through signing. No theatrics—just
-                judgment you can rely on when the stakes are high.
-              </ScrollReveal>
-            </div>
-            <ScrollReveal variant="fadeLeft" className={styles.heroVisual}>
-              <div className={styles.heroFrame}>
+          <div className={styles.introGrid}>
+            <ScrollReveal variant="fadeRight" className={styles.introVisual}>
+              <div className={styles.introFrame}>
                 <Image
-                  src={ABOUT_KEYS_SRC}
-                  alt={ABOUT_KEYS_ALT}
-                  width={ABOUT_KEYS_W}
-                  height={ABOUT_KEYS_H}
-                  className={styles.heroImage}
-                  sizes="(max-width: 900px) 100vw, 46vw"
-                  priority
+                  src="https://i.pinimg.com/736x/6c/0c/1a/6c0c1a2cfd0ad0bb01476acfced51420.jpg"
+                  alt="Two people exchanging keys during a property handover"
+                  width={736}
+                  height={981}
+                  className={styles.introImage}
+                  sizes="(max-width: 900px) 100vw, 44vw"
                 />
               </div>
+              <div className={styles.introBadge}>
+                <span className={styles.introBadgeValue}>East Legon</span>
+                <span className={styles.introBadgeLabel}>Based in Accra, Ghana</span>
+              </div>
             </ScrollReveal>
-          </div>
-        </Container>
-      </section>
 
-      <section className={styles.split} aria-labelledby="values-heading">
-        <Container>
-          <div className={styles.splitInner}>
-            <ScrollReveal variant="fadeRight" className={styles.splitSticky}>
-              <p className={styles.eyebrow}>Values</p>
-              <h2 id="values-heading" className={styles.splitTitle}>
-                Calm process, candid counsel
-              </h2>
-              <p className={styles.splitText}>
-                You get direct answers, realistic timelines, and strategy that
-                holds up under scrutiny from lenders, boards, and family offices
-                alike.
-              </p>
-              <Link href="/contact" className={styles.splitLink}>
-                Start a conversation
-              </Link>
-            </ScrollReveal>
-            <div className={styles.splitList}>
-              {[
-                {
-                  t: "Research first",
-                  d: "We underwrite every recommendation with comps, building history, and downside scenarios before you commit time or capital.",
-                },
-                {
-                  t: "Aligned incentives",
-                  d: "Our fee structure rewards successful closings and repeat relationships—not volume for its own sake.",
-                },
-                {
-                  t: "Quiet marketing",
-                  d: "Many of our best opportunities never hit public portals; we introduce them to qualified buyers in private channels.",
-                },
-              ].map((item, i) => (
-                <ScrollReveal
-                  key={item.t}
-                  variant="fadeUp"
-                  staggerIndex={i}
-                  className={styles.valueCard}
-                >
-                  <h3 className={styles.valueTitle}>{item.t}</h3>
-                  <p className={styles.valueBody}>{item.d}</p>
-                </ScrollReveal>
-              ))}
+            <div className={styles.introCopy}>
+              <ScrollReveal as="p" variant="fadeUp" className={styles.eyebrow}>
+                Who We Are
+              </ScrollReveal>
+              <ScrollReveal
+                as="h2"
+                variant="fadeUp"
+                delayMs={70}
+                id="intro-heading"
+                className={styles.introTitle}
+              >
+                A real estate and construction firm built on strategy
+              </ScrollReveal>
+              <ScrollReveal as="p" variant="fadeUp" delayMs={120} className={styles.introText}>
+                Heist Brokerage &amp; Construction was founded on a simple
+                conviction: every property holds untapped potential. We exist to
+                unlock it — pairing sharp market intelligence with disciplined
+                construction so our clients build real, lasting value.
+              </ScrollReveal>
+              <ScrollReveal as="p" variant="fadeUp" delayMs={160} className={styles.introText}>
+                From luxury homes and commercial developments to flexible
+                ownership through our Save &amp; Buy and Build in Stages programs,
+                we operate as strategic partners — guiding every decision with
+                foresight, transparency, and excellence at its core.
+              </ScrollReveal>
+
+              <ScrollReveal variant="fadeUp" delayMs={210} className={styles.valuesMini}>
+                {values.map((value) => (
+                  <div key={value.title} className={styles.valueMiniItem}>
+                    <h3 className={styles.vmTitle}>{value.title}</h3>
+                    <p className={styles.vmDesc}>{value.description}</p>
+                  </div>
+                ))}
+              </ScrollReveal>
             </div>
           </div>
         </Container>
       </section>
 
-      <section className={styles.strip} aria-label="Closing details">
+      <StatsSection />
+
+      <section className={styles.quote} aria-labelledby="mission-heading">
         <Container>
-          <ScrollReveal variant="scale" className={styles.stripFrame}>
-            <Image
-              src={ABOUT_KEYS_SRC}
-              alt={ABOUT_KEYS_ALT}
-              width={ABOUT_KEYS_W}
-              height={ABOUT_KEYS_H}
-              className={styles.stripImage}
-              sizes="100vw"
-            />
-          </ScrollReveal>
+          <div className={styles.quoteInner}>
+            <ScrollReveal as="p" variant="fadeUp" className={styles.quoteEyebrow}>
+              Our Mission
+            </ScrollReveal>
+            <ScrollReveal
+              as="h2"
+              variant="fadeUp"
+              delayMs={70}
+              id="mission-heading"
+              className={styles.quoteText}
+            >
+              To redefine real estate and construction through strategic
+              thinking, premium execution, and transparent partnerships that turn
+              vision into legacy.
+            </ScrollReveal>
+          </div>
         </Container>
       </section>
+
+      <FeatureGrid
+        kicker="What Sets Us Apart"
+        title="Why clients choose Heist"
+        lead="We don't just transact — we position, advise, and execute. These are the things that consistently set our work apart."
+        items={differentiators}
+        columns={3}
+        numbered
+        variant="dark"
+      />
+
+      <section className={styles.mentality} aria-labelledby="philosophy-heading">
+        <Container>
+          <div className={styles.mentalityInner}>
+            <ScrollReveal variant="fadeRight" className={styles.mentalityHeader}>
+              <p className={styles.eyebrow}>Our Philosophy</p>
+              <h2 id="philosophy-heading" className={styles.mentalityTitle}>
+                The Heist Mentality
+              </h2>
+              <p className={styles.mentalityLead}>
+                Success in real estate comes down to timing, strategy, and
+                execution. That mindset shapes how we approach every client,
+                every build, and every deal.
+              </p>
+              <Link href="/contact" className={styles.mentalityLink}>
+                Work with us
+              </Link>
+            </ScrollReveal>
+
+            <ol className={styles.principles}>
+              {principles.map((item, i) => (
+                <ScrollReveal
+                  key={item.t}
+                  as="li"
+                  variant="fadeUp"
+                  staggerIndex={i}
+                  className={styles.principle}
+                >
+                  <span className={styles.principleNum}>
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <h3 className={styles.principleTitle}>{item.t}</h3>
+                    <p className={styles.principleBody}>{item.d}</p>
+                  </div>
+                </ScrollReveal>
+              ))}
+            </ol>
+          </div>
+        </Container>
+      </section>
+
+      <section className={styles.founder} aria-labelledby="founder-heading">
+        <Container>
+          <div className={styles.founderInner}>
+            <ScrollReveal variant="fadeRight" className={styles.founderVisual}>
+              <Image
+                src={`https://picsum.photos/seed/${founder.imageSeed}/640/760`}
+                alt={`Portrait of ${founder.name}`}
+                width={640}
+                height={760}
+                className={styles.founderImage}
+                sizes="(max-width: 900px) 100vw, 40vw"
+              />
+            </ScrollReveal>
+            <div className={styles.founderCopy}>
+              <ScrollReveal as="p" variant="fadeUp" className={styles.eyebrow}>
+                Meet the Founder
+              </ScrollReveal>
+              <ScrollReveal
+                as="h2"
+                variant="fadeUp"
+                delayMs={70}
+                id="founder-heading"
+                className={styles.founderName}
+              >
+                {founder.name}
+              </ScrollReveal>
+              <ScrollReveal as="p" variant="fadeUp" delayMs={120} className={styles.founderRole}>
+                {founder.title}
+              </ScrollReveal>
+              <ScrollReveal as="p" variant="fadeUp" delayMs={150} className={styles.founderQuote}>
+                &ldquo;We built Heist so people could move on property with the
+                same confidence we do — early, informed, and on their terms.&rdquo;
+              </ScrollReveal>
+              <ScrollReveal as="p" variant="fadeUp" delayMs={190} className={styles.founderText}>
+                {founder.focus}
+              </ScrollReveal>
+              <ScrollReveal variant="fadeUp" delayMs={230}>
+                <Link href="/team" className={styles.mentalityLink}>
+                  Meet the full team
+                </Link>
+              </ScrollReveal>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <CtaBannerWrapper />
     </div>
   );
 }

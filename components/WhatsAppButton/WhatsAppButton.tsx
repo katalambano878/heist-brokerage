@@ -1,7 +1,7 @@
 import styles from "./WhatsAppButton.module.css";
 
 const WHATSAPP_HREF =
-  "https://wa.me/233245550198?text=Hello%20Luxury%20Estate%2C%20I%20would%20like%20to%20discuss%20a%20property.";
+  "https://wa.me/233203436540?text=Hello%20Heist%20Brokerage%20%26%20Construction%2C%20I%20would%20like%20to%20discuss%20a%20project.";
 
 export function WhatsAppButton() {
   return (

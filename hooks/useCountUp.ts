@@ -15,14 +15,14 @@ export function useCountUp(
   const rafRef = useRef<number | null>(null);
 
   useEffect(() => {
-    if (!enabled) {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (mq.matches) {
       requestAnimationFrame(() => setValue(target));
       return;
     }
 
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (mq.matches) {
-      requestAnimationFrame(() => setValue(target));
+    if (!enabled) {
+      setValue(0);
       return;
     }
 

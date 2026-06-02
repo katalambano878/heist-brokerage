@@ -6,7 +6,7 @@
   padding-block: var(--space-3xl) var(--space-2xl);
   background: radial-gradient(
       circle at 0% 0%,
-      rgba(154, 123, 45, 0.1),
+      rgba(20, 20, 20, 0.06),
       transparent 45%
     ),
     var(--color-bg);
@@ -31,7 +31,7 @@
   font-size: 0.78rem;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: var(--color-text-muted);
+  color: var(--color-accent);
 }
 
 .title {
@@ -73,8 +73,8 @@
 .panelValue {
   margin: var(--space-sm) 0 var(--space-md);
   font-family: var(--font-serif);
-  font-size: 1.35rem;
-  line-height: 1.25;
+  font-size: 1.2rem;
+  line-height: 1.3;
   color: var(--color-text);
 }
 
@@ -107,13 +107,13 @@
 
 .panelCta:hover,
 .panelCta:focus-visible {
-  background: #142e2c;
+  background: #1c1c1c;
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }
 
 .team {
-  padding-bottom: var(--space-3xl);
+  padding-block: var(--space-2xl) var(--space-3xl);
 }
 
 .teamGrid {
@@ -135,6 +135,7 @@
 }
 
 .card {
+  position: relative;
   display: flex;
   flex-direction: column;
   border-radius: var(--radius-lg);
@@ -149,6 +150,11 @@
 
 .card:hover {
   transform: translateY(-8px);
+  box-shadow: var(--shadow-md);
+}
+
+.cardFeatured {
+  border-color: var(--color-charcoal);
   box-shadow: var(--shadow-md);
 }
 
@@ -177,6 +183,18 @@
   flex: 1;
 }
 
+.badge {
+  align-self: flex-start;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-warm-white);
+  background: var(--color-ink);
+  padding: 0.3rem 0.6rem;
+  border-radius: 999px;
+}
+
 .name {
   margin: 0;
   font-family: var(--font-serif);
@@ -188,11 +206,11 @@
 
 .role {
   margin: 0;
-  font-size: 0.88rem;
+  font-size: 0.82rem;
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--color-teal-deep);
+  color: var(--color-accent);
 }
 
 .focus {

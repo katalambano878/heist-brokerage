@@ -3,13 +3,13 @@ import { HomeClient } from "@/components/HomeClient/HomeClient";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
-  title: "Homes and investments, curated with care",
+  title: "Trusted by Clients. Defined by Results.",
   description:
-    "Luxury Estate connects buyers, sellers, and renters with curated listings, advisory teams, and transactions designed around your timeline.",
+    "Heist Brokerage & Construction delivers strategic real estate, construction, and flexible ownership solutions across Accra — built on precision, trust, and premium execution.",
   openGraph: {
-    title: "Homes and investments, curated with care | Luxury Estate",
+    title: "Heist Brokerage & Construction | Real Estate, Reimagined.",
     description:
-      "Luxury Estate connects buyers, sellers, and renters with curated listings, advisory teams, and transactions designed around your timeline.",
+      "Strategic real estate and construction solutions for homeowners, investors, and visionaries who expect more.",
     url: "/",
   },
 };

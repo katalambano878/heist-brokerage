@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Container } from "@/components/Container/Container";
@@ -9,8 +10,10 @@ import styles from "./Navbar.module.css";
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
-  { href: "/properties", label: "Properties" },
-  { href: "/agents", label: "Agents" },
+  { href: "/services", label: "Services" },
+  { href: "/properties", label: "Listings" },
+  { href: "/save-and-buy", label: "Save & Buy" },
+  { href: "/build-in-stages", label: "Build in Stages" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -21,7 +24,7 @@ export function Navbar() {
   useEffect(() => {
     if (!open) return;
     const onResize = () => {
-      if (window.innerWidth > 768) setOpen(false);
+      if (window.innerWidth > 1024) setOpen(false);
     };
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
@@ -40,10 +43,17 @@ export function Navbar() {
     <header className={styles.header}>
       <Container className={styles.bar}>
         <Link href="/" className={styles.brand} onClick={() => setOpen(false)}>
-          <span className={styles.brandMark} aria-hidden />
+          <Image
+            src="/logo.png"
+            alt="Heist Brokerage & Construction"
+            width={866}
+            height={288}
+            className={styles.brandMark}
+            priority
+          />
           <span className={styles.brandText}>
-            <span className={styles.brandLine}>Luxury</span>
-            <span className={styles.brandLineMuted}>Estate</span>
+            <span className={styles.brandLine}>HEIST</span>
+            <span className={styles.brandLineMuted}>Brokerage &amp; Construction</span>
           </span>
         </Link>
 
@@ -75,7 +85,7 @@ export function Navbar() {
             className={styles.cta}
             onClick={() => setOpen(false)}
           >
-            Book a consultation
+            Book a Strategy Call
           </Link>
           <button
             type="button"
@@ -125,7 +135,7 @@ export function Navbar() {
             className={styles.drawerCta}
             onClick={() => setOpen(false)}
           >
-            Book a consultation
+            Book a Strategy Call
           </Link>
         </Container>
       </div>

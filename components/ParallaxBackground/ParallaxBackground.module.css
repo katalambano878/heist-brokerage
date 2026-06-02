@@ -1,0 +1,37 @@
+.root {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.layer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -22%;
+  height: 144%;
+  will-change: transform;
+}
+
+.image {
+  object-fit: cover;
+}
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(10, 10, 10, 0.78) 0%,
+      rgba(10, 10, 10, 0.7) 40%,
+      rgba(10, 10, 10, 0.86) 100%
+    ),
+    linear-gradient(
+      100deg,
+      rgba(10, 10, 10, 0.7) 0%,
+      rgba(10, 10, 10, 0.5) 60%,
+      rgba(10, 10, 10, 0.6) 100%
+    );
+}

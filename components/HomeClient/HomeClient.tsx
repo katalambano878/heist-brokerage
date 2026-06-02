@@ -2,10 +2,11 @@
 
 import { useState } from "react";
 import { Hero } from "@/components/Hero/Hero";
+import { Brochure } from "@/components/Brochure/Brochure";
 import { FeaturedListings } from "@/components/FeaturedListings/FeaturedListings";
 import { AboutPreview } from "@/components/AboutPreview/AboutPreview";
 import { StatsSection } from "@/components/StatsSection/StatsSection";
-import { Testimonials } from "@/components/Testimonials/Testimonials";
+import { ExclusiveProjects } from "@/components/ExclusiveProjects/ExclusiveProjects";
 import { CtaBanner } from "@/components/CtaBanner/CtaBanner";
 import { LeadModal } from "@/components/LeadModal/LeadModal";
 
@@ -15,10 +16,11 @@ export function HomeClient() {
   return (
     <>
       <Hero onPrimaryClick={() => setModalOpen(true)} />
+      <Brochure />
       <FeaturedListings />
       <AboutPreview />
       <StatsSection />
-      <Testimonials />
+      <ExclusiveProjects />
       <CtaBanner onPrimaryClick={() => setModalOpen(true)} />
       <LeadModal
         key={modalOpen ? "open" : "closed"}

@@ -35,7 +35,7 @@ export function LoginPage() {
       <div className="login-container">
         <div className="login-brand">
           <div className="login-logo">LE</div>
-          <h1>Luxury Estate</h1>
+          <h1>Heist Brokerage</h1>
           <p>Admin console</p>
         </div>
         <form className="login-card" onSubmit={onSubmit}>

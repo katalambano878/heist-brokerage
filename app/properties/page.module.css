@@ -35,7 +35,11 @@
 }
 
 .gridSection {
-  padding-bottom: var(--space-3xl);
+  padding-block: var(--space-3xl);
+}
+
+.wide {
+  max-width: 1340px !important;
 }
 
 .grid {

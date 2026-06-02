@@ -6,18 +6,23 @@ import styles from "./FaqAccordion.module.css";
 const items = [
   {
     id: "faq-1",
-    q: "How quickly can we schedule private showings?",
-    a: "Most requests are confirmed within 24 hours, subject to seller availability, security desks, and building policies.",
+    q: "How does the Save & Buy Program work?",
+    a: "Choose your property, make an initial deposit, and complete payments through agreed installments. Once payments are complete, you take ownership with confidence — transparent agreements, no hidden costs.",
   },
   {
     id: "faq-2",
-    q: "Do you represent international buyers?",
-    a: "Yes. We coordinate counsel, currency considerations, and time zones with a single lead advisor so decisions stay coherent across markets.",
+    q: "Can I finance construction in stages?",
+    a: "Yes. Our Build in Stages Plan lets you finance construction progressively — design, foundation, structural, roofing, and finishing — with full visibility and control at every milestone.",
   },
   {
     id: "faq-3",
-    q: "What documents should sellers prepare in advance?",
-    a: "We share a concise checklist that typically covers financial statements, alteration history, and board correspondence where applicable.",
+    q: "What services does Heist offer?",
+    a: "Real estate sales and acquisitions, construction, renovation and demolition, the Save & Buy Program, interior and exterior design, and global product sourcing.",
+  },
+  {
+    id: "faq-4",
+    q: "How quickly can we book a strategy call?",
+    a: "Most strategy calls are confirmed within 24 hours. Reach us by phone, WhatsApp, or the form above and we'll respond with a clear next step.",
   },
 ];
 

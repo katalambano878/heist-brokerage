@@ -1,18 +1,19 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/Container/Container";
 import { ScrollReveal } from "@/components/ScrollReveal/ScrollReveal";
+import { PageHero } from "@/components/PageHero/PageHero";
 import { ContactForm } from "@/components/ContactForm/ContactForm";
 import { FaqAccordion } from "@/components/FaqAccordion/FaqAccordion";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
-  title: "Contact concierge",
+  title: "Contact",
   description:
-    "Reach Luxury Estate for private tours, off-market introductions, and portfolio planning across select markets.",
+    "Book a strategy call with Heist Brokerage & Construction in Accra. Real estate, construction, Save & Buy, and Build in Stages — we respond with a clear next step.",
   openGraph: {
-    title: "Contact concierge | Luxury Estate",
+    title: "Contact | Heist Brokerage & Construction",
     description:
-      "Reach Luxury Estate for private tours, off-market introductions, and portfolio planning across select markets.",
+      "Book a strategy call with Heist Brokerage & Construction in Accra.",
     url: "/contact",
   },
 };
@@ -20,53 +21,19 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <div className={styles.page}>
-      <section className={styles.hero} aria-labelledby="contact-heading">
-        <Container>
-          <div className={styles.heroGrid}>
-            <div className={styles.heroCopy}>
-              <ScrollReveal as="p" variant="fadeUp" className={styles.kicker}>
-                Concierge
-              </ScrollReveal>
-              <ScrollReveal
-                as="h1"
-                variant="fadeUp"
-                delayMs={70}
-                id="contact-heading"
-                className={styles.title}
-              >
-                A single desk for your next move
-              </ScrollReveal>
-              <ScrollReveal
-                as="p"
-                variant="fadeUp"
-                delayMs={130}
-                className={styles.lead}
-              >
-                Whether you are buying, selling, or planning ahead, one team
-                coordinates the details. Tell us what you are solving for, and
-                we will respond with a clear next step.
-              </ScrollReveal>
-            </div>
-            <ScrollReveal variant="fadeLeft" className={styles.card}>
-              <p className={styles.cardLabel}>Visit</p>
-              <address className={styles.address}>
-                18 Liberation Road
-                <br />
-                Cantonments
-                <br />
-                Accra, Ghana
-              </address>
-              <p className={styles.cardMeta}>
-                <a href="tel:+233245550198">+233 24 555 0198</a>
-                <br />
-                <a href="mailto:concierge@luxuryestate.example">
-                  concierge@luxuryestate.example
-                </a>
-              </p>
-            </ScrollReveal>
-          </div>
-        </Container>
-      </section>
+      <PageHero
+        kicker="Work With Us"
+        title="Let's make your next move"
+        lead="Whether you're buying, building, selling, or investing, one team coordinates the details. Tell us what you're solving for, and we'll respond with a clear, strategic next step."
+        headingId="contact-heading"
+        imageSrc="https://picsum.photos/seed/heist-about/1920/1080"
+        actions={[
+          {
+            label: "WhatsApp Us",
+            href: "https://wa.me/233203436540",
+          },
+        ]}
+      />
 
       <section className={styles.formSection} aria-labelledby="form-heading">
         <Container>
@@ -79,6 +46,29 @@ export default function ContactPage() {
                 Share as much or as little as you like. We treat every message as
                 confidential and reply with substance, not a generic autoresponder.
               </p>
+              <div className={styles.contactDetails}>
+                <p className={styles.cardLabel}>Visit</p>
+                <address className={styles.address}>
+                  Nmai Dzorn Papafio Rd
+                  <br />
+                  Nanakrom-East Legon Hills
+                  <br />
+                  Accra, Ghana
+                </address>
+                <p className={styles.cardMeta}>
+                  <a href="tel:+233243889512">0243889512</a>
+                  <br />
+                  <a href="tel:+233203436540">0203436540</a>
+                  <br />
+                  <a
+                    href="https://wa.me/233203436540"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    WhatsApp: 0203436540
+                  </a>
+                </p>
+              </div>
             </ScrollReveal>
             <ScrollReveal variant="fadeUp" delayMs={80} className={styles.formWrap}>
               <ContactForm />
@@ -91,11 +81,11 @@ export default function ContactPage() {
         <Container>
           <ScrollReveal variant="blur" className={styles.mapFrame}>
             <iframe
-              title="Map showing Luxury Estate office in Cantonments, Accra"
+              title="Map showing Heist office at East Legon Hills, Accra"
               className={styles.map}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              src="https://www.openstreetmap.org/export/embed.html?bbox=-0.21%2C5.57%2C-0.16%2C5.64&amp;layer=mapnik&amp;marker=5.6037%2C-0.1870"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=-0.10%2C5.74%2C-0.04%2C5.80&amp;layer=mapnik&amp;marker=5.7720%2C-0.0720"
             />
           </ScrollReveal>
         </Container>

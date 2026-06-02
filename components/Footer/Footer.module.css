@@ -1,51 +1,123 @@
 .footer {
   margin-top: auto;
-  padding-block: var(--space-3xl) var(--space-xl);
+  padding-block: var(--space-4xl) var(--space-xl);
   background: var(--color-ink);
   color: rgba(255, 252, 247, 0.88);
   border-top: 1px solid rgba(255, 252, 247, 0.08);
+  overflow: hidden;
 }
 
-.grid {
+.top {
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-2xl);
 }
 
-@media (min-width: 481px) {
-  .grid {
+@media (min-width: 600px) {
+  .top {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-@media (min-width: 900px) {
-  .grid {
-    grid-template-columns: 1.2fr 0.8fr 0.9fr 0.9fr;
-    gap: var(--space-xl);
+@media (min-width: 980px) {
+  .top {
+    grid-template-columns: 1.7fr 1fr 1.1fr 1fr;
+    gap: var(--space-2xl);
+    align-items: start;
   }
 }
 
-.lead {
-  font-size: 1.05rem;
-  line-height: 1.65;
-  max-width: 36ch;
-  color: rgba(255, 252, 247, 0.92);
+.brandCol {
+  max-width: 40ch;
 }
 
-.meta {
-  margin-top: var(--space-md);
-  font-size: 0.85rem;
-  color: rgba(255, 252, 247, 0.55);
+@media (min-width: 600px) {
+  .brandCol {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 980px) {
+  .brandCol {
+    grid-column: auto;
+  }
+}
+
+.brandLogo {
+  width: auto;
+  height: 44px;
+  object-fit: contain;
+  margin: 0 0 var(--space-md);
+  filter: brightness(0) invert(1);
+}
+
+.brand {
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+  letter-spacing: 0.02em;
+  margin: 0 0 var(--space-md);
+  color: var(--color-warm-white);
+}
+
+.lead {
+  font-size: 1rem;
+  line-height: 1.7;
+  margin: 0 0 var(--space-md);
+  color: rgba(255, 252, 247, 0.78);
+}
+
+.tagline {
+  margin: 0 0 var(--space-xl);
+  font-size: 0.82rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 52px;
+  padding: 0 1.6rem;
+  font-size: 0.86rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--color-ink);
+  background: var(--color-warm-white);
+  border: 1px solid var(--color-warm-white);
+  border-radius: 999px;
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.cta:hover,
+.cta:focus-visible {
+  background: transparent;
+  color: var(--color-warm-white);
+  transform: translateY(-2px);
+}
+
+.cta svg {
+  transition: transform var(--transition-fast);
+}
+
+.cta:hover svg,
+.cta:focus-visible svg {
+  transform: translateX(4px);
 }
 
 .heading {
-  font-family: var(--font-serif);
-  font-size: 1.1rem;
-  font-weight: 500;
-  letter-spacing: 0.06em;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  margin: 0 0 var(--space-md);
-  color: rgba(255, 252, 247, 0.95);
+  margin: 0 0 var(--space-lg);
+  color: rgba(255, 252, 247, 0.55);
 }
 
 .list {
@@ -59,7 +131,8 @@
 
 .list a {
   text-decoration: none;
-  color: rgba(255, 252, 247, 0.65);
+  color: rgba(255, 252, 247, 0.78);
+  font-size: 0.95rem;
   transition:
     color var(--transition-fast),
     transform var(--transition-fast);
@@ -75,7 +148,7 @@
 .address {
   font-style: normal;
   font-size: 0.95rem;
-  line-height: 1.65;
+  line-height: 1.7;
   color: rgba(255, 252, 247, 0.75);
 }
 
@@ -100,34 +173,51 @@
   margin: 0;
   padding: 0;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: var(--space-sm);
 }
 
 .socialLink {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-sm);
-  text-decoration: none;
-  color: rgba(255, 252, 247, 0.7);
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  color: rgba(255, 252, 247, 0.8);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   transition:
     color var(--transition-fast),
+    background var(--transition-fast),
+    border-color var(--transition-fast),
     transform var(--transition-fast);
 }
 
 .socialLink:hover,
 .socialLink:focus-visible {
-  color: var(--color-warm-white);
-  transform: scale(1.06);
+  color: var(--color-ink);
+  background: var(--color-warm-white);
+  border-color: var(--color-warm-white);
+  transform: translateY(-3px);
 }
 
-.socialIcon {
-  display: flex;
-  color: rgba(255, 252, 247, 0.85);
+.wordmark {
+  margin: var(--space-xl) 0 0;
+  font-family: var(--font-serif);
+  font-weight: 600;
+  line-height: 0.82;
+  font-size: clamp(3.5rem, 19vw, 14rem);
+  letter-spacing: 0.06em;
+  text-align: center;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 252, 247, 0.1);
+  user-select: none;
+  pointer-events: none;
 }
 
 .bottom {
-  margin-top: var(--space-3xl);
+  margin-top: var(--space-lg);
   padding-top: var(--space-lg);
   border-top: 1px solid rgba(255, 252, 247, 0.1);
   display: flex;

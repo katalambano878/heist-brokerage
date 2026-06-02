@@ -3,6 +3,10 @@
   background: var(--color-bg);
 }
 
+.wide {
+  max-width: 1340px !important;
+}
+
 .header {
   max-width: 720px;
   margin-bottom: var(--space-3xl);

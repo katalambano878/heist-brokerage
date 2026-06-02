@@ -13,19 +13,20 @@ export function CtaBanner({ onPrimaryClick }: CtaBannerProps) {
         <ScrollReveal variant="blur" className={styles.panel}>
           <div className={styles.content}>
             <h2 id="cta-heading" className={styles.title}>
-              Ready for a measured next step?
+              Ready to Make Your Move?
             </h2>
             <p className={styles.text}>
-              Share your timeline and price band in confidence. We will match you
-              with inventory and counsel that fit how you actually live and invest.
+              Whether you&apos;re buying, building, selling, or investing, Heist
+              Brokerage &amp; Construction is ready to help you move strategically
+              and confidently. Let&apos;s build your next success story together.
             </p>
           </div>
           <div className={styles.actions}>
             <button type="button" className={styles.primary} onClick={onPrimaryClick}>
-              Open a private channel
+              Book a Strategy Call
             </button>
-            <a href="tel:+233245550198" className={styles.secondary}>
-              Call the desk
+            <a href="/contact" className={styles.secondary}>
+              Start Your Project
             </a>
           </div>
         </ScrollReveal>

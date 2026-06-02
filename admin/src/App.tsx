@@ -48,7 +48,7 @@ function Shell({ children }: { children: ReactNode }) {
       <aside className="sidebar">
         <div className="sidebar-brand">
           <div className="sidebar-icon">LE</div>
-          <span>Luxury Estate</span>
+          <span>Heist Brokerage</span>
         </div>
         <p className="sidebar-label">Menu</p>
         <nav className="nav">

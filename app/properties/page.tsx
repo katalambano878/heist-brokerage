@@ -1,18 +1,19 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/Container/Container";
 import { ScrollReveal } from "@/components/ScrollReveal/ScrollReveal";
+import { PageHero } from "@/components/PageHero/PageHero";
 import { PropertyCard } from "@/components/PropertyCard/PropertyCard";
 import { featuredProperties } from "@/lib/data";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
-  title: "Properties and opportunities",
+  title: "Listings",
   description:
-    "Browse curated residences across Accra with pricing, scale, and context prepared for serious inquiries.",
+    "Browse premium homes and investment-grade properties across Accra — positioned with strategy, pricing insight, and Save & Buy options.",
   openGraph: {
-    title: "Properties and opportunities | Luxury Estate",
+    title: "Listings | Heist Brokerage & Construction",
     description:
-      "Browse curated residences across Accra with pricing, scale, and context prepared for serious inquiries.",
+      "Premium homes and investment-grade properties across Accra, positioned to perform.",
     url: "/properties",
   },
 };
@@ -20,35 +21,20 @@ export const metadata: Metadata = {
 export default function PropertiesPage() {
   return (
     <div className={styles.page}>
-      <section className={styles.hero} aria-labelledby="properties-heading">
-        <Container>
-          <ScrollReveal as="p" variant="fadeUp" className={styles.kicker}>
-            Inventory
-          </ScrollReveal>
-          <ScrollReveal
-            as="h1"
-            variant="fadeUp"
-            delayMs={70}
-            id="properties-heading"
-            className={styles.title}
-          >
-            Spaces measured in proportion, not noise
-          </ScrollReveal>
-          <ScrollReveal
-            as="p"
-            variant="fadeUp"
-            delayMs={130}
-            className={styles.lead}
-          >
-            Every home here is vetted for quality of space and disclosure, not
-            hype. Each listing includes board notes, renovation history, and
-            comparable context on request.
-          </ScrollReveal>
-        </Container>
-      </section>
+      <PageHero
+        kicker="Listings"
+        title="Premium properties, positioned to perform"
+        lead="Every property is positioned with market insight and strategic intent. Each listing includes investment context, site visits, and Save & Buy options on request."
+        headingId="properties-heading"
+        imageSrc="https://picsum.photos/seed/heist-about/1920/1080"
+        actions={[
+          { label: "Book a Strategy Call", href: "/contact" },
+          { label: "Explore Save & Buy", href: "/save-and-buy", variant: "outline" },
+        ]}
+      />
 
       <section className={styles.gridSection} aria-label="Property listings">
-        <Container>
+        <Container className={styles.wide}>
           <div className={styles.grid}>
             {featuredProperties.map((p, i) => (
               <ScrollReveal

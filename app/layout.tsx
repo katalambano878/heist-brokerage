@@ -20,30 +20,30 @@ const playfair = Playfair_Display({
   display: "swap",
 });
 
-const siteUrl = "https://luxuryestate.example";
+const siteUrl = "https://www.heistbrokerage.com";
+
+const SITE_DESCRIPTION =
+  "Heist Brokerage & Construction delivers strategic real estate and construction solutions for homeowners, investors, and visionaries — precision, trust, and premium execution at every stage.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Luxury Estate",
-    template: "%s | Luxury Estate",
+    default: "Heist Brokerage & Construction | Real Estate, Reimagined.",
+    template: "%s | Heist Brokerage & Construction",
   },
-  description:
-    "A modern real estate platform connecting buyers, sellers, and renters with trusted property listings and seamless transactions.",
+  description: SITE_DESCRIPTION,
   openGraph: {
     type: "website",
     locale: "en_US",
     url: siteUrl,
-    siteName: "Luxury Estate",
-    title: "Luxury Estate",
-    description:
-      "A modern real estate platform connecting buyers, sellers, and renters with trusted property listings and seamless transactions.",
+    siteName: "Heist Brokerage & Construction",
+    title: "Heist Brokerage & Construction | Real Estate, Reimagined.",
+    description: SITE_DESCRIPTION,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Luxury Estate",
-    description:
-      "A modern real estate platform connecting buyers, sellers, and renters with trusted property listings and seamless transactions.",
+    title: "Heist Brokerage & Construction | Real Estate, Reimagined.",
+    description: SITE_DESCRIPTION,
   },
 };
 
