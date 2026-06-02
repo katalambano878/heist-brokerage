@@ -25,8 +25,8 @@ export function AboutPreview() {
               />
             </div>
             <div className={styles.badge}>
-              <span className={styles.badgeLabel}>The</span>
-              <span className={styles.badgeValue}>Heist</span>
+              <span className={styles.badgeValue}>Samirah Sulleiman</span>
+              <span className={styles.badgeLabel}>Founder &amp; Lead Strategist</span>
             </div>
           </ScrollReveal>
           <div className={styles.copy}>

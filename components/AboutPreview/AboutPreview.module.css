@@ -45,6 +45,7 @@
   position: absolute;
   bottom: var(--space-xl);
   right: var(--space-lg);
+  max-width: 16rem;
   padding: var(--space-md) var(--space-lg);
   background: var(--color-bg-elevated);
   border: 1px solid var(--color-border);
@@ -52,21 +53,21 @@
   box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
-  gap: 2px;
-}
-
-.badgeLabel {
-  font-size: 0.7rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--color-text-muted);
+  gap: 4px;
 }
 
 .badgeValue {
   font-family: var(--font-serif);
-  font-size: 1.6rem;
-  line-height: 1;
+  font-size: 1.2rem;
+  line-height: 1.15;
   color: var(--color-text);
+}
+
+.badgeLabel {
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
 }
 
 .copy {
