@@ -143,7 +143,8 @@ export default function AboutPage() {
         items={differentiators}
         columns={3}
         numbered
-        variant="dark"
+        backgroundImage="/images/services/service-real-estate.jpg"
+        backgroundAlt="A modern luxury home at golden hour"
       />
 
       <section className={styles.mentality} aria-labelledby="philosophy-heading">
