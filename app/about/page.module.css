@@ -406,25 +406,22 @@
 .memberCard {
   display: flex;
   flex-direction: column;
+}
+
+.memberPortrait {
   overflow: hidden;
-  background: var(--color-bg-elevated);
-  border: 1px solid var(--color-border);
+  aspect-ratio: 4 / 5;
   border-radius: var(--radius-lg);
+  background: var(--color-bg-alt);
   box-shadow: var(--shadow-sm);
   transition:
     transform var(--transition-fast),
     box-shadow var(--transition-fast);
 }
 
-.memberCard:hover {
-  transform: translateY(-8px);
+.memberCard:hover .memberPortrait {
+  transform: translateY(-6px);
   box-shadow: var(--shadow-md);
-}
-
-.memberPortrait {
-  overflow: hidden;
-  aspect-ratio: 4 / 5;
-  background: var(--color-bg-alt);
 }
 
 .memberImage {
@@ -432,42 +429,40 @@
   height: 100%;
   object-fit: cover;
   object-position: top center;
-  transition: transform 0.5s var(--ease-smooth);
+  transition: transform 0.6s var(--ease-smooth);
 }
 
 .memberCard:hover .memberImage {
-  transform: scale(1.05);
+  transform: scale(1.04);
 }
 
 .memberBody {
   display: flex;
   flex-direction: column;
-  gap: var(--space-xs);
-  padding: var(--space-lg);
-  flex: 1;
+  padding: var(--space-md) 0 0;
 }
 
 .memberName {
   margin: 0;
   font-family: var(--font-serif);
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   font-weight: 500;
-  line-height: 1.2;
+  line-height: 1.25;
   color: var(--color-text);
 }
 
 .memberRole {
-  margin: 0 0 var(--space-xs);
-  font-size: 0.78rem;
+  margin: 0.2rem 0 var(--space-sm);
+  font-size: 0.72rem;
   font-weight: 600;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--color-accent);
 }
 
 .memberFocus {
   margin: 0;
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   line-height: 1.6;
   color: var(--color-text-muted);
 }
