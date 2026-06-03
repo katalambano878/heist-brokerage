@@ -146,18 +146,17 @@
 }
 
 .quoteInner {
-  position: relative;
-  max-width: 24ch;
-  padding-left: var(--space-xl);
+  max-width: 56rem;
+  margin-inline: auto;
+  text-align: center;
 }
 
 .quoteInner::before {
   content: "";
-  position: absolute;
-  left: 0;
-  top: 0.4rem;
-  bottom: 0.4rem;
-  width: 3px;
+  display: block;
+  width: 52px;
+  height: 3px;
+  margin: 0 auto var(--space-lg);
   border-radius: 3px;
   background: var(--color-accent);
 }
@@ -171,12 +170,14 @@
 }
 
 .quoteText {
-  margin: 0;
+  margin: 0 auto;
+  max-width: 32ch;
   font-family: var(--font-serif);
-  font-size: clamp(1.6rem, 3.6vw, 2.7rem);
-  line-height: 1.3;
+  font-size: clamp(1.6rem, 3.2vw, 2.5rem);
+  line-height: 1.32;
   font-weight: 400;
   color: var(--color-text);
+  text-wrap: balance;
 }
 
 /* ---------- The Heist Mentality ---------- */
