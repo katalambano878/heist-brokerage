@@ -146,8 +146,8 @@ export default function AboutPage() {
         items={differentiators}
         columns={3}
         numbered
-        backgroundImage="/images/services/service-real-estate.jpg"
-        backgroundAlt="A modern luxury home at golden hour"
+        backgroundImage="/images/services/service-construction.jpg"
+        backgroundAlt="A modern building under construction"
       />
 
       <section className={styles.mentality} aria-labelledby="philosophy-heading">
