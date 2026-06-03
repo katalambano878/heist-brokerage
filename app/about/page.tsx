@@ -260,20 +260,20 @@ export default function AboutPage() {
                   staggerIndex={i % 4}
                   className={styles.memberCard}
                 >
-                  <div className={styles.memberPortrait}>
-                    <Image
-                      src={member.imageSrc}
-                      alt={`Portrait of ${member.name}`}
-                      width={640}
-                      height={800}
-                      className={styles.memberImage}
-                      sizes="(max-width: 600px) 100vw, (max-width: 980px) 50vw, 25vw"
-                    />
-                  </div>
-                  <div className={styles.memberBody}>
-                    <h3 className={styles.memberName}>{member.name}</h3>
-                    <p className={styles.memberRole}>{member.title}</p>
-                    <p className={styles.memberFocus}>{member.focus}</p>
+                  <Image
+                    src={member.imageSrc}
+                    alt={`Portrait of ${member.name}`}
+                    width={640}
+                    height={800}
+                    className={styles.memberImage}
+                    sizes="(max-width: 600px) 100vw, (max-width: 980px) 50vw, 25vw"
+                  />
+                  <div className={styles.memberOverlay}>
+                    <div className={styles.memberInfo}>
+                      <p className={styles.memberRole}>{member.title}</p>
+                      <h3 className={styles.memberName}>{member.name}</h3>
+                      <p className={styles.memberFocus}>{member.focus}</p>
+                    </div>
                   </div>
                 </ScrollReveal>
               ))}
