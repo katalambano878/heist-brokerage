@@ -60,18 +60,44 @@ const benefits = [
   {
     title: "Financial Flexibility",
     description: "Pay progressively without overwhelming upfront costs.",
+    icon: (
+      <>
+        <rect x="3" y="6" width="18" height="13" rx="2.5" />
+        <path d="M3 10.5h18" />
+        <circle cx="16.5" cy="14.5" r="1.4" />
+      </>
+    ),
   },
   {
     title: "Transparency",
     description: "Every stage is clearly outlined before work begins.",
+    icon: (
+      <>
+        <path d="M2.5 12S6 6 12 6s9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6z" />
+        <circle cx="12" cy="12" r="3" />
+      </>
+    ),
   },
   {
     title: "Control",
     description: "Stay involved and informed throughout the building process.",
+    icon: (
+      <>
+        <path d="M4 8h8M16 8h4M4 16h4M12 16h8" />
+        <circle cx="14" cy="8" r="2.2" />
+        <circle cx="10" cy="16" r="2.2" />
+      </>
+    ),
   },
   {
     title: "Security",
     description: "Structured agreements designed to protect your investment.",
+    icon: (
+      <>
+        <path d="M12 3l7 3v5c0 4.6-3 7.7-7 9-4-1.3-7-4.4-7-9V6l7-3z" />
+        <path d="M9 12l2 2 4-4" />
+      </>
+    ),
   },
 ];
 
@@ -247,12 +273,57 @@ export default function BuildInStagesPage() {
         backgroundAlt="A building under construction at golden-hour dusk"
       />
 
-      <FeatureGrid
-        kicker="Why Choose Build in Stages?"
-        title="Smart construction planning"
-        items={benefits}
-        columns={4}
-      />
+      <section className={styles.benefits} aria-labelledby="benefits-heading">
+        <Container>
+          <div className={styles.benefitsHead}>
+            <ScrollReveal as="p" variant="fadeUp" className={styles.eyebrow}>
+              Why Choose Build in Stages?
+            </ScrollReveal>
+            <ScrollReveal
+              as="h2"
+              variant="fadeUp"
+              delayMs={70}
+              id="benefits-heading"
+              className={styles.benefitsTitle}
+            >
+              Smart construction planning
+            </ScrollReveal>
+            <ScrollReveal as="p" variant="fadeUp" delayMs={130} className={styles.benefitsLead}>
+              A structure built to protect your money, your timeline, and your
+              peace of mind at every stage of the build.
+            </ScrollReveal>
+          </div>
+          <div className={styles.benefitGrid}>
+            {benefits.map((benefit, i) => (
+              <ScrollReveal
+                key={benefit.title}
+                as="article"
+                variant="fadeUp"
+                staggerIndex={i % 4}
+                className={styles.benefitCard}
+              >
+                <span className={styles.benefitIcon}>
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="26"
+                    height="26"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.6"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden
+                  >
+                    {benefit.icon}
+                  </svg>
+                </span>
+                <h3 className={styles.benefitTitle}>{benefit.title}</h3>
+                <p className={styles.benefitText}>{benefit.description}</p>
+              </ScrollReveal>
+            ))}
+          </div>
+        </Container>
+      </section>
 
       <FeatureGrid
         kicker="Who It's For"
