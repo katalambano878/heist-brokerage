@@ -97,25 +97,6 @@ export default function PropertiesPage() {
         </Container>
       </section>
 
-      <section className={styles.quote} aria-labelledby="listings-quote-heading">
-        <Container>
-          <div className={styles.quoteInner}>
-            <ScrollReveal as="p" variant="fadeUp" className={styles.quoteEyebrow}>
-              Looking for something specific?
-            </ScrollReveal>
-            <ScrollReveal
-              as="h2"
-              variant="fadeUp"
-              delayMs={70}
-              id="listings-quote-heading"
-              className={styles.quoteText}
-            >
-              Tell us what you&apos;re looking for and we&apos;ll source it —
-              on or off market — and position it to perform.
-            </ScrollReveal>
-          </div>
-        </Container>
-      </section>
     </div>
   );
 }
