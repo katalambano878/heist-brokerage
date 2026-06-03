@@ -52,6 +52,8 @@
 html {
   height: 100%;
   scroll-behavior: smooth;
+  /* Keep anchored sections clear of the sticky navbar */
+  scroll-padding-top: 84px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -70,6 +72,34 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Safety net against rogue horizontal scroll on small screens.
+     `clip` (not `hidden`) keeps position: sticky working. */
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-warm-white);
+}
+
+/* Tighten the large vertical/spacing rhythm progressively on smaller
+   screens. Because sections are built on these tokens, this single change
+   rebalances padding site-wide without touching every component. */
+@media (max-width: 900px) {
+  :root {
+    --space-4xl: 4.5rem;
+    --space-3xl: 3.25rem;
+    --space-2xl: 2.25rem;
+  }
+}
+
+@media (max-width: 560px) {
+  :root {
+    --space-4xl: 3.25rem;
+    --space-3xl: 2.5rem;
+    --space-2xl: 1.75rem;
+    --space-xl: 1.5rem;
+  }
 }
 
 img,

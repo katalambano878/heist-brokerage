@@ -90,6 +90,18 @@
   color: rgba(255, 252, 247, 0.7);
 }
 
+/* Keep the floating stat badge inside the image frame on small screens */
+@media (max-width: 560px) {
+  .overviewBadge {
+    right: var(--space-md);
+    bottom: var(--space-md);
+  }
+
+  .overviewBadgeValue {
+    font-size: clamp(1.3rem, 6vw, 1.8rem);
+  }
+}
+
 .overviewTitle {
   margin: 0 0 var(--space-lg);
   font-family: var(--font-serif);

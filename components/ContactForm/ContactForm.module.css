@@ -96,3 +96,10 @@
   font-size: 0.95rem;
   color: var(--color-teal-deep);
 }
+
+@media (max-width: 480px) {
+  .submit {
+    align-self: stretch;
+    width: 100%;
+  }
+}

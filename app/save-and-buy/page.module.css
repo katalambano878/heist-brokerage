@@ -123,6 +123,18 @@
   color: rgba(255, 252, 247, 0.7);
 }
 
+/* Keep the floating stat badge inside the image frame on small screens */
+@media (max-width: 560px) {
+  .overviewBadge {
+    left: var(--space-md);
+    bottom: var(--space-md);
+  }
+
+  .overviewBadgeValue {
+    font-size: clamp(1.3rem, 6vw, 1.8rem);
+  }
+}
+
 /* ---------- Payment infographic ---------- */
 .payment {
   padding-block: var(--space-4xl);

@@ -51,6 +51,18 @@
   white-space: nowrap;
 }
 
+/* On very small screens the logo + wordmark + hamburger get tight,
+   so drop the secondary brand line to keep everything on one row. */
+@media (max-width: 400px) {
+  .brandLineMuted {
+    display: none;
+  }
+
+  .bar {
+    gap: var(--space-md);
+  }
+}
+
 .nav {
   display: none;
 }
@@ -230,7 +242,8 @@
 }
 
 .drawerOpen {
-  max-height: 420px;
+  max-height: min(420px, 78vh);
+  overflow-y: auto;
   border-color: var(--color-border);
 }
 
