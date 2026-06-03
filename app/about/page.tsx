@@ -60,10 +60,10 @@ export default function AboutPage() {
             <ScrollReveal variant="fadeRight" className={styles.introVisual}>
               <div className={styles.introFrame}>
                 <Image
-                  src="https://i.pinimg.com/736x/6c/0c/1a/6c0c1a2cfd0ad0bb01476acfced51420.jpg"
-                  alt="Two people exchanging keys during a property handover"
-                  width={736}
-                  height={981}
+                  src="/images/about/intro.jpg"
+                  alt="A Heist agent handing house keys to a happy young couple in their new home"
+                  width={1280}
+                  height={853}
                   className={styles.introImage}
                   sizes="(max-width: 900px) 100vw, 44vw"
                 />
@@ -88,16 +88,10 @@ export default function AboutPage() {
                 A real estate and construction firm built on strategy
               </ScrollReveal>
               <ScrollReveal as="p" variant="fadeUp" delayMs={120} className={styles.introText}>
-                Heist Brokerage &amp; Construction was founded on a simple
-                conviction: every property holds untapped potential. We exist to
-                unlock it — pairing sharp market intelligence with disciplined
-                construction so our clients build real, lasting value.
-              </ScrollReveal>
-              <ScrollReveal as="p" variant="fadeUp" delayMs={160} className={styles.introText}>
-                From luxury homes and commercial developments to flexible
-                ownership through our Save &amp; Buy and Build in Stages programs,
-                we operate as strategic partners — guiding every decision with
-                foresight, transparency, and excellence at its core.
+                We were founded on one conviction: every property holds untapped
+                potential. Pairing sharp market intelligence with disciplined
+                construction, we act as strategic partners — turning vision into
+                real, lasting value.
               </ScrollReveal>
 
               <ScrollReveal variant="fadeUp" delayMs={210} className={styles.valuesMini}>
