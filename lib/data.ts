@@ -367,18 +367,12 @@ export const buildStages: Step[] = [
   },
   {
     step: "03",
-    title: "Structural Stage",
+    title: "Structure & Roofing",
     description:
-      "Payments continue as walls and structural frameworks are completed.",
+      "Walls, structural frameworks, roofing, and the exterior all take shape.",
   },
   {
     step: "04",
-    title: "Roofing & Exterior",
-    description:
-      "Your home takes shape externally with roofing and finishing work.",
-  },
-  {
-    step: "05",
     title: "Interior & Finishing",
     description:
       "Final payments align with interior completion and finishing details.",
