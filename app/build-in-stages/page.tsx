@@ -218,49 +218,25 @@ export default function BuildInStagesPage() {
               progresses toward completion as the build advances.
             </ScrollReveal>
           </div>
-          <ol className={styles.stages}>
-            {stages.map((stage, i) => {
-              const circumference = 2 * Math.PI * 34;
-              const offset = circumference * (1 - stage.fill / 100);
-              return (
-                <ScrollReveal
-                  key={stage.title}
-                  as="li"
-                  variant="fadeUp"
-                  staggerIndex={i}
-                  className={styles.stage}
-                >
-                  <div
-                    className={styles.ring}
-                    role="progressbar"
-                    aria-valuenow={stage.fill}
-                    aria-valuemin={0}
-                    aria-valuemax={100}
-                    aria-label={`${stage.title} — ${stage.fill}% complete`}
-                  >
-                    <svg className={styles.ringSvg} viewBox="0 0 80 80" aria-hidden>
-                      <circle className={styles.ringTrack} cx="40" cy="40" r="34" />
-                      <circle
-                        className={styles.ringProgress}
-                        cx="40"
-                        cy="40"
-                        r="34"
-                        style={{
-                          strokeDasharray: circumference,
-                          strokeDashoffset: offset,
-                        }}
-                      />
-                    </svg>
-                    <span className={styles.ringPct}>{stage.fill}%</span>
-                  </div>
-                  <span className={styles.stageNum}>
-                    Stage {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <h3 className={styles.stageTitle}>{stage.title}</h3>
-                  <p className={styles.stageText}>{stage.text}</p>
-                </ScrollReveal>
-              );
-            })}
+          <ol className={styles.timeline}>
+            {stages.map((stage, i) => (
+              <ScrollReveal
+                key={stage.title}
+                as="li"
+                variant="fadeUp"
+                staggerIndex={i}
+                className={styles.tStage}
+              >
+                <div className={styles.tNode}>
+                  {String(i + 1).padStart(2, "0")}
+                </div>
+                <div className={styles.tBody}>
+                  <h3 className={styles.tTitle}>{stage.title}</h3>
+                  <span className={styles.tPct}>{stage.fill}% complete</span>
+                  <p className={styles.tText}>{stage.text}</p>
+                </div>
+              </ScrollReveal>
+            ))}
           </ol>
         </Container>
       </section>
