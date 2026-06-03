@@ -54,6 +54,12 @@ html {
   scroll-behavior: smooth;
   /* Keep anchored sections clear of the sticky navbar */
   scroll-padding-top: 84px;
+  /* Prevent any stray full-width/overflowing child from creating a
+     horizontal scroll on the root element (the actual scroller on
+     mobile), which would let the page shift sideways out of frame. */
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -74,6 +80,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   /* Safety net against rogue horizontal scroll on small screens.
      `clip` (not `hidden`) keeps position: sticky working. */
+  width: 100%;
+  max-width: 100%;
   overflow-x: clip;
 }
 
