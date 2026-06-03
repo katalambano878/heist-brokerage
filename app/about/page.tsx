@@ -101,8 +101,11 @@ export default function AboutPage() {
               </ScrollReveal>
 
               <ScrollReveal variant="fadeUp" delayMs={210} className={styles.valuesMini}>
-                {values.map((value) => (
+                {values.map((value, i) => (
                   <div key={value.title} className={styles.valueMiniItem}>
+                    <span className={styles.vmNum}>
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
                     <h3 className={styles.vmTitle}>{value.title}</h3>
                     <p className={styles.vmDesc}>{value.description}</p>
                   </div>

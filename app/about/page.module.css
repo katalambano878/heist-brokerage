@@ -33,13 +33,32 @@
 
 .introVisual {
   position: relative;
+  z-index: 0;
+}
+
+.introVisual::before {
+  content: "";
+  position: absolute;
+  top: -18px;
+  right: -18px;
+  width: 55%;
+  height: 55%;
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-xl);
+  z-index: -1;
+}
+
+@media (max-width: 899px) {
+  .introVisual::before {
+    display: none;
+  }
 }
 
 .introFrame {
   border-radius: var(--radius-xl);
   overflow: hidden;
   border: 1px solid var(--color-border);
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-lg);
 }
 
 .introImage {
@@ -99,10 +118,8 @@
 .valuesMini {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-lg) var(--space-xl);
-  margin-top: var(--space-xl);
-  padding-top: var(--space-xl);
-  border-top: 1px solid var(--color-border);
+  gap: var(--space-md);
+  margin-top: var(--space-2xl);
 }
 
 @media (min-width: 560px) {
@@ -111,29 +128,60 @@
   }
 }
 
+.valueMiniItem {
+  position: relative;
+  padding: var(--space-lg);
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.valueMiniItem::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--color-accent);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform var(--transition-fast);
+}
+
+.valueMiniItem:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-border-strong);
+}
+
+.valueMiniItem:hover::before {
+  transform: scaleY(1);
+}
+
+.vmNum {
+  display: block;
+  margin-bottom: var(--space-xs);
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  line-height: 1;
+  color: var(--color-accent);
+}
+
 .vmTitle {
   margin: 0 0 var(--space-xs);
-  position: relative;
-  padding-left: 1rem;
-  font-size: 1rem;
+  font-size: 1.05rem;
   font-weight: 600;
   color: var(--color-text);
 }
 
-.vmTitle::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.45em;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--color-accent);
-}
-
 .vmDesc {
   margin: 0;
-  padding-left: 1rem;
   font-size: 0.92rem;
   line-height: 1.6;
   color: var(--color-text-muted);
