@@ -24,7 +24,7 @@ export default function PropertiesPage() {
       <PageHero
         kicker="Listings"
         title="Premium properties, positioned to perform"
-        lead="Every property is positioned with market insight and strategic intent. Each listing includes investment context, site visits, and Save & Buy options on request."
+        lead="Every property positioned with market insight — investment context, site visits, and Save & Buy options on request."
         headingId="properties-heading"
         imageSrc="https://picsum.photos/seed/heist-about/1920/1080"
         actions={[

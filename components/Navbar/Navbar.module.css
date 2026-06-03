@@ -231,29 +231,60 @@
   border: 0;
 }
 
-.drawer {
-  display: block;
-  max-height: 0;
-  overflow: hidden;
-  border-bottom: 1px solid transparent;
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 48;
+  background: rgba(15, 14, 12, 0.5);
+  opacity: 0;
+  visibility: hidden;
   transition:
-    max-height 0.35s var(--ease-smooth),
-    border-color 0.35s var(--ease-smooth);
+    opacity 0.4s var(--ease-smooth),
+    visibility 0.4s var(--ease-smooth);
+}
+
+.backdropOpen {
+  opacity: 1;
+  visibility: visible;
+}
+
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 49;
+  display: flex;
+  flex-direction: column;
+  width: min(86vw, 360px);
+  height: 100vh;
+  height: 100dvh;
+  padding: calc(72px + var(--space-lg)) var(--space-lg) var(--space-2xl);
+  background: var(--color-bg-elevated);
+  border-left: 1px solid var(--color-border);
+  box-shadow: -24px 0 60px rgba(15, 14, 12, 0.22);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  transform: translateX(100%);
+  visibility: hidden;
+  transition:
+    transform 0.42s var(--ease-smooth),
+    visibility 0s linear 0.42s;
 }
 
 .drawerOpen {
-  max-height: min(420px, 78vh);
-  overflow-y: auto;
-  border-color: var(--color-border);
+  transform: translateX(0);
+  visibility: visible;
+  transition: transform 0.42s var(--ease-smooth);
 }
 
 .drawerList {
   list-style: none;
   margin: 0;
-  padding: var(--space-md) 0 var(--space-lg);
+  padding: 0 0 var(--space-lg);
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
+  gap: var(--space-xs);
 }
 
 .drawerLink {
@@ -282,7 +313,7 @@
   align-items: center;
   justify-content: center;
   min-height: 48px;
-  margin-bottom: var(--space-lg);
+  margin-top: auto;
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -314,17 +345,15 @@
     display: none;
   }
 
-  .drawer {
+  .drawer,
+  .backdrop {
     display: none;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .drawer {
+  .drawer,
+  .backdrop {
     transition: none;
-  }
-
-  .drawerOpen {
-    max-height: none;
   }
 }

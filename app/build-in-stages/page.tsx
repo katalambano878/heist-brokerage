@@ -138,7 +138,7 @@ export default function BuildInStagesPage() {
       <PageHero
         kicker="Build in Stages"
         title="Your Dream Home, Built Step by Step"
-        lead="Building a home is a journey — and not every client wants to commit full capital upfront. Our Build in Stages Plan lets you finance construction progressively while maintaining full visibility and control throughout the process."
+        lead="Finance construction progressively while keeping full visibility and control at every stage."
         headingId="build-in-stages-hero"
         imageSrc="https://picsum.photos/seed/heist-about/1920/1080"
         actions={[

@@ -24,7 +24,7 @@ export default function ContactPage() {
       <PageHero
         kicker="Work With Us"
         title="Let's make your next move"
-        lead="Whether you're buying, building, selling, or investing, one team coordinates the details. Tell us what you're solving for, and we'll respond with a clear, strategic next step."
+        lead="Tell us what you're solving for, and we'll respond with a clear, strategic next step."
         headingId="contact-heading"
         imageSrc="https://picsum.photos/seed/heist-about/1920/1080"
         actions={[

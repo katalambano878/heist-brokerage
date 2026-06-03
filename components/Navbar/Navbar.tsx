@@ -40,8 +40,9 @@ export function Navbar() {
   }, [open]);
 
   return (
-    <header className={styles.header}>
-      <Container className={styles.bar}>
+    <>
+      <header className={styles.header}>
+        <Container className={styles.bar}>
         <Link href="/" className={styles.brand} onClick={() => setOpen(false)}>
           <Image
             src="/logo.png"
@@ -103,42 +104,47 @@ export function Navbar() {
             />
           </button>
         </div>
-      </Container>
+        </Container>
+      </header>
+
+      <div
+        className={`${styles.backdrop} ${open ? styles.backdropOpen : ""}`}
+        onClick={() => setOpen(false)}
+        aria-hidden
+      />
 
       <div
         id="mobile-menu"
         className={`${styles.drawer} ${open ? styles.drawerOpen : ""}`}
         aria-hidden={!open}
       >
-        <Container>
-          <ul className={styles.drawerList}>
-            {navLinks.map((link) => {
-              const active =
-                link.href === "/"
-                  ? pathname === "/"
-                  : pathname.startsWith(link.href);
-              return (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className={`${styles.drawerLink} ${active ? styles.drawerLinkActive : ""}`}
-                    onClick={() => setOpen(false)}
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-          <Link
-            href="/contact"
-            className={styles.drawerCta}
-            onClick={() => setOpen(false)}
-          >
-            Book a Strategy Call
-          </Link>
-        </Container>
+        <ul className={styles.drawerList}>
+          {navLinks.map((link) => {
+            const active =
+              link.href === "/"
+                ? pathname === "/"
+                : pathname.startsWith(link.href);
+            return (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className={`${styles.drawerLink} ${active ? styles.drawerLinkActive : ""}`}
+                  onClick={() => setOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+        <Link
+          href="/contact"
+          className={styles.drawerCta}
+          onClick={() => setOpen(false)}
+        >
+          Book a Strategy Call
+        </Link>
       </div>
-    </header>
+    </>
   );
 }

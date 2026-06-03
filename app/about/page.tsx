@@ -45,7 +45,7 @@ export default function AboutPage() {
       <PageHero
         kicker="About Heist"
         title="More than brokers and builders"
-        lead="We believe every property holds untapped potential — an opportunity waiting to be transformed into lasting value. Founded on strategy, precision, and execution, Heist was created to redefine the real estate and construction experience."
+        lead="Founded on strategy, precision, and execution to redefine the real estate and construction experience."
         headingId="about-hero-heading"
         imageSrc="https://picsum.photos/seed/heist-about/1920/1080"
         actions={[

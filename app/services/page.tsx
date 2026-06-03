@@ -104,7 +104,7 @@ export default function ServicesPage() {
       <PageHero
         kicker="Our Services"
         title="Strategy, precision, and long-term value"
-        lead="At Heist Brokerage & Construction, every service is designed with foresight, transparency, and excellence at its core — from premium property to refined construction."
+        lead="Every service designed with foresight and transparency — from premium property to refined construction."
         headingId="services-hero"
         imageSrc="https://picsum.photos/seed/heist-about/1920/1080"
         actions={[

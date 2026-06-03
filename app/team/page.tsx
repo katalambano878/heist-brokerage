@@ -25,7 +25,7 @@ export default function TeamPage() {
       <PageHero
         kicker="Meet the Team"
         title="Expertise, precision, and execution"
-        lead="Behind every successful project is a team driven by results. Our professionals bring together experience in real estate, construction, design, and investment strategy to deliver exceptional client experiences."
+        lead="A team bringing together real estate, construction, design, and investment strategy to deliver results."
         headingId="team-heading"
         imageSrc="https://picsum.photos/seed/heist-about/1920/1080"
         actions={[{ label: "Book a Strategy Call", href: "/contact" }]}

@@ -111,7 +111,7 @@ export default function SaveAndBuyPage() {
       <PageHero
         kicker="Save & Buy Program"
         title="Smart Ownership. Flexible Payments."
-        lead="We believe property ownership should be accessible, strategic, and stress-free. Save & Buy lets you secure property today and pay progressively over time. It's more than a payment plan — it's a smarter path to ownership."
+        lead="Secure property today and pay progressively over time — a smarter, stress-free path to ownership."
         headingId="save-and-buy-hero"
         imageSrc="https://picsum.photos/seed/heist-about/1920/1080"
         actions={[
