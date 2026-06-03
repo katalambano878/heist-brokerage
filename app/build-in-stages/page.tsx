@@ -127,8 +127,8 @@ export default function BuildInStagesPage() {
             <ScrollReveal variant="fadeRight" className={styles.overviewVisual}>
               <div className={styles.overviewFrame}>
                 <Image
-                  src="/images/services/service-construction.jpg"
-                  alt="A home under construction at the structural stage"
+                  src="/images/build-in-stages/overview.jpg"
+                  alt="An African site manager and client in front of a home under construction"
                   width={820}
                   height={540}
                   className={styles.overviewImage}
