@@ -247,26 +247,6 @@ export default function BuildInStagesPage() {
         backgroundAlt="A building under construction at golden-hour dusk"
       />
 
-      <section className={styles.quote} aria-labelledby="bis-quote-heading">
-        <Container>
-          <div className={styles.quoteInner}>
-            <ScrollReveal as="p" variant="fadeUp" className={styles.quoteEyebrow}>
-              Our Promise
-            </ScrollReveal>
-            <ScrollReveal
-              as="h2"
-              variant="fadeUp"
-              delayMs={70}
-              id="bis-quote-heading"
-              className={styles.quoteText}
-            >
-              Build at your pace, on your terms — with a partner accountable for
-              every brick, beam, and finish along the way.
-            </ScrollReveal>
-          </div>
-        </Container>
-      </section>
-
       <FeatureGrid
         kicker="Why Choose Build in Stages?"
         title="Smart construction planning"
