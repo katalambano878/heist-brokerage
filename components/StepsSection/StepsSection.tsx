@@ -1,5 +1,6 @@
 import { Container } from "@/components/Container/Container";
 import { ScrollReveal } from "@/components/ScrollReveal/ScrollReveal";
+import { ParallaxBackground } from "@/components/ParallaxBackground/ParallaxBackground";
 import type { Step } from "@/lib/data";
 import styles from "./StepsSection.module.css";
 
@@ -8,6 +9,9 @@ type StepsSectionProps = {
   title: string;
   steps: Step[];
   variant?: "light" | "dark";
+  /** Optional image rendered as a parallax background (forces dark styling) */
+  backgroundImage?: string;
+  backgroundAlt?: string;
 };
 
 export function StepsSection({
@@ -15,13 +19,20 @@ export function StepsSection({
   title,
   steps,
   variant = "light",
+  backgroundImage,
+  backgroundAlt = "",
 }: StepsSectionProps) {
   const headingId = `steps-${kicker.replace(/\s+/g, "-").toLowerCase()}`;
+  const hasBg = Boolean(backgroundImage);
+  const isDark = variant === "dark" || hasBg;
   return (
     <section
-      className={`${styles.section} ${variant === "dark" ? styles.dark : ""}`}
+      className={`${styles.section} ${isDark ? styles.dark : ""} ${hasBg ? styles.hasBg : ""}`}
       aria-labelledby={headingId}
     >
+      {hasBg ? (
+        <ParallaxBackground src={backgroundImage as string} alt={backgroundAlt} />
+      ) : null}
       <Container>
         <div className={styles.header}>
           <ScrollReveal as="p" variant="fadeUp" className={styles.kicker}>

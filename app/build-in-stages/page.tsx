@@ -243,7 +243,8 @@ export default function BuildInStagesPage() {
         kicker="How It Works"
         title="From foundation to finishing"
         steps={buildStages}
-        variant="dark"
+        backgroundImage="/images/build-in-stages/steps-bg.jpg"
+        backgroundAlt="A building under construction at golden-hour dusk"
       />
 
       <section className={styles.quote} aria-labelledby="bis-quote-heading">
