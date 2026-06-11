@@ -53,10 +53,6 @@ export function Navbar() {
             className={styles.brandMark}
             priority
           />
-          <span className={styles.brandText}>
-            <span className={styles.brandLine}>HEIST</span>
-            <span className={styles.brandLineMuted}>Brokerage &amp; Construction</span>
-          </span>
         </Link>
 
         <nav className={styles.nav} aria-label="Primary">
