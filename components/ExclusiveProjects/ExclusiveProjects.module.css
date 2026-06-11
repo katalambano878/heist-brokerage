@@ -74,7 +74,7 @@
 
 @media (min-width: 1000px) {
   .grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -94,7 +94,7 @@
 
 .imageWrap {
   overflow: hidden;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 3 / 2;
   background: rgba(255, 255, 255, 0.06);
 }
 
@@ -156,70 +156,55 @@
   padding: var(--space-lg) 0.25rem 0;
 }
 
+.category {
+  display: inline-block;
+  margin-bottom: 0.55rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 252, 247, 0.5);
+}
+
 .name {
   margin: 0 0 0.3rem;
-  font-size: 1.12rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-family: var(--font-serif);
+  font-size: 1.45rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
   color: var(--color-warm-white);
 }
 
 .location {
-  margin: 0 0 var(--space-md);
-  font-size: 0.88rem;
+  margin: 0 0 var(--space-sm);
+  font-size: 0.86rem;
   color: rgba(255, 252, 247, 0.6);
 }
 
-.progressRow {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  margin-bottom: 0.5rem;
+.summary {
+  margin: 0 0 var(--space-md);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: rgba(255, 252, 247, 0.78);
 }
 
-.progressLabel {
-  font-size: 0.72rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(255, 252, 247, 0.55);
-}
-
-.progressValue {
-  font-size: 0.95rem;
+.cardLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.82rem;
   font-weight: 600;
+  letter-spacing: 0.04em;
+  text-decoration: none;
   color: var(--color-warm-white);
+  transition: gap var(--transition-fast);
 }
 
-.progressTrack {
-  position: relative;
-  height: 4px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.12);
-  overflow: hidden;
+.cardLink span {
+  transition: transform var(--transition-fast);
 }
 
-.progressFill {
-  position: absolute;
-  inset: 0 auto 0 0;
-  height: 100%;
-  border-radius: 999px;
-  background: var(--color-warm-white);
-  transform-origin: left;
-  animation: growBar 1.1s var(--ease-smooth) both;
-}
-
-@keyframes growBar {
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .progressFill {
-    animation: none;
-  }
+.card:hover .cardLink span,
+.cardLink:focus-visible span {
+  transform: translateX(4px);
 }

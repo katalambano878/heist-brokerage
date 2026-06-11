@@ -428,6 +428,22 @@ export const team: TeamMember[] = [
     imageSrc: "/images/team/joseph-opoku.jpg",
   },
   {
+    id: "ramatu-alidu",
+    name: "Ramatu Alidu",
+    title: "Sales Associate",
+    focus:
+      "Supports clients through viewings, negotiations, and closings with a warm, detail-oriented approach — making every step of the journey clear and reassuring.",
+    imageSrc: "/images/team/ramatu-alidu.jpg",
+  },
+  {
+    id: "ramat-sulleiman",
+    name: "Ramat Sulleiman",
+    title: "Media & Videographer",
+    focus:
+      "Captures every property and project in its best light — producing the photography, video, and visual stories that bring Heist listings to life.",
+    imageSrc: "/images/team/ramat-sulleiman.jpg",
+  },
+  {
     id: "kwame-pilimana",
     name: "Kwame Pilimana",
     title: "Site Manager",
@@ -445,42 +461,315 @@ export const team: TeamMember[] = [
   },
 ];
 
-export type ExclusiveProject = {
-  id: string;
+export type GalleryImage = {
+  src: string;
+  alt: string;
+};
+
+export type ListingFact = {
+  label: string;
+  value: string;
+};
+
+export type HomeTypology = {
   name: string;
-  location: string;
-  soldPercentage: number;
+  beds: string;
+  storeys: string;
+  blurb: string;
   imageSrc: string;
 };
 
-export const exclusiveProjects: ExclusiveProject[] = [
+export type ExclusiveListing = {
+  slug: string;
+  name: string;
+  developer: string;
+  category: string;
+  /** Parent development slug, if this is a cluster within a larger project */
+  partOf?: string;
+  location: string;
+  status: string;
+  tagline: string;
+  /** Short blurb used on cards and the index page */
+  summary: string;
+  heroImage: string;
+  cardImage: string;
+  /** Longer narrative paragraphs for the detail page */
+  overview: string[];
+  facts: ListingFact[];
+  highlights: string[];
+  typologies: HomeTypology[];
+  amenities?: string[];
+  /** Connectivity / drive-time points */
+  connectivity?: { place: string; time: string }[];
+  gallery: GalleryImage[];
+  sitemap?: GalleryImage;
+  startingPrice?: string;
+  paymentNote?: string;
+  brochureUrl: string;
+};
+
+export function getExclusiveListingBySlug(
+  slug: string,
+): ExclusiveListing | undefined {
+  return exclusiveListings.find((listing) => listing.slug === slug);
+}
+
+export const exclusiveListings: ExclusiveListing[] = [
   {
-    id: "p1",
-    name: "Skyline Atelier",
-    location: "East Legon Hills, Accra",
-    soldPercentage: 100,
-    imageSrc: "/images/properties/skyline-atelier.jpg",
+    slug: "devtraco-woodlands",
+    name: "Devtraco Woodlands",
+    developer: "Devtraco Group",
+    category: "Master-Planned Gated City",
+    location: "Dawhenya, Greater Accra",
+    status: "Selling Now",
+    tagline: "Coastal calm meets city energy across a 592-acre gated city.",
+    summary:
+      "A self-sustaining 592-acre master-planned gated city in Dawhenya — litigation-free serviced plots, contemporary homes, and resort-grade amenities, minutes from the coast.",
+    heroImage: "/images/exclusive/woodlands-gate.jpg",
+    cardImage: "/images/exclusive/woodlands-streetscape.jpg",
+    overview: [
+      "Devtraco Woodlands is a master-planned gated city sprawling over an expansive 592-acre site in Dawhenya, just a minute's drive from Central University. Offering litigation-free plots of land, contemporary homes, modern infrastructure, a commercial area, a medical center, and police and fire stations, it promises a self-sustaining city away from the bustle while keeping an urban feel.",
+      "Every detail is designed with your convenience prioritized — from well-planned roads and robust facility management to water and power supply, with round-the-clock security and swift emergency response. With breathtaking beaches within a 15-minute drive, it blends invigorating coastal ambiance with the vibrant energy of city living.",
+    ],
+    facts: [
+      { label: "Total area", value: "592 acres" },
+      { label: "Master plan", value: "3 phases" },
+      { label: "Phase 1 plots", value: "1,608 plots" },
+      { label: "Tenure", value: "Litigation-free, serviced" },
+      { label: "Lease term", value: "70 yrs / 50 yrs*" },
+      { label: "Starting price", value: "From $12,000" },
+    ],
+    highlights: [
+      "Complimentary architectural plan and Bill of Quantities (BOQ) with every plot",
+      "24/7 security service with controlled, access-managed gated clusters",
+      "On-site police station and fire station",
+      "Meticulously tarred roads with an extensive street-lighting system",
+      "Ghana Water connection and electrical power supply",
+      "Dedicated facility management and estate by-laws",
+    ],
+    typologies: [],
+    amenities: [
+      "Clubhouse",
+      "Swimming pools",
+      "Tennis court",
+      "Basketball court",
+      "5-a-side football court",
+      "Playgrounds",
+      "Walking trail",
+      "Recreational gardens",
+      "First-aid medical center",
+      "Convenience retail shops",
+      "Gym",
+    ],
+    connectivity: [
+      { place: "Central University", time: "1 min" },
+      { place: "Prampram Community", time: "16 mins" },
+      { place: "Tema Community", time: "20 mins" },
+      { place: "Lashibi", time: "30 mins" },
+      { place: "Tetteh Quashie Interchange", time: "41 mins" },
+      { place: "Kotoka International Airport", time: "45 mins" },
+    ],
+    gallery: [
+      {
+        src: "/images/exclusive/woodlands-gate.jpg",
+        alt: "The grand entrance gateway to Devtraco Woodlands",
+      },
+      {
+        src: "/images/exclusive/woodlands-streetscape.jpg",
+        alt: "A landscaped residential street within Devtraco Woodlands",
+      },
+      {
+        src: "/images/exclusive/woodlands-gatehouse.jpg",
+        alt: "The access-controlled gatehouse at Devtraco Woodlands",
+      },
+      {
+        src: "/images/exclusive/woodlands-clubhouse.jpg",
+        alt: "The Woodlands clubhouse and surrounding recreation area",
+      },
+      {
+        src: "/images/exclusive/woodlands-tennis.jpg",
+        alt: "Tennis courts at Devtraco Woodlands",
+      },
+      {
+        src: "/images/exclusive/woodlands-playground.jpg",
+        alt: "Children's playground set among the gardens at Woodlands",
+      },
+    ],
+    startingPrice: "From $12,000",
+    paymentNote:
+      "Flexible plans from a self-financed 14-day option up to 12-month installments, with a $2,000 reservation fee. Mortgage financing available through partner banks.",
+    brochureUrl: "/brochures/devtraco-woodlands.pdf",
   },
   {
-    id: "p2",
-    name: "The Cube Residences",
-    location: "Cantonments, Accra",
-    soldPercentage: 90,
-    imageSrc: "/images/properties/tribeca-loft-compound.jpg",
+    slug: "orchid-cluster",
+    name: "Orchid Cluster",
+    developer: "Devtraco Group",
+    category: "Residential Cluster",
+    partOf: "devtraco-woodlands",
+    location: "Devtraco Woodlands, Dawhenya",
+    status: "Selling Now",
+    tagline: "153 premium four-bedroom homes on generous 80×70 plots.",
+    summary:
+      "The premium cluster — 153 four-bedroom, two-storey residences on spacious 80×70 plots, arranged around landscaped recreational greens.",
+    heroImage: "/images/exclusive/orchid-primrose.jpg",
+    cardImage: "/images/exclusive/orchid-sunflower.jpg",
+    overview: [
+      "Orchid is the premium residential cluster within Devtraco Woodlands — 26.02 acres of generous 80×70 plots laid out around landscaped recreational greens. Every home here is a four-bedroom, two-storey residence, designed for family living and effortless entertaining.",
+      "Choose from three signature typologies, each delivered to estate standards with the option of a complimentary architectural plan and Bill of Quantities to guide your build.",
+    ],
+    facts: [
+      { label: "Area", value: "26.02 acres" },
+      { label: "No. of plots", value: "153" },
+      { label: "Plot size", value: "80′ × 70′" },
+      { label: "Home type", value: "4-bedroom" },
+      { label: "Phase", value: "Phase 01" },
+      { label: "Status", value: "Selling Now" },
+    ],
+    highlights: [
+      "Spacious 80×70 plots — the largest in Woodlands",
+      "Four-bedroom, two-storey residences",
+      "Private swimming-pool option on the Sunflower typology",
+      "Help's quarters available on the Tulipa typology",
+      "Arranged around dedicated landscaped recreational greens",
+    ],
+    typologies: [
+      {
+        name: "Sunflower",
+        beds: "4 Bedrooms",
+        storeys: "2-storey",
+        blurb:
+          "A luxurious 4-bedroom, 2-storey residence with spacious living and dining areas, a modern kitchen, and three further bedrooms upstairs. Enjoy a private outdoor swimming pool right on the compound — perfect for family living and entertaining.",
+        imageSrc: "/images/exclusive/orchid-sunflower.jpg",
+      },
+      {
+        name: "Primrose",
+        beds: "4 Bedrooms",
+        storeys: "2-storey",
+        blurb:
+          "A stylish residence with a spacious living and dining area, a modern kitchen, and a convenient ground-floor bedroom. Three additional bedrooms on the first floor make it ideal for comfortable family living.",
+        imageSrc: "/images/exclusive/orchid-primrose.jpg",
+      },
+      {
+        name: "Tulipa",
+        beds: "4 Bedrooms + Help's Quarters",
+        storeys: "2-storey",
+        blurb:
+          "An elegant 4-bedroom, 2-storey home featuring generous living and dining areas, help's quarters, and a modern kitchen. Three additional bedrooms and a balcony on the first floor complete this residence built for luxurious family living.",
+        imageSrc: "/images/exclusive/orchid-tulipa.jpg",
+      },
+    ],
+    gallery: [
+      {
+        src: "/images/exclusive/orchid-sunflower.jpg",
+        alt: "Sunflower — 4-bedroom two-storey residence in the Orchid Cluster",
+      },
+      {
+        src: "/images/exclusive/orchid-primrose.jpg",
+        alt: "Primrose — 4-bedroom two-storey residence in the Orchid Cluster",
+      },
+      {
+        src: "/images/exclusive/orchid-tulipa.jpg",
+        alt: "Tulipa — 4-bedroom residence with help's quarters in the Orchid Cluster",
+      },
+      {
+        src: "/images/exclusive/orchid-sunflower-plan.jpg",
+        alt: "Sunflower floor plan with private pool layout",
+      },
+    ],
+    sitemap: {
+      src: "/images/exclusive/orchid-sitemap.jpg",
+      alt: "Orchid Cluster site plan within Devtraco Woodlands Phase 01",
+    },
+    brochureUrl: "/brochures/orchid-cluster-typologies.pdf",
   },
   {
-    id: "p3",
-    name: "Viera Residences",
-    location: "Airport Residential, Accra",
-    soldPercentage: 100,
-    imageSrc: "/images/properties/central-park-gallery.jpg",
-  },
-  {
-    id: "p4",
-    name: "Gate Eleven",
-    location: "Labone, Accra",
-    soldPercentage: 70,
-    imageSrc: "/images/properties/coastal-glass-pavilion.jpg",
+    slug: "jute-cluster",
+    name: "Jute Cluster",
+    developer: "Devtraco Group",
+    category: "Residential Cluster",
+    partOf: "devtraco-woodlands",
+    location: "Devtraco Woodlands, Dawhenya",
+    status: "Selling Now",
+    tagline: "414 homes across four smart layouts on 40×70 plots.",
+    summary:
+      "The largest cluster — 414 plots (40×70) offering flexible 2-, 3-, and 4-bedroom layouts, from the cozy Aster to the elegant two-storey Tulip.",
+    heroImage: "/images/exclusive/jute-cornflower.jpg",
+    cardImage: "/images/exclusive/jute-tulip.jpg",
+    overview: [
+      "Jute is the largest residential cluster in Devtraco Woodlands — 37.7 acres of 40×70 plots offering the widest choice of home layouts in the city. Whether you're a first-time buyer, a growing family, or an investor, there's a typology sized to your needs.",
+      "Four distinct designs range from the cozy single-storey Aster through to the elegant two-storey Tulip, all delivered to the same estate standards as the wider community.",
+    ],
+    facts: [
+      { label: "Area", value: "37.7 acres" },
+      { label: "No. of plots", value: "414" },
+      { label: "Plot size", value: "40′ × 70′" },
+      { label: "Home types", value: "2, 3 & 4-bedroom" },
+      { label: "Phase", value: "Phase 01" },
+      { label: "Status", value: "Selling Now" },
+    ],
+    highlights: [
+      "The widest range of layouts in Woodlands — 2, 3 and 4-bedroom homes",
+      "Efficient 40×70 plots ideal for first homes and investment",
+      "Single-storey and two-storey designs to suit every household",
+      "All homes built to Devtraco Woodlands estate standards",
+    ],
+    typologies: [
+      {
+        name: "Aster",
+        beds: "2 Bedrooms",
+        storeys: "Single-storey",
+        blurb:
+          "A charming single-storey residence with two cozy bedrooms, a bright living and dining area, and a modern kitchen. Surrounded by greenery — perfect for nature lovers seeking comfort and tranquility.",
+        imageSrc: "/images/exclusive/jute-aster.jpg",
+      },
+      {
+        name: "Cornflower",
+        beds: "3 Bedrooms",
+        storeys: "Single-storey",
+        blurb:
+          "A delightful 3-bedroom, single-storey residence with an open living and dining area and a modern kitchen. Cozy, comfortable, and perfect for family living.",
+        imageSrc: "/images/exclusive/jute-cornflower.jpg",
+      },
+      {
+        name: "Daisy",
+        beds: "3 Bedrooms",
+        storeys: "Single-storey",
+        blurb:
+          "A charming 3-bedroom, single-storey home featuring spacious living and dining areas alongside a modern kitchen — ideal for a unique, comfortable family lifestyle.",
+        imageSrc: "/images/exclusive/jute-daisy.jpg",
+      },
+      {
+        name: "Tulip",
+        beds: "4 Bedrooms",
+        storeys: "2-storey",
+        blurb:
+          "An elegant 4-bedroom, 2-storey residence with spacious living and dining areas and a modern kitchen. The first floor adds three bedrooms and a balcony — ideal for luxurious family living.",
+        imageSrc: "/images/exclusive/jute-tulip.jpg",
+      },
+    ],
+    gallery: [
+      {
+        src: "/images/exclusive/jute-aster.jpg",
+        alt: "Aster — 2-bedroom single-storey home with floor plan, Jute Cluster",
+      },
+      {
+        src: "/images/exclusive/jute-cornflower.jpg",
+        alt: "Cornflower — 3-bedroom single-storey residence in the Jute Cluster",
+      },
+      {
+        src: "/images/exclusive/jute-daisy.jpg",
+        alt: "Daisy — 3-bedroom single-storey residence in the Jute Cluster",
+      },
+      {
+        src: "/images/exclusive/jute-tulip.jpg",
+        alt: "Tulip — 4-bedroom two-storey residence in the Jute Cluster",
+      },
+    ],
+    sitemap: {
+      src: "/images/exclusive/jute-sitemap.jpg",
+      alt: "Jute Cluster site plan within Devtraco Woodlands Phase 01",
+    },
+    brochureUrl: "/brochures/jute-cluster-typologies.pdf",
   },
 ];
 

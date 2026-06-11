@@ -12,6 +12,7 @@ const navLinks = [
   { href: "/about", label: "About" },
   { href: "/services", label: "Services" },
   { href: "/properties", label: "Listings" },
+  { href: "/exclusive", label: "Exclusive" },
   { href: "/save-and-buy", label: "Save & Buy" },
   { href: "/build-in-stages", label: "Build in Stages" },
   { href: "/contact", label: "Contact" },

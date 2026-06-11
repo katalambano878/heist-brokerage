@@ -1,0 +1,234 @@
+.page {
+  padding-bottom: var(--space-4xl);
+}
+
+.eyebrow {
+  margin: 0 0 var(--space-md);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+/* ---------- Intro ---------- */
+.intro {
+  padding-block: var(--space-4xl) var(--space-2xl);
+  background: var(--color-bg);
+}
+
+.introHead {
+  max-width: 820px;
+}
+
+.introTitle {
+  margin: 0 0 var(--space-md);
+  font-family: var(--font-serif);
+  font-size: clamp(1.9rem, 3.4vw, 2.75rem);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+}
+
+.introLead {
+  margin: 0;
+  font-size: 1.08rem;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+}
+
+/* ---------- Listing rows ---------- */
+.listings {
+  padding-block: var(--space-2xl) 0;
+  display: block;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-xl);
+  align-items: center;
+  padding-block: var(--space-3xl);
+  border-top: 1px solid var(--color-border);
+}
+
+.row:first-child {
+  border-top: none;
+  padding-top: var(--space-xl);
+}
+
+@media (min-width: 900px) {
+  .row {
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: var(--space-3xl);
+  }
+  .rowReverse .rowMedia {
+    order: 2;
+  }
+}
+
+.rowMedia {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  text-decoration: none;
+  background: var(--color-bg-alt);
+}
+
+.rowImage {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  transition: transform 0.7s var(--ease-smooth);
+}
+
+.rowMedia:hover .rowImage,
+.rowMedia:focus-visible .rowImage {
+  transform: scale(1.05);
+}
+
+.rowStatus {
+  position: absolute;
+  top: var(--space-md);
+  left: var(--space-md);
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 0.85rem;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+  background: rgba(255, 252, 247, 0.94);
+  border-radius: 999px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.rowCategory {
+  display: inline-block;
+  margin-bottom: 0.6rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.rowTitle {
+  margin: 0 0 0.3rem;
+  font-family: var(--font-serif);
+  font-size: clamp(1.7rem, 3vw, 2.3rem);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--color-text);
+}
+
+.rowLocation {
+  margin: 0 0 var(--space-md);
+  font-size: 0.92rem;
+  color: var(--color-text-muted);
+}
+
+.rowSummary {
+  margin: 0 0 var(--space-lg);
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+}
+
+.rowFacts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-md);
+  margin: 0 0 var(--space-xl);
+  padding: var(--space-lg) 0;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.rowFact {
+  margin: 0;
+}
+
+.rowFactLabel {
+  margin: 0 0 0.2rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.rowFactValue {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.rowActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+
+.rowPrimary,
+.rowSecondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  padding: 0 1.6rem;
+  font-size: 0.86rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  border-radius: 999px;
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.rowPrimary {
+  color: var(--color-warm-white);
+  background: var(--color-ink);
+  border: 1px solid var(--color-ink);
+}
+
+.rowPrimary:hover,
+.rowPrimary:focus-visible {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  transform: translateY(-2px);
+}
+
+.rowSecondary {
+  color: var(--color-text);
+  background: transparent;
+  border: 1px solid var(--color-border-strong);
+}
+
+.rowSecondary:hover,
+.rowSecondary:focus-visible {
+  border-color: var(--color-text);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 560px) {
+  .rowActions {
+    flex-direction: column;
+  }
+  .rowPrimary,
+  .rowSecondary {
+    width: 100%;
+  }
+}

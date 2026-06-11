@@ -82,6 +82,9 @@ export function Footer() {
                   <Link href="/properties">Listings</Link>
                 </li>
                 <li>
+                  <Link href="/exclusive">Exclusive Listings</Link>
+                </li>
+                <li>
                   <Link href="/save-and-buy">Save &amp; Buy</Link>
                 </li>
                 <li>
