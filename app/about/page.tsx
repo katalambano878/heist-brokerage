@@ -69,7 +69,7 @@ export default function AboutPage() {
                 />
               </div>
               <div className={styles.introBadge}>
-                <span className={styles.introBadgeValue}>East Legon</span>
+                <span className={styles.introBadgeValue}>East Legon Hills</span>
                 <span className={styles.introBadgeLabel}>Based in Accra, Ghana</span>
               </div>
             </ScrollReveal>
@@ -267,9 +267,8 @@ export default function AboutPage() {
                   />
                   <div className={styles.memberOverlay}>
                     <div className={styles.memberInfo}>
-                      <p className={styles.memberRole}>{member.title}</p>
                       <h3 className={styles.memberName}>{member.name}</h3>
-                      <p className={styles.memberFocus}>{member.focus}</p>
+                      <p className={styles.memberRole}>{member.title}</p>
                     </div>
                   </div>
                 </ScrollReveal>

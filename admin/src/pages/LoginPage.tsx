@@ -1,10 +1,10 @@
 import { type FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { api, setTokens } from "../api";
+import { api, setSession, type SessionUser } from "../api";
 
 export function LoginPage() {
   const nav = useNavigate();
-  const [email, setEmail] = useState("admin@luxuryestate.local");
+  const [email, setEmail] = useState("admin@heistbrokerage.com");
   const [password, setPassword] = useState("");
   const [err, setErr] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -17,11 +17,12 @@ export function LoginPage() {
       const data = await api<{
         accessToken: string;
         refreshToken: string;
+        user: SessionUser;
       }>("/api/v1/auth/login", {
         method: "POST",
         body: JSON.stringify({ email, password }),
       });
-      setTokens(data.accessToken, data.refreshToken);
+      setSession(data.accessToken, data.refreshToken, data.user);
       nav("/");
     } catch (e) {
       setErr(e instanceof Error ? e.message : "Login failed");
@@ -34,7 +35,7 @@ export function LoginPage() {
     <div className="login-page">
       <div className="login-container">
         <div className="login-brand">
-          <div className="login-logo">LE</div>
+          <div className="login-logo">HB</div>
           <h1>Heist Brokerage</h1>
           <p>Admin console</p>
         </div>

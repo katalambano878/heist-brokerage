@@ -6,6 +6,7 @@ import { PageHero } from "@/components/PageHero/PageHero";
 import { StepsSection } from "@/components/StepsSection/StepsSection";
 import { FeatureGrid } from "@/components/FeatureGrid/FeatureGrid";
 import { Spotlight } from "@/components/Spotlight/Spotlight";
+import { SaveBuyForm } from "@/components/SaveBuyForm/SaveBuyForm";
 import { saveAndBuySteps } from "@/lib/data";
 import styles from "./page.module.css";
 
@@ -31,8 +32,8 @@ const included = [
 const phases = [
   {
     title: "Reserve",
-    fill: 12,
-    text: "Choose your property or project and reserve it with a small commitment.",
+    fill: 6,
+    text: "Choose your property or project and reserve it with just 6% commitment.",
   },
   {
     title: "Deposit",
@@ -247,6 +248,29 @@ export default function SaveAndBuyPage() {
         items={audience}
         columns={3}
       />
+
+      <section className={styles.registration} aria-labelledby="sb-register-heading">
+        <Container>
+          <div className={styles.registrationGrid}>
+            <div className={styles.registrationCopy}>
+              <ScrollReveal as="p" variant="fadeUp" className={styles.eyebrow}>
+                Get Started
+              </ScrollReveal>
+              <ScrollReveal as="h2" variant="fadeUp" delayMs={70} id="sb-register-heading" className={styles.registrationTitle}>
+                Register for Save &amp; Buy
+              </ScrollReveal>
+              <ScrollReveal as="p" variant="fadeUp" delayMs={120} className={styles.registrationText}>
+                Complete your registration to begin your flexible ownership journey.
+                Our team will reach out within 24 hours to discuss your options and
+                create a personalized payment plan.
+              </ScrollReveal>
+            </div>
+            <ScrollReveal variant="fadeUp" delayMs={160}>
+              <SaveBuyForm />
+            </ScrollReveal>
+          </div>
+        </Container>
+      </section>
 
       <Spotlight
         kicker="Save & Buy Spotlight"

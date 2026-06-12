@@ -91,6 +91,9 @@ export function Footer() {
                   <Link href="/build-in-stages">Build in Stages</Link>
                 </li>
                 <li>
+                  <Link href="/careers">Careers</Link>
+                </li>
+                <li>
                   <Link href="/contact">Contact</Link>
                 </li>
               </ul>
@@ -142,10 +145,6 @@ export function Footer() {
               </ul>
             </div>
         </div>
-
-        <p className={styles.wordmark} aria-hidden>
-          HEIST
-        </p>
 
         <div className={styles.bottom}>
           <p className={styles.copy}>

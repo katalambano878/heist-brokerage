@@ -4,46 +4,50 @@ import type { Env } from "../../config/env.js";
 import { prisma } from "../../lib/prisma.js";
 import { authMiddleware, requireRole } from "../../middleware/auth.js";
 
-const patchSchema = z.object({
-  storeName: z.string().min(1).optional(),
-  contactEmail: z.string().email().optional(),
-  currency: z.string().min(3).max(3).optional(),
-  taxRate: z.string().or(z.number()).optional(),
-  logoUrl: z.string().url().optional().nullable(),
+const settingsSchema = z.object({
+  phones: z.array(z.string()).optional(),
+  whatsapp: z.string().optional(),
+  addressLine1: z.string().optional(),
+  addressLine2: z.string().optional(),
+  city: z.string().optional(),
+  email: z.string().optional(),
+  instagram: z.string().optional(),
+  tiktok: z.string().optional(),
+  facebook: z.string().optional(),
+  trustStats: z
+    .array(
+      z.object({
+        label: z.string(),
+        target: z.number(),
+        suffix: z.string().optional(),
+      }),
+    )
+    .optional(),
 });
 
 export function adminSettingsRouter(env: Env) {
   const r = Router();
   const auth = authMiddleware(env);
-  const staff = [auth, requireRole("SUPER_ADMIN", "ADMIN")];
+  const staff = [auth, requireRole("SUPER_ADMIN", "ADMIN", "STAFF")];
 
   r.get("/", ...staff, async (_req, res, next) => {
     try {
-      const settings = await prisma.storeSettings.findUnique({
+      const settings = await prisma.siteSettings.findUnique({
         where: { id: "default" },
       });
-      res.json(settings);
+      res.json(settings ?? {});
     } catch (e) {
       next(e);
     }
   });
 
-  r.patch("/", ...staff, async (req, res, next) => {
+  r.put("/", ...staff, async (req, res, next) => {
     try {
-      const body = patchSchema.parse(req.body);
-      const data: Record<string, unknown> = { ...body };
-      if (body.taxRate != null) data.taxRate = String(body.taxRate);
-      const settings = await prisma.storeSettings.upsert({
+      const body = settingsSchema.parse(req.body);
+      const settings = await prisma.siteSettings.upsert({
         where: { id: "default" },
-        create: {
-          id: "default",
-          storeName: (body.storeName as string) ?? "Luxury Estate Store",
-          contactEmail: (body.contactEmail as string) ?? "admin@example.com",
-          currency: body.currency ?? "GHS",
-          taxRate: body.taxRate != null ? String(body.taxRate) : "0",
-          logoUrl: body.logoUrl ?? undefined,
-        },
-        update: data as object,
+        update: body,
+        create: { id: "default", ...body },
       });
       res.json(settings);
     } catch (e) {

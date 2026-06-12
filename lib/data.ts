@@ -1,3 +1,5 @@
+export type PropertyCategory = "sale" | "rent" | "land";
+
 export type Property = {
   id: string;
   title: string;
@@ -13,6 +15,9 @@ export type Property = {
   tag: string;
   type: string;
   description: string;
+  category: PropertyCategory;
+  /** Region for search filtering */
+  region?: string;
 };
 
 /** Premium standard features shown on every property detail page */
@@ -42,6 +47,8 @@ export const featuredProperties: Property[] = [
     imageSrc: "/images/properties/skyline-atelier.jpg",
     tag: "New listing",
     type: "Detached Villa",
+    category: "sale",
+    region: "East Legon Hills",
     description:
       "A statement villa in the heart of East Legon Hills, engineered for modern family living and effortless entertaining. Floor-to-ceiling glazing draws light deep into open-plan living areas, while the upper floor opens onto private terraces with skyline views. Every finish has been specified for longevity and quiet luxury.",
   },
@@ -57,6 +64,8 @@ export const featuredProperties: Property[] = [
     imageSrc: "/images/properties/limestone-townhouse.jpg",
     tag: "Premium build",
     type: "Townhouse",
+    category: "sale",
+    region: "Cantonments",
     description:
       "An architectural townhouse in prestigious Cantonments, blending crisp white volumes with warm timber detailing. Generous reception rooms flow to a landscaped courtyard, and the primary suite spans an entire floor. A premium build for buyers who value address, scale, and craftsmanship in equal measure.",
   },
@@ -72,6 +81,8 @@ export const featuredProperties: Property[] = [
     imageSrc: "/images/properties/coastal-glass-pavilion.jpg",
     tag: "Waterfront",
     type: "Waterfront Home",
+    category: "sale",
+    region: "Labadi",
     description:
       "A serene oceanfront pavilion minutes from Labadi, designed around the horizon. Sliding glass walls dissolve the boundary between living space and sea breeze, while a wraparound deck invites slow mornings and golden-hour evenings. Coastal living, reimagined for the discerning owner.",
   },
@@ -87,6 +98,8 @@ export const featuredProperties: Property[] = [
     imageSrc: "/images/properties/tribeca-loft-compound.jpg",
     tag: "Investment-grade",
     type: "Loft Compound",
+    category: "rent",
+    region: "Airport Residential",
     description:
       "An investment-grade loft compound in the sought-after Airport Residential Area, ideal for owner-occupiers and yield-focused investors alike. Flexible, light-filled units, robust rental demand, and a central location combine to make this a strategic addition to any portfolio.",
   },
@@ -102,6 +115,8 @@ export const featuredProperties: Property[] = [
     imageSrc: "/images/properties/central-park-gallery.jpg",
     tag: "Flagship",
     type: "Gallery Residence",
+    category: "sale",
+    region: "Ridge",
     description:
       "Heist's flagship residence on Ridge — a gallery-like home where proportion and light take centre stage. Museum-grade walls, bespoke joinery, and a sculptural staircase anchor the interiors, while the rooftop offers panoramic city views. A rare trophy asset for the collector of fine spaces.",
   },
@@ -117,6 +132,8 @@ export const featuredProperties: Property[] = [
     imageSrc: "/images/properties/brooklyn-heights-brownstone.jpg",
     tag: "Save & Buy ready",
     type: "Heritage Home",
+    category: "sale",
+    region: "Osu",
     description:
       "A characterful heritage residence in vibrant Osu, sensitively restored to marry period charm with contemporary comfort. With its Save & Buy readiness, it offers a flexible, structured path to ownership in one of Accra's most storied neighbourhoods.",
   },
@@ -132,6 +149,8 @@ export const featuredProperties: Property[] = [
     imageSrc: "/images/properties/soho-cast-iron-loft.jpg",
     tag: "Commercial",
     type: "Commercial Loft",
+    category: "rent",
+    region: "Osu",
     description:
       "A high-visibility commercial loft on bustling Oxford Street — flexible floorplates suited to retail, hospitality, or creative studio use. Strong footfall, premium frontage, and an iconic address make this a compelling commercial opportunity in the heart of Osu.",
   },
@@ -147,6 +166,8 @@ export const featuredProperties: Property[] = [
     imageSrc: "/images/properties/battery-park-sky-residence.jpg",
     tag: "Skyline views",
     type: "Sky Residence",
+    category: "rent",
+    region: "Cantonments",
     description:
       "An elevated sky home in Cantonments framing uninterrupted skyline views through full-height glazing. Refined, low-maintenance interiors and a private terrace make this an ideal lock-up-and-leave residence for the modern professional or international owner.",
   },
@@ -162,8 +183,44 @@ export const featuredProperties: Property[] = [
     imageSrc: "/images/properties/west-village-garden-duplex.jpg",
     tag: "Build in Stages",
     type: "Garden Duplex",
+    category: "sale",
+    region: "Labone",
     description:
       "A graceful garden duplex in leafy Labone, available through our Build in Stages plan. Dual living wings open onto mature landscaped gardens, offering privacy and flexibility for growing families. Build progressively while staying in full control of every milestone.",
+  },
+  {
+    id: "10",
+    title: "Devtraco Woodlands Serviced Plot",
+    location: "Dawhenya, Greater Accra",
+    price: "From $12,000",
+    beds: 0,
+    baths: 0,
+    sqft: "2,800",
+    imageSeed: "heist-10",
+    imageSrc: "/images/exclusive/woodlands-streetscape.jpg",
+    tag: "Serviced Plot",
+    type: "Residential Land",
+    category: "land",
+    region: "Dawhenya",
+    description:
+      "Litigation-free serviced plots within the 592-acre Devtraco Woodlands gated city. Comes with complimentary architectural plan and BOQ. 24/7 security, tarred roads, and utility connections included.",
+  },
+  {
+    id: "11",
+    title: "East Legon Hills Prime Land",
+    location: "East Legon Hills, Accra",
+    price: "GHS 850,000",
+    beds: 0,
+    baths: 0,
+    sqft: "5,000",
+    imageSeed: "heist-11",
+    imageSrc: "/images/exclusive/woodlands-gate.jpg",
+    tag: "Prime Location",
+    type: "Residential Land",
+    category: "land",
+    region: "East Legon Hills",
+    description:
+      "A prime residential plot in the sought-after East Legon Hills area. Ideal for custom home builds or investment. Close to major amenities and well-connected to the city.",
   },
 ];
 
@@ -389,7 +446,7 @@ export const trustStats: TrustStat[] = [
   { label: "Projects completed", target: 50, suffix: "+" },
   { label: "Years of combined expertise", target: 12, suffix: "+" },
   { label: "Client satisfaction score", target: 98, suffix: "%" },
-  { label: "Neighborhoods served in Accra", target: 15, suffix: "+" },
+  { label: "Regions served", target: 6, suffix: "+" },
 ];
 
 export type TeamMember = {
@@ -413,7 +470,7 @@ export const team: TeamMember[] = [
   },
   {
     id: "abdul-rashid-abubakar-kabena",
-    name: "Abdul-Rashid Abubakar Kabena",
+    name: "Abdul-Rashid Kabena Abubakari",
     title: "Chief Marketing Officer",
     focus:
       "Drives Heist's brand and marketing strategy — positioning every property and project to reach the right audience and stand out in a competitive market.",
@@ -771,6 +828,43 @@ export const exclusiveListings: ExclusiveListing[] = [
     },
     brochureUrl: "/brochures/jute-cluster-typologies.pdf",
   },
+];
+
+export type Partner = {
+  name: string;
+  slug: string;
+};
+
+export const partners: Partner[] = [
+  { name: "Devtraco", slug: "devtraco" },
+  { name: "Vaal Real Estate", slug: "vaal" },
+  { name: "Imaani Homes", slug: "imaani" },
+  { name: "Importex Trading & Logistics", slug: "importex" },
+  { name: "Visura", slug: "visura" },
+];
+
+export const regions = [
+  "East Legon Hills",
+  "Cantonments",
+  "Labadi",
+  "Airport Residential",
+  "Ridge",
+  "Osu",
+  "Labone",
+  "Dawhenya",
+];
+
+export const propertyTypes = [
+  "Detached Villa",
+  "Townhouse",
+  "Waterfront Home",
+  "Loft Compound",
+  "Gallery Residence",
+  "Heritage Home",
+  "Commercial Loft",
+  "Sky Residence",
+  "Garden Duplex",
+  "Residential Land",
 ];
 
 export const contactInfo = {

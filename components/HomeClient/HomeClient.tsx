@@ -7,7 +7,9 @@ import { FeaturedListings } from "@/components/FeaturedListings/FeaturedListings
 import { AboutPreview } from "@/components/AboutPreview/AboutPreview";
 import { StatsSection } from "@/components/StatsSection/StatsSection";
 import { ExclusiveProjects } from "@/components/ExclusiveProjects/ExclusiveProjects";
-import { CtaBanner } from "@/components/CtaBanner/CtaBanner";
+import { SearchBanner } from "@/components/SearchBanner/SearchBanner";
+import { Partners } from "@/components/Partners/Partners";
+import { ListProperty } from "@/components/ListProperty/ListProperty";
 import { LeadModal } from "@/components/LeadModal/LeadModal";
 
 export function HomeClient() {
@@ -21,7 +23,9 @@ export function HomeClient() {
       <AboutPreview />
       <StatsSection />
       <ExclusiveProjects />
-      <CtaBanner onPrimaryClick={() => setModalOpen(true)} />
+      <SearchBanner />
+      <ListProperty />
+      <Partners />
       <LeadModal
         key={modalOpen ? "open" : "closed"}
         open={modalOpen}

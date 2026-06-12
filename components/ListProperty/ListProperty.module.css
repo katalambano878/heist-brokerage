@@ -1,0 +1,115 @@
+.section {
+  padding-block: var(--space-4xl);
+  background: var(--color-bg);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-2xl);
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: var(--space-3xl);
+  }
+}
+
+.kicker {
+  margin: 0 0 var(--space-md);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.title {
+  margin: 0 0 var(--space-md);
+  font-family: var(--font-serif);
+  font-size: clamp(1.9rem, 3.4vw, 2.75rem);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+}
+
+.lead {
+  margin: 0 0 var(--space-xl);
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--color-text-muted);
+  max-width: 52ch;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 52px;
+  padding: 0 1.6rem;
+  font-size: 0.86rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--color-warm-white);
+  background: var(--color-teal-deep);
+  border-radius: var(--radius-md);
+  transition:
+    background var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.cta:hover,
+.cta:focus-visible {
+  background: #1c1c1c;
+  transform: translateY(-2px);
+}
+
+.cta svg {
+  transition: transform var(--transition-fast);
+}
+
+.cta:hover svg {
+  transform: translateX(4px);
+}
+
+.benefits {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.benefit {
+  display: flex;
+  gap: var(--space-md);
+  padding: var(--space-lg);
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg, 12px);
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.benefit:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-sm);
+}
+
+.benefitNum {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.benefitText {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-text);
+}

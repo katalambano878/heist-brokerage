@@ -85,7 +85,7 @@ export default function ContactPage() {
               className={styles.map}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              src="https://www.openstreetmap.org/export/embed.html?bbox=-0.10%2C5.74%2C-0.04%2C5.80&amp;layer=mapnik&amp;marker=5.7720%2C-0.0720"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=-0.12%2C5.66%2C-0.05%2C5.72&amp;layer=mapnik&amp;marker=5.6900%2C-0.0850"
             />
           </ScrollReveal>
         </Container>

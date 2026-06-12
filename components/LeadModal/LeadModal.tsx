@@ -114,8 +114,15 @@ export function LeadModal({ open, onClose }: LeadModalProps) {
             <input className={styles.input} type="email" name="email" required />
           </label>
           <label className={styles.field}>
-            <span className={styles.label}>Preferred neighborhoods</span>
-            <input className={styles.input} type="text" name="area" />
+            <span className={styles.label}>You are looking to</span>
+            <select className={styles.input} name="intent">
+              <option value="buy">Purchase a home</option>
+              <option value="land">Purchase a land</option>
+              <option value="build">Build a house</option>
+              <option value="sell">Sell a property</option>
+              <option value="rent">Lease a residence</option>
+              <option value="invest">Invest with guidance</option>
+            </select>
           </label>
           <button type="submit" className={styles.submit}>
             Submit request

@@ -2,7 +2,7 @@ import { Router } from "express";
 import { z } from "zod";
 import type { Env } from "../config/env.js";
 import { prisma } from "../lib/prisma.js";
-import { hashPassword, verifyPassword } from "../lib/password.js";
+import { verifyPassword } from "../lib/password.js";
 import {
   signAccessToken,
   signRefreshToken,
@@ -11,16 +11,11 @@ import {
 import { hashToken } from "../lib/tokenHash.js";
 import { AppError } from "../middleware/errorHandler.js";
 import { authLimiter } from "../middleware/rateLimit.js";
+import { authMiddleware } from "../middleware/auth.js";
 
 const loginSchema = z.object({
   email: z.string().email(),
   password: z.string().min(8),
-});
-
-const registerSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(8),
-  name: z.string().optional(),
 });
 
 const refreshSchema = z.object({
@@ -37,8 +32,8 @@ export function authRouter(env: Env) {
   r.post("/login", authLimiter, async (req, res, next) => {
     try {
       const body = loginSchema.parse(req.body);
-      const user = await prisma.user.findUnique({ where: { email: body.email } });
-      if (!user) {
+      const user = await prisma.adminUser.findUnique({ where: { email: body.email } });
+      if (!user || !user.active) {
         throw new AppError(401, "INVALID_CREDENTIALS", "Invalid email or password");
       }
       const ok = await verifyPassword(body.password, user.passwordHash);
@@ -84,7 +79,10 @@ export function authRouter(env: Env) {
 
       await prisma.refreshToken.delete({ where: { id: existing.id } });
 
-      const user = await prisma.user.findUniqueOrThrow({ where: { id: sub } });
+      const user = await prisma.adminUser.findUniqueOrThrow({ where: { id: sub } });
+      if (!user.active) {
+        throw new AppError(401, "INVALID_REFRESH", "Account disabled");
+      }
       const accessToken = signAccessToken(env, {
         sub: user.id,
         email: user.email,
@@ -109,40 +107,13 @@ export function authRouter(env: Env) {
     }
   });
 
-  r.post("/register", authLimiter, async (req, res, next) => {
+  r.get("/me", authMiddleware(env), async (req, res, next) => {
     try {
-      const body = registerSchema.parse(req.body);
-      const exists = await prisma.user.findUnique({ where: { email: body.email } });
-      if (exists) {
-        throw new AppError(409, "EMAIL_EXISTS", "Email already registered");
-      }
-      const passwordHash = await hashPassword(body.password);
-      const user = await prisma.user.create({
-        data: {
-          email: body.email,
-          passwordHash,
-          name: body.name,
-          role: "CUSTOMER",
-        },
+      const user = await prisma.adminUser.findUniqueOrThrow({
+        where: { id: req.user!.sub },
+        select: { id: true, email: true, name: true, role: true },
       });
-      const accessToken = signAccessToken(env, {
-        sub: user.id,
-        email: user.email,
-        role: user.role,
-      });
-      const refreshRaw = signRefreshToken(env, user.id);
-      await prisma.refreshToken.create({
-        data: {
-          tokenHash: hashToken(refreshRaw),
-          userId: user.id,
-          expiresAt: refreshExpiryDate(),
-        },
-      });
-      res.status(201).json({
-        accessToken,
-        refreshToken: refreshRaw,
-        user: { id: user.id, email: user.email, role: user.role, name: user.name },
-      });
+      res.json(user);
     } catch (e) {
       next(e);
     }
