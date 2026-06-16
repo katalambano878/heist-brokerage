@@ -1,7 +1,10 @@
 FROM node:22-alpine AS build
 WORKDIR /app
+# Coolify may inject NODE_ENV=production as a build arg, which makes npm skip
+# devDependencies (TypeScript, @types/*). Force dev deps for the build.
+ENV NODE_ENV=development
 COPY package.json package-lock.json* ./
-RUN npm ci
+RUN npm ci --include=dev
 COPY prisma ./prisma
 COPY tsconfig.json ./
 COPY src ./src
