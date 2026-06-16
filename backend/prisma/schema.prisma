@@ -72,6 +72,10 @@ model Property {
   sqft        String          @default("")
   tag         String          @default("")
   type        String          @default("")
+  /// Listing category used for site filtering: "sale" | "rent" | "land"
+  category    String          @default("sale")
+  /// Region used for site search filtering, e.g. "East Legon Hills"
+  region      String          @default("")
   description String          @default("")
   status      PropertyStatus  @default(DRAFT)
   featured    Boolean         @default(false)

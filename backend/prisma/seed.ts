@@ -142,6 +142,38 @@ const properties = [
     description:
       "A graceful garden duplex in leafy Labone, available through our Build in Stages plan. Dual living wings open onto mature landscaped gardens, offering privacy and flexibility for growing families. Build progressively while staying in full control of every milestone.",
   },
+  {
+    slug: "devtraco-woodlands-serviced-plot",
+    title: "Devtraco Woodlands Serviced Plot",
+    location: "Dawhenya, Greater Accra",
+    price: "From $12,000",
+    beds: 0,
+    baths: 0,
+    sqft: "2,800",
+    tag: "Serviced Plot",
+    type: "Residential Land",
+    category: "land",
+    region: "Dawhenya",
+    image: "/images/exclusive/woodlands-streetscape.jpg",
+    description:
+      "A litigation-free serviced plot within the master-planned Devtraco Woodlands gated city in Dawhenya. Tarred roads, water, power, and 24/7 security in place — build your dream home at your own pace, minutes from the coast.",
+  },
+  {
+    slug: "east-legon-hills-prime-land",
+    title: "East Legon Hills Prime Land",
+    location: "East Legon Hills, Accra",
+    price: "GHS 850,000",
+    beds: 0,
+    baths: 0,
+    sqft: "5,000",
+    tag: "Prime Location",
+    type: "Residential Land",
+    category: "land",
+    region: "East Legon Hills",
+    image: "/images/exclusive/woodlands-gate.jpg",
+    description:
+      "A prime residential plot in the sought-after East Legon Hills area. Ideal for custom home builds or investment. Close to major amenities and well-connected to the city.",
+  },
 ];
 
 const services = [
@@ -513,12 +545,17 @@ async function main() {
 
   // ----- Properties -----
   for (const [i, p] of properties.entries()) {
-    const { image, ...data } = p;
+    const { image, ...data } = p as typeof p & {
+      category?: string;
+      region?: string;
+    };
     await prisma.property.upsert({
       where: { slug: p.slug },
       update: {},
       create: {
         ...data,
+        category: data.category ?? "sale",
+        region: data.region ?? p.location.split(",")[0].trim(),
         status: "PUBLISHED",
         featured: true,
         sortOrder: i,
@@ -592,7 +629,7 @@ async function main() {
         { label: "Projects completed", target: 50, suffix: "+" },
         { label: "Years of combined expertise", target: 12, suffix: "+" },
         { label: "Client satisfaction score", target: 98, suffix: "%" },
-        { label: "Neighborhoods served in Accra", target: 15, suffix: "+" },
+        { label: "Regions served", target: 6, suffix: "+" },
       ],
     },
   });

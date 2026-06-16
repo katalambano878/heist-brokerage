@@ -25,6 +25,11 @@ const nextConfig: NextConfig = {
         hostname: "i.pinimg.com",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "api.heistbrokerage.com",
+        pathname: "/uploads/**",
+      },
     ],
   },
   async headers() {

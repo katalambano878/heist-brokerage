@@ -1,3 +1,26 @@
+import generatedContent from "./content.generated.json";
+
+/**
+ * Content pulled from the admin database at build time by
+ * `scripts/sync-content.mjs`. When empty (no API at build, or local dev),
+ * the hardcoded defaults below are used so the site always builds.
+ */
+type GeneratedContent = {
+  properties?: Property[];
+  services?: Service[];
+  team?: TeamMember[];
+  testimonials?: Testimonial[];
+  exclusiveListings?: ExclusiveListing[];
+  trustStats?: TrustStat[];
+  contactInfo?: typeof defaultContactInfo;
+};
+
+const generated = generatedContent as GeneratedContent;
+
+function pick<T>(value: T[] | undefined, fallback: T[]): T[] {
+  return value && value.length > 0 ? value : fallback;
+}
+
 export type PropertyCategory = "sale" | "rent" | "land";
 
 export type Property = {
@@ -34,7 +57,7 @@ export function getPropertyById(id: string): Property | undefined {
   return featuredProperties.find((property) => property.id === id);
 }
 
-export const featuredProperties: Property[] = [
+const defaultFeaturedProperties: Property[] = [
   {
     id: "1",
     title: "East Legon Hills Signature Villa",
@@ -224,6 +247,11 @@ export const featuredProperties: Property[] = [
   },
 ];
 
+export const featuredProperties: Property[] = pick(
+  generated.properties,
+  defaultFeaturedProperties,
+);
+
 export type Service = {
   id: string;
   title: string;
@@ -232,7 +260,7 @@ export type Service = {
   imageAlt: string;
 };
 
-export const services: Service[] = [
+const defaultServices: Service[] = [
   {
     id: "real-estate",
     title: "Real Estate",
@@ -282,6 +310,8 @@ export const services: Service[] = [
     imageAlt: "A curated flat-lay of premium tiles, stone, and brass fixtures",
   },
 ];
+
+export const services: Service[] = pick(generated.services, defaultServices);
 
 export type ValueItem = {
   title: string;
@@ -357,7 +387,7 @@ export type Testimonial = {
   role: string;
 };
 
-export const testimonials: Testimonial[] = [
+const defaultTestimonials: Testimonial[] = [
   {
     id: "t1",
     quote:
@@ -380,6 +410,11 @@ export const testimonials: Testimonial[] = [
     role: "Investor",
   },
 ];
+
+export const testimonials: Testimonial[] = pick(
+  generated.testimonials,
+  defaultTestimonials,
+);
 
 export type Step = {
   step: string;
@@ -442,12 +477,17 @@ export type TrustStat = {
   target: number;
 };
 
-export const trustStats: TrustStat[] = [
+const defaultTrustStats: TrustStat[] = [
   { label: "Projects completed", target: 50, suffix: "+" },
   { label: "Years of combined expertise", target: 12, suffix: "+" },
   { label: "Client satisfaction score", target: 98, suffix: "%" },
   { label: "Regions served", target: 6, suffix: "+" },
 ];
+
+export const trustStats: TrustStat[] = pick(
+  generated.trustStats,
+  defaultTrustStats,
+);
 
 export type TeamMember = {
   id: string;
@@ -458,7 +498,7 @@ export type TeamMember = {
   featured?: boolean;
 };
 
-export const team: TeamMember[] = [
+const defaultTeam: TeamMember[] = [
   {
     id: "samirah-sulleiman",
     name: "Samirah Sulleiman",
@@ -518,6 +558,8 @@ export const team: TeamMember[] = [
   },
 ];
 
+export const team: TeamMember[] = pick(generated.team, defaultTeam);
+
 export type GalleryImage = {
   src: string;
   alt: string;
@@ -571,7 +613,7 @@ export function getExclusiveListingBySlug(
   return exclusiveListings.find((listing) => listing.slug === slug);
 }
 
-export const exclusiveListings: ExclusiveListing[] = [
+const defaultExclusiveListings: ExclusiveListing[] = [
   {
     slug: "devtraco-woodlands",
     name: "Devtraco Woodlands",
@@ -830,6 +872,11 @@ export const exclusiveListings: ExclusiveListing[] = [
   },
 ];
 
+export const exclusiveListings: ExclusiveListing[] = pick(
+  generated.exclusiveListings,
+  defaultExclusiveListings,
+);
+
 export type Partner = {
   name: string;
   slug: string;
@@ -867,7 +914,7 @@ export const propertyTypes = [
   "Residential Land",
 ];
 
-export const contactInfo = {
+const defaultContactInfo = {
   phones: ["0243889512", "0203436540"],
   whatsapp: "233203436540",
   address: {
@@ -882,3 +929,5 @@ export const contactInfo = {
     facebook: "https://www.facebook.com/share/1DzUtKMzVg/?mibextid=wwXIfr",
   },
 };
+
+export const contactInfo = generated.contactInfo ?? defaultContactInfo;

@@ -16,6 +16,8 @@ type Property = {
   sqft: string;
   tag: string;
   type: string;
+  category: "sale" | "rent" | "land";
+  region: string;
   description: string;
   status: "DRAFT" | "PUBLISHED" | "ARCHIVED";
   featured: boolean;
@@ -34,6 +36,8 @@ const emptyDraft: Draft = {
   sqft: "",
   tag: "",
   type: "",
+  category: "sale",
+  region: "",
   description: "",
   status: "DRAFT",
   featured: false,
@@ -288,6 +292,27 @@ export function PropertiesPage() {
                   value={draft.type}
                   placeholder="Detached Villa"
                   onChange={(e) => setDraft((d) => ({ ...d, type: e.target.value }))}
+                />
+              </div>
+              <div className="field">
+                <label>Category</label>
+                <select
+                  value={draft.category}
+                  onChange={(e) =>
+                    setDraft((d) => ({ ...d, category: e.target.value as Draft["category"] }))
+                  }
+                >
+                  <option value="sale">For Sale</option>
+                  <option value="rent">For Rent</option>
+                  <option value="land">Land</option>
+                </select>
+              </div>
+              <div className="field">
+                <label>Region (for search filter)</label>
+                <input
+                  value={draft.region}
+                  placeholder="East Legon Hills"
+                  onChange={(e) => setDraft((d) => ({ ...d, region: e.target.value }))}
                 />
               </div>
               <div className="field">

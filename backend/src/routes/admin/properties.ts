@@ -15,6 +15,8 @@ const propertySchema = z.object({
   sqft: z.string().optional().default(""),
   tag: z.string().optional().default(""),
   type: z.string().optional().default(""),
+  category: z.enum(["sale", "rent", "land"]).optional().default("sale"),
+  region: z.string().optional().default(""),
   description: z.string().optional().default(""),
   status: z.enum(["DRAFT", "PUBLISHED", "ARCHIVED"]).optional(),
   featured: z.boolean().optional(),

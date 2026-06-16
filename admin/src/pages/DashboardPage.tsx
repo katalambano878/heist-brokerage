@@ -31,6 +31,24 @@ function badgeClass(status: string) {
 export function DashboardPage() {
   const [data, setData] = useState<Stats | null>(null);
   const [err, setErr] = useState<string | null>(null);
+  const [publishing, setPublishing] = useState(false);
+  const [publishMsg, setPublishMsg] = useState<string | null>(null);
+
+  async function onPublish() {
+    setPublishing(true);
+    setPublishMsg(null);
+    try {
+      const res = await api<{ ok: boolean; message?: string }>(
+        "/api/v1/admin/publish",
+        { method: "POST" },
+      );
+      setPublishMsg(res.message ?? "Publish started. The live site rebuilds shortly.");
+    } catch (e) {
+      setPublishMsg(e instanceof Error ? e.message : "Publish failed");
+    } finally {
+      setPublishing(false);
+    }
+  }
 
   useEffect(() => {
     let cancelled = false;
@@ -47,10 +65,32 @@ export function DashboardPage() {
 
   return (
     <div>
-      <div className="page-header">
-        <h1>Dashboard</h1>
-        <p>Heist Brokerage &amp; Construction at a glance</p>
+      <div className="page-header page-header-row">
+        <div>
+          <h1>Dashboard</h1>
+          <p>Heist Brokerage &amp; Construction at a glance</p>
+        </div>
+        <div style={{ textAlign: "right" }}>
+          <button
+            type="button"
+            className="btn-primary"
+            onClick={onPublish}
+            disabled={publishing}
+          >
+            {publishing ? "Publishing…" : "Publish to live site"}
+          </button>
+          {publishMsg ? (
+            <p className="hint" style={{ marginTop: "0.5rem", maxWidth: 280 }}>
+              {publishMsg}
+            </p>
+          ) : null}
+        </div>
       </div>
+
+      <p className="hint" style={{ marginTop: "-0.5rem", marginBottom: "1.5rem" }}>
+        Changes you make here go live on heistbrokerage.com after you click
+        “Publish to live site” (the site rebuilds in about 1-2 minutes).
+      </p>
 
       {err ? <p className="err">{err}</p> : null}
 

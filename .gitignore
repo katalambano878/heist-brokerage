@@ -20,6 +20,9 @@
 /.next/
 /out/
 
+# backend build output
+/backend/dist/
+
 # production
 /build
 

@@ -8,6 +8,7 @@ import { adminDashboardRouter } from "./routes/admin/dashboard.js";
 import { adminLeadsRouter } from "./routes/admin/leads.js";
 import { adminPropertiesRouter } from "./routes/admin/properties.js";
 import { adminSettingsRouter } from "./routes/admin/settings.js";
+import { adminPublishRouter } from "./routes/admin/publish.js";
 import { adminUploadsRouter } from "./routes/admin/uploads.js";
 import { adminUsersRouter } from "./routes/admin/users.js";
 import {
@@ -54,6 +55,7 @@ app.use("/api/v1/admin/exclusive", adminExclusiveRouter(env));
 app.use("/api/v1/admin/settings", adminSettingsRouter(env));
 app.use("/api/v1/admin/users", adminUsersRouter(env));
 app.use("/api/v1/admin/uploads", adminUploadsRouter(env));
+app.use("/api/v1/admin/publish", adminPublishRouter(env));
 
 app.use(errorHandler);
 
