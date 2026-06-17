@@ -5,13 +5,15 @@ type ModalProps = {
   onClose: () => void;
   children: ReactNode;
   wide?: boolean;
+  xl?: boolean;
 };
 
-export function Modal({ title, onClose, children, wide }: ModalProps) {
+export function Modal({ title, onClose, children, wide, xl }: ModalProps) {
+  const sizeClass = xl ? "modal-xl" : wide ? "modal-wide" : "";
   return (
     <div className="modal-backdrop" onClick={onClose}>
       <div
-        className={`modal ${wide ? "modal-wide" : ""}`}
+        className={`modal ${sizeClass}`}
         onClick={(e) => e.stopPropagation()}
         role="dialog"
         aria-label={title}

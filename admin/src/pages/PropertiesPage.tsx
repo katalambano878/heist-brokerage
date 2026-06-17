@@ -58,6 +58,7 @@ export function PropertiesPage() {
   const [draft, setDraft] = useState<Draft>(emptyDraft);
   const [saving, setSaving] = useState(false);
   const [newImage, setNewImage] = useState("");
+  const [pendingImages, setPendingImages] = useState<string[]>([]);
 
   const load = useCallback(async () => {
     try {
@@ -74,6 +75,8 @@ export function PropertiesPage() {
 
   function openCreate() {
     setDraft(emptyDraft);
+    setPendingImages([]);
+    setNewImage("");
     setCreating(true);
     setEditing(null);
   }
@@ -81,6 +84,8 @@ export function PropertiesPage() {
   function openEdit(p: Property) {
     const { id: _id, images: _images, ...rest } = p;
     setDraft(rest);
+    setPendingImages([]);
+    setNewImage("");
     setEditing(p);
     setCreating(false);
   }
@@ -89,7 +94,18 @@ export function PropertiesPage() {
     setEditing(null);
     setCreating(false);
     setNewImage("");
+    setPendingImages([]);
     setErr(null);
+  }
+
+  async function attachImages(propertyId: string, urls: string[], alt: string) {
+    for (const url of urls) {
+      if (!url.trim()) continue;
+      await api(`/api/v1/admin/properties/${propertyId}/images`, {
+        method: "POST",
+        body: JSON.stringify({ url, alt }),
+      });
+    }
   }
 
   async function onSubmit(e: FormEvent) {
@@ -98,10 +114,14 @@ export function PropertiesPage() {
     setErr(null);
     try {
       if (creating) {
-        await api("/api/v1/admin/properties", {
+        const created = await api<Property>("/api/v1/admin/properties", {
           method: "POST",
           body: JSON.stringify(draft),
         });
+        const urls = [...pendingImages, newImage].filter(Boolean);
+        if (urls.length) {
+          await attachImages(created.id, urls, draft.title);
+        }
       } else if (editing) {
         await api(`/api/v1/admin/properties/${editing.id}`, {
           method: "PATCH",
@@ -125,6 +145,15 @@ export function PropertiesPage() {
     } catch (e) {
       setErr(e instanceof Error ? e.message : "Delete failed");
     }
+  }
+
+  function handleNewImage(url: string) {
+    if (creating && url.trim()) {
+      setPendingImages((prev) => [...prev, url]);
+      setNewImage("");
+      return;
+    }
+    setNewImage(url);
   }
 
   async function addImage() {
@@ -158,6 +187,7 @@ export function PropertiesPage() {
   }
 
   const modalOpen = creating || editing !== null;
+  const galleryImages = creating ? pendingImages : (editing?.images ?? []);
 
   return (
     <div>
@@ -217,183 +247,251 @@ export function PropertiesPage() {
       </div>
 
       {modalOpen ? (
-        <Modal title={creating ? "New property" : `Edit: ${editing?.title}`} onClose={close} wide>
-          <form onSubmit={onSubmit}>
-            <div className="form-grid">
-              <div className="field">
-                <label>Title</label>
-                <input
-                  value={draft.title}
-                  required
-                  onChange={(e) =>
-                    setDraft((d) => ({
-                      ...d,
-                      title: e.target.value,
-                      slug: creating ? slugify(e.target.value) : d.slug,
-                    }))
-                  }
-                />
+        <Modal title={creating ? "New property" : `Edit: ${editing?.title}`} onClose={close} wide xl>
+          <form onSubmit={onSubmit} className="property-form">
+            <div className="form-section">
+              <div className="form-section-head">
+                <h3>Overview</h3>
+                <p>Title and description shown on the listing page.</p>
               </div>
-              <div className="field">
-                <label>Slug</label>
-                <input
-                  value={draft.slug}
-                  required
-                  pattern="[a-z0-9]+(?:-[a-z0-9]+)*"
-                  onChange={(e) => setDraft((d) => ({ ...d, slug: e.target.value }))}
-                />
-              </div>
-              <div className="field">
-                <label>Location</label>
-                <input
-                  value={draft.location}
-                  required
-                  onChange={(e) => setDraft((d) => ({ ...d, location: e.target.value }))}
-                />
-              </div>
-              <div className="field">
-                <label>Price (display)</label>
-                <input
-                  value={draft.price}
-                  required
-                  placeholder="GHS 8,950,000"
-                  onChange={(e) => setDraft((d) => ({ ...d, price: e.target.value }))}
-                />
-              </div>
-              <div className="field">
-                <label>Beds</label>
-                <input
-                  type="number"
-                  min={0}
-                  value={draft.beds}
-                  onChange={(e) => setDraft((d) => ({ ...d, beds: Number(e.target.value) }))}
-                />
-              </div>
-              <div className="field">
-                <label>Baths</label>
-                <input
-                  type="number"
-                  min={0}
-                  value={draft.baths}
-                  onChange={(e) => setDraft((d) => ({ ...d, baths: Number(e.target.value) }))}
-                />
-              </div>
-              <div className="field">
-                <label>Sq Ft (display)</label>
-                <input
-                  value={draft.sqft}
-                  placeholder="6,200"
-                  onChange={(e) => setDraft((d) => ({ ...d, sqft: e.target.value }))}
-                />
-              </div>
-              <div className="field">
-                <label>Type</label>
-                <input
-                  value={draft.type}
-                  placeholder="Detached Villa"
-                  onChange={(e) => setDraft((d) => ({ ...d, type: e.target.value }))}
-                />
-              </div>
-              <div className="field">
-                <label>Category</label>
-                <select
-                  value={draft.category}
-                  onChange={(e) =>
-                    setDraft((d) => ({ ...d, category: e.target.value as Draft["category"] }))
-                  }
-                >
-                  <option value="sale">For Sale</option>
-                  <option value="rent">For Rent</option>
-                  <option value="land">Land</option>
-                </select>
-              </div>
-              <div className="field">
-                <label>Region (for search filter)</label>
-                <input
-                  value={draft.region}
-                  placeholder="East Legon Hills"
-                  onChange={(e) => setDraft((d) => ({ ...d, region: e.target.value }))}
-                />
-              </div>
-              <div className="field">
-                <label>Tag</label>
-                <input
-                  value={draft.tag}
-                  placeholder="New listing"
-                  onChange={(e) => setDraft((d) => ({ ...d, tag: e.target.value }))}
-                />
-              </div>
-              <div className="field">
-                <label>Status</label>
-                <select
-                  value={draft.status}
-                  onChange={(e) =>
-                    setDraft((d) => ({ ...d, status: e.target.value as Draft["status"] }))
-                  }
-                >
-                  <option value="DRAFT">Draft</option>
-                  <option value="PUBLISHED">Published</option>
-                  <option value="ARCHIVED">Archived</option>
-                </select>
-              </div>
-            </div>
-
-            <div className="field" style={{ marginTop: "1rem" }}>
-              <label>Description</label>
-              <textarea
-                rows={5}
-                value={draft.description}
-                onChange={(e) => setDraft((d) => ({ ...d, description: e.target.value }))}
-              />
-            </div>
-
-            <label className="check-row" style={{ marginTop: "1rem" }}>
-              <input
-                type="checkbox"
-                checked={draft.featured}
-                onChange={(e) => setDraft((d) => ({ ...d, featured: e.target.checked }))}
-              />
-              Featured on homepage
-            </label>
-
-            {editing ? (
-              <div style={{ marginTop: "1.5rem" }}>
-                <p className="section-label">Gallery</p>
-                <div className="gallery-grid">
-                  {editing.images.map((img) => (
-                    <div key={img.id} className="gallery-item">
-                      <img src={imagePreviewUrl(img.url)} alt={img.alt} />
-                      <button
-                        type="button"
-                        className="gallery-remove"
-                        onClick={() => removeImage(img.id)}
-                        aria-label="Remove image"
-                      >
-                        ×
-                      </button>
-                    </div>
-                  ))}
+              <div className="form-grid">
+                <div className="field field-span-2">
+                  <label>Title</label>
+                  <input
+                    value={draft.title}
+                    required
+                    placeholder="East Legon Hills Villa"
+                    onChange={(e) =>
+                      setDraft((d) => ({
+                        ...d,
+                        title: e.target.value,
+                        slug: creating ? slugify(e.target.value) : d.slug,
+                      }))
+                    }
+                  />
                 </div>
-                <div style={{ marginTop: "0.75rem" }}>
-                  <ImageField label="Add image" value={newImage} onChange={setNewImage} />
+                <div className="field">
+                  <label>Slug</label>
+                  <input
+                    value={draft.slug}
+                    required
+                    pattern="[a-z0-9]+(?:-[a-z0-9]+)*"
+                    onChange={(e) => setDraft((d) => ({ ...d, slug: e.target.value }))}
+                  />
+                </div>
+                <div className="field">
+                  <label>Tag</label>
+                  <input
+                    value={draft.tag}
+                    placeholder="New listing"
+                    onChange={(e) => setDraft((d) => ({ ...d, tag: e.target.value }))}
+                  />
+                </div>
+              </div>
+              <div className="field" style={{ marginTop: "1rem" }}>
+                <label>Description</label>
+                <textarea
+                  rows={4}
+                  value={draft.description}
+                  placeholder="Describe the property, highlights, and what makes it stand out…"
+                  onChange={(e) => setDraft((d) => ({ ...d, description: e.target.value }))}
+                />
+              </div>
+            </div>
+
+            <div className="form-section">
+              <div className="form-section-head">
+                <h3>Location & category</h3>
+                <p>Used for search filters on the public site.</p>
+              </div>
+              <div className="form-grid">
+                <div className="field">
+                  <label>Location</label>
+                  <input
+                    value={draft.location}
+                    required
+                    placeholder="East Legon Hills, Accra"
+                    onChange={(e) => setDraft((d) => ({ ...d, location: e.target.value }))}
+                  />
+                </div>
+                <div className="field">
+                  <label>Region</label>
+                  <input
+                    value={draft.region}
+                    placeholder="East Legon Hills"
+                    onChange={(e) => setDraft((d) => ({ ...d, region: e.target.value }))}
+                  />
+                </div>
+                <div className="field">
+                  <label>Category</label>
+                  <select
+                    value={draft.category}
+                    onChange={(e) =>
+                      setDraft((d) => ({ ...d, category: e.target.value as Draft["category"] }))
+                    }
+                  >
+                    <option value="sale">For Sale</option>
+                    <option value="rent">For Rent</option>
+                    <option value="land">Land</option>
+                  </select>
+                </div>
+                <div className="field">
+                  <label>Property type</label>
+                  <input
+                    value={draft.type}
+                    placeholder="Detached Villa"
+                    onChange={(e) => setDraft((d) => ({ ...d, type: e.target.value }))}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="form-section">
+              <div className="form-section-head">
+                <h3>Specs & pricing</h3>
+                <p>Display values — use the format you want visitors to see.</p>
+              </div>
+              <div className="form-grid form-grid-4">
+                <div className="field">
+                  <label>Price</label>
+                  <input
+                    value={draft.price}
+                    required
+                    placeholder="GHS 8,950,000"
+                    onChange={(e) => setDraft((d) => ({ ...d, price: e.target.value }))}
+                  />
+                </div>
+                <div className="field">
+                  <label>Beds</label>
+                  <input
+                    type="number"
+                    min={0}
+                    value={draft.beds}
+                    onChange={(e) => setDraft((d) => ({ ...d, beds: Number(e.target.value) }))}
+                  />
+                </div>
+                <div className="field">
+                  <label>Baths</label>
+                  <input
+                    type="number"
+                    min={0}
+                    value={draft.baths}
+                    onChange={(e) => setDraft((d) => ({ ...d, baths: Number(e.target.value) }))}
+                  />
+                </div>
+                <div className="field">
+                  <label>Sq Ft</label>
+                  <input
+                    value={draft.sqft}
+                    placeholder="6,200"
+                    onChange={(e) => setDraft((d) => ({ ...d, sqft: e.target.value }))}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="form-section">
+              <div className="form-section-head">
+                <h3>Photos</h3>
+                <p>Upload a cover image and add more to the gallery. First image is used in listings.</p>
+              </div>
+
+              {galleryImages.length > 0 ? (
+                <div className="gallery-grid gallery-grid-lg">
+                  {creating
+                    ? pendingImages.map((url, i) => (
+                        <div key={`${url}-${i}`} className="gallery-item">
+                          <img src={imagePreviewUrl(url)} alt="" />
+                          {i === 0 ? <span className="gallery-cover-badge">Cover</span> : null}
+                          <button
+                            type="button"
+                            className="gallery-remove"
+                            onClick={() =>
+                              setPendingImages((prev) => prev.filter((_, j) => j !== i))
+                            }
+                            aria-label="Remove image"
+                          >
+                            ×
+                          </button>
+                        </div>
+                      ))
+                    : editing?.images.map((img, i) => (
+                        <div key={img.id} className="gallery-item">
+                          <img src={imagePreviewUrl(img.url)} alt={img.alt} />
+                          {i === 0 ? <span className="gallery-cover-badge">Cover</span> : null}
+                          <button
+                            type="button"
+                            className="gallery-remove"
+                            onClick={() => removeImage(img.id)}
+                            aria-label="Remove image"
+                          >
+                            ×
+                          </button>
+                        </div>
+                      ))}
+                </div>
+              ) : null}
+
+              <div className="gallery-upload-row">
+                <ImageField
+                  label={creating ? "Add photos" : "Add to gallery"}
+                  value={newImage}
+                  onChange={handleNewImage}
+                  variant="dropzone"
+                  hint={
+                    creating
+                      ? "Upload one or more photos — they are saved when you create the property."
+                      : "Upload here, then click Add to gallery."
+                  }
+                />
+                {!creating ? (
                   <button
                     type="button"
-                    className="btn-secondary"
-                    style={{ marginTop: "0.5rem" }}
+                    className="btn-secondary gallery-add-btn"
                     disabled={!newImage}
                     onClick={addImage}
                   >
                     Add to gallery
                   </button>
+                ) : null}
+              </div>
+            </div>
+
+            <div className="form-section form-section-inline">
+              <div>
+                <div className="form-section-head">
+                  <h3>Publishing</h3>
+                  <p>Control visibility on the public website.</p>
+                </div>
+                <div className="field" style={{ maxWidth: 220 }}>
+                  <label>Status</label>
+                  <select
+                    value={draft.status}
+                    onChange={(e) =>
+                      setDraft((d) => ({ ...d, status: e.target.value as Draft["status"] }))
+                    }
+                  >
+                    <option value="DRAFT">Draft</option>
+                    <option value="PUBLISHED">Published</option>
+                    <option value="ARCHIVED">Archived</option>
+                  </select>
                 </div>
               </div>
-            ) : (
-              <p className="hint" style={{ marginTop: "1rem" }}>
-                Save the property first, then reopen it to add gallery images.
-              </p>
-            )}
+              <label className="featured-toggle">
+                <input
+                  type="checkbox"
+                  checked={draft.featured}
+                  onChange={(e) => setDraft((d) => ({ ...d, featured: e.target.checked }))}
+                />
+                <span className="featured-toggle-ui" aria-hidden />
+                <span className="featured-toggle-text">
+                  <strong>Featured on homepage</strong>
+                  <small>Show in the homepage featured listings carousel</small>
+                </span>
+              </label>
+            </div>
 
-            {err ? <p className="err" style={{ marginTop: "1rem" }}>{err}</p> : null}
+            {err ? <p className="err">{err}</p> : null}
 
             <div className="modal-actions">
               <button type="button" className="btn-secondary" onClick={close}>Cancel</button>

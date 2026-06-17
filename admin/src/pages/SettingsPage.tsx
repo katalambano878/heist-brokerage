@@ -29,6 +29,12 @@ const empty: Settings = {
   trustStats: [],
 };
 
+const socialFields = [
+  { key: "instagram" as const, label: "Instagram", placeholder: "https://instagram.com/…" },
+  { key: "tiktok" as const, label: "TikTok", placeholder: "https://tiktok.com/@…" },
+  { key: "facebook" as const, label: "Facebook", placeholder: "https://facebook.com/…" },
+];
+
 export function SettingsPage() {
   const [data, setData] = useState<Settings>(empty);
   const [loaded, setLoaded] = useState(false);
@@ -81,127 +87,184 @@ export function SettingsPage() {
   if (!loaded && !err) return <div className="empty"><p>Loading settings…</p></div>;
 
   return (
-    <div>
+    <div className="settings-page">
       <div className="page-header">
         <h1>Site settings</h1>
-        <p>Contact details, social links, and homepage stats</p>
+        <p>Contact details, social links, and homepage stats shown on heistbrokerage.com</p>
       </div>
 
-      <form onSubmit={onSubmit} style={{ maxWidth: 720 }}>
-        <div className="card">
-          <p className="section-label">Contact</p>
-          <div className="form-grid">
-            <div className="field">
-              <label>Phone numbers (comma-separated)</label>
-              <input
-                value={data.phones.join(", ")}
-                onChange={(e) =>
-                  setData({
-                    ...data,
-                    phones: e.target.value.split(",").map((s) => s.trim()).filter(Boolean),
-                  })
-                }
-              />
+      <form onSubmit={onSubmit}>
+        <div className="settings-grid">
+          <div className="card settings-card">
+            <div className="settings-card-head">
+              <div>
+                <h2>Contact</h2>
+                <p>Phone, email, and office address on the contact page and footer.</p>
+              </div>
             </div>
-            <div className="field">
-              <label>WhatsApp number (international)</label>
-              <input
-                value={data.whatsapp}
-                placeholder="233203436540"
-                onChange={(e) => setData({ ...data, whatsapp: e.target.value })}
-              />
-            </div>
-            <div className="field">
-              <label>Email</label>
-              <input value={data.email} onChange={(e) => setData({ ...data, email: e.target.value })} />
-            </div>
-            <div className="field">
-              <label>Address line 1</label>
-              <input value={data.addressLine1} onChange={(e) => setData({ ...data, addressLine1: e.target.value })} />
-            </div>
-            <div className="field">
-              <label>Address line 2</label>
-              <input value={data.addressLine2} onChange={(e) => setData({ ...data, addressLine2: e.target.value })} />
-            </div>
-            <div className="field">
-              <label>City</label>
-              <input value={data.city} onChange={(e) => setData({ ...data, city: e.target.value })} />
+            <div className="form-grid">
+              <div className="field field-span-2">
+                <label>Phone numbers</label>
+                <input
+                  value={data.phones.join(", ")}
+                  placeholder="0243889512, 0203436540"
+                  onChange={(e) =>
+                    setData({
+                      ...data,
+                      phones: e.target.value.split(",").map((s) => s.trim()).filter(Boolean),
+                    })
+                  }
+                />
+                <span className="hint">Separate multiple numbers with commas</span>
+              </div>
+              <div className="field">
+                <label>WhatsApp</label>
+                <input
+                  value={data.whatsapp}
+                  placeholder="233203436540"
+                  onChange={(e) => setData({ ...data, whatsapp: e.target.value })}
+                />
+                <span className="hint">International format, no + sign</span>
+              </div>
+              <div className="field">
+                <label>Email</label>
+                <input
+                  type="email"
+                  value={data.email}
+                  placeholder="info@heistbrokerage.com"
+                  onChange={(e) => setData({ ...data, email: e.target.value })}
+                />
+              </div>
+              <div className="field field-span-2">
+                <label>Address line 1</label>
+                <input
+                  value={data.addressLine1}
+                  placeholder="Nmai Dzorn Papafio Rd"
+                  onChange={(e) => setData({ ...data, addressLine1: e.target.value })}
+                />
+              </div>
+              <div className="field">
+                <label>Address line 2</label>
+                <input
+                  value={data.addressLine2}
+                  placeholder="Nanakrom-East Legon Hills"
+                  onChange={(e) => setData({ ...data, addressLine2: e.target.value })}
+                />
+              </div>
+              <div className="field">
+                <label>City</label>
+                <input
+                  value={data.city}
+                  placeholder="Accra, Ghana"
+                  onChange={(e) => setData({ ...data, city: e.target.value })}
+                />
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="card" style={{ marginTop: "1rem" }}>
-          <p className="section-label">Social links</p>
-          <div className="field" style={{ marginBottom: "1rem" }}>
-            <label>Instagram</label>
-            <input value={data.instagram} onChange={(e) => setData({ ...data, instagram: e.target.value })} />
+          <div className="card settings-card">
+            <div className="settings-card-head">
+              <div>
+                <h2>Social links</h2>
+                <p>Full profile URLs linked from the site footer.</p>
+              </div>
+            </div>
+            <div className="social-fields">
+              {socialFields.map(({ key, label, placeholder }) => (
+                <div key={key} className="field social-field">
+                  <label>{label}</label>
+                  <input
+                    value={data[key]}
+                    placeholder={placeholder}
+                    onChange={(e) => setData({ ...data, [key]: e.target.value })}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="field" style={{ marginBottom: "1rem" }}>
-            <label>TikTok</label>
-            <input value={data.tiktok} onChange={(e) => setData({ ...data, tiktok: e.target.value })} />
-          </div>
-          <div className="field">
-            <label>Facebook</label>
-            <input value={data.facebook} onChange={(e) => setData({ ...data, facebook: e.target.value })} />
-          </div>
-        </div>
 
-        <div className="card" style={{ marginTop: "1rem" }}>
-          <p className="section-label">Homepage trust stats</p>
-          {data.trustStats.map((s, i) => (
-            <div key={i} className="stat-edit-row">
-              <input
-                value={s.label}
-                placeholder="Label"
-                onChange={(e) => setStat(i, { label: e.target.value })}
-              />
-              <input
-                type="number"
-                value={s.target}
-                placeholder="Number"
-                onChange={(e) => setStat(i, { target: Number(e.target.value) })}
-              />
-              <input
-                value={s.suffix ?? ""}
-                placeholder="Suffix (+, %)"
-                onChange={(e) => setStat(i, { suffix: e.target.value })}
-              />
+          <div className="card settings-card settings-card-wide">
+            <div className="settings-card-head">
+              <div>
+                <h2>Homepage trust stats</h2>
+                <p>Numbers animated on the homepage — label, value, and suffix (+, %, etc.).</p>
+              </div>
               <button
                 type="button"
-                className="btn-link btn-link-danger"
+                className="btn-secondary"
                 onClick={() =>
                   setData((d) => ({
                     ...d,
-                    trustStats: d.trustStats.filter((_, j) => j !== i),
+                    trustStats: [...d.trustStats, { label: "", target: 0, suffix: "+" }],
                   }))
                 }
               >
-                Remove
+                + Add stat
               </button>
             </div>
-          ))}
-          <button
-            type="button"
-            className="btn-secondary"
-            style={{ marginTop: "0.5rem" }}
-            onClick={() =>
-              setData((d) => ({
-                ...d,
-                trustStats: [...d.trustStats, { label: "", target: 0, suffix: "+" }],
-              }))
-            }
-          >
-            + Add stat
-          </button>
+
+            {data.trustStats.length === 0 ? (
+              <div className="empty empty-compact">
+                <p>No stats yet. Add the counters shown on your homepage.</p>
+              </div>
+            ) : (
+              <div className="trust-stats-table">
+                <div className="trust-stats-head">
+                  <span>Label</span>
+                  <span>Value</span>
+                  <span>Suffix</span>
+                  <span></span>
+                </div>
+                {data.trustStats.map((s, i) => (
+                  <div key={i} className="trust-stats-row">
+                    <input
+                      value={s.label}
+                      placeholder="Regions served"
+                      onChange={(e) => setStat(i, { label: e.target.value })}
+                    />
+                    <input
+                      type="number"
+                      value={s.target}
+                      placeholder="6"
+                      onChange={(e) => setStat(i, { target: Number(e.target.value) })}
+                    />
+                    <input
+                      value={s.suffix ?? ""}
+                      placeholder="+"
+                      onChange={(e) => setStat(i, { suffix: e.target.value })}
+                    />
+                    <button
+                      type="button"
+                      className="btn-link btn-link-danger"
+                      onClick={() =>
+                        setData((d) => ({
+                          ...d,
+                          trustStats: d.trustStats.filter((_, j) => j !== i),
+                        }))
+                      }
+                    >
+                      Remove
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
 
-        {err ? <p className="err" style={{ marginTop: "1rem" }}>{err}</p> : null}
-        {saved ? <p className="success-msg" style={{ marginTop: "1rem" }}>Settings saved.</p> : null}
-
-        <div style={{ marginTop: "1.25rem" }}>
-          <button className="btn-primary" type="submit" disabled={saving}>
-            {saving ? "Saving…" : "Save settings"}
-          </button>
+        <div className="settings-footer">
+          <div className="settings-footer-inner">
+            <div>
+              {err ? <p className="err">{err}</p> : null}
+              {saved ? <p className="success-msg">Settings saved successfully.</p> : null}
+              {!err && !saved ? (
+                <p className="hint">Changes apply to the public site after you publish from the dashboard.</p>
+              ) : null}
+            </div>
+            <button className="btn-primary" type="submit" disabled={saving}>
+              {saving ? "Saving…" : "Save settings"}
+            </button>
+          </div>
         </div>
       </form>
     </div>
