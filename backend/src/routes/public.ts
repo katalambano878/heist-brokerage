@@ -14,6 +14,16 @@ const leadSchema = z.object({
   propertyId: z.string().uuid().optional().nullable(),
 });
 
+const applicationSchema = z.object({
+  fullName: z.string().min(1).max(200),
+  email: z.string().email().optional().or(z.literal("")),
+  phone: z.string().max(40).optional().or(z.literal("")),
+  position: z.string().max(200).optional().or(z.literal("")),
+  experience: z.string().max(100).optional().or(z.literal("")),
+  portfolio: z.string().max(500).optional().or(z.literal("")),
+  message: z.string().max(4000).optional().or(z.literal("")),
+});
+
 export function publicRouter() {
   const r = Router();
 
@@ -110,6 +120,26 @@ export function publicRouter() {
         where: { id: "default" },
       });
       res.json(settings ?? {});
+    } catch (e) {
+      next(e);
+    }
+  });
+
+  r.post("/applications", async (req, res, next) => {
+    try {
+      const body = applicationSchema.parse(req.body);
+      const application = await prisma.application.create({
+        data: {
+          fullName: body.fullName,
+          email: body.email ?? "",
+          phone: body.phone ?? "",
+          position: body.position ?? "",
+          experience: body.experience ?? "",
+          portfolio: body.portfolio ?? "",
+          message: body.message ?? "",
+        },
+      });
+      res.status(201).json({ id: application.id, ok: true });
     } catch (e) {
       next(e);
     }

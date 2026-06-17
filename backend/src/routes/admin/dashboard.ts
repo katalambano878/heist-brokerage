@@ -19,6 +19,8 @@ export function adminDashboardRouter(env: Env) {
         leadsLast30,
         teamCount,
         exclusiveCount,
+        applicationsTotal,
+        applicationsNew,
         recentLeads,
       ] = await Promise.all([
         prisma.property.count(),
@@ -28,6 +30,8 @@ export function adminDashboardRouter(env: Env) {
         prisma.lead.count({ where: { createdAt: { gte: since } } }),
         prisma.teamMember.count({ where: { active: true } }),
         prisma.exclusiveListing.count({ where: { active: true } }),
+        prisma.application.count(),
+        prisma.application.count({ where: { status: "NEW" } }),
         prisma.lead.findMany({
           include: {
             property: { select: { id: true, title: true } },
@@ -45,6 +49,8 @@ export function adminDashboardRouter(env: Env) {
         leadsLast30,
         teamCount,
         exclusiveCount,
+        applicationsTotal,
+        applicationsNew,
         recentLeads,
       });
     } catch (e) {

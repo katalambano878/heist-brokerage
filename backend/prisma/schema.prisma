@@ -37,6 +37,15 @@ enum LeadSource {
   OTHER
 }
 
+enum ApplicationStatus {
+  NEW
+  REVIEWING
+  SHORTLISTED
+  INTERVIEW
+  HIRED
+  REJECTED
+}
+
 model AdminUser {
   id            String         @id @default(uuid())
   email         String         @unique
@@ -191,6 +200,20 @@ model LeadNote {
   author    AdminUser? @relation(fields: [authorId], references: [id], onDelete: SetNull)
   body      String
   createdAt DateTime   @default(now())
+}
+
+model Application {
+  id         String            @id @default(uuid())
+  fullName   String
+  email      String            @default("")
+  phone      String            @default("")
+  position   String            @default("")
+  experience String            @default("")
+  portfolio  String            @default("")
+  message    String            @default("")
+  status     ApplicationStatus @default(NEW)
+  createdAt  DateTime          @default(now())
+  updatedAt  DateTime          @updatedAt
 }
 
 model SiteSettings {

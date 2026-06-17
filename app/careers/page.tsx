@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Container } from "@/components/Container/Container";
 import { ScrollReveal } from "@/components/ScrollReveal/ScrollReveal";
 import { PageHero } from "@/components/PageHero/PageHero";
 import { CareersForm } from "@/components/CareersForm/CareersForm";
+import { CareersBoard } from "@/components/CareersBoard/CareersBoard";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -152,50 +152,7 @@ export default function CareersPage() {
               fit, we&apos;d love to hear from you.
             </ScrollReveal>
           </div>
-          <div className={styles.jobList}>
-            {openings.map((job, i) => (
-              <ScrollReveal
-                key={job.title}
-                variant="fadeUp"
-                staggerIndex={i}
-                className={styles.jobCard}
-              >
-                <div className={styles.jobHeader}>
-                  <h3 className={styles.jobTitle}>{job.title}</h3>
-                  <div className={styles.jobMeta}>
-                    <span className={styles.jobBadge}>{job.type}</span>
-                    <span className={styles.jobLocation}>
-                      <svg
-                        viewBox="0 0 24 24"
-                        width="14"
-                        height="14"
-                        fill="none"
-                        aria-hidden
-                      >
-                        <path
-                          d="M12 21s7-5.6 7-11a7 7 0 10-14 0c0 5.4 7 11 7 11z"
-                          stroke="currentColor"
-                          strokeWidth="1.6"
-                        />
-                        <circle
-                          cx="12"
-                          cy="10"
-                          r="2.4"
-                          stroke="currentColor"
-                          strokeWidth="1.6"
-                        />
-                      </svg>
-                      {job.location}
-                    </span>
-                  </div>
-                </div>
-                <p className={styles.jobDesc}>{job.desc}</p>
-                <Link href="#apply" className={styles.applyBtn}>
-                  Apply Now
-                </Link>
-              </ScrollReveal>
-            ))}
-          </div>
+          <CareersBoard openings={openings} />
         </Container>
       </section>
 

@@ -21,6 +21,8 @@ type Stats = {
   leadsLast30: number;
   teamCount: number;
   exclusiveCount: number;
+  applicationsTotal: number;
+  applicationsNew: number;
   recentLeads: RecentLead[];
 };
 
@@ -107,6 +109,12 @@ export function DashboardPage() {
           <p className="stat-label">Published properties</p>
           <p className="stat-value">
             {data ? `${data.propertiesPublished} / ${data.propertiesTotal}` : "—"}
+          </p>
+        </div>
+        <div className="stat-card">
+          <p className="stat-label">New applications</p>
+          <p className="stat-value">
+            {data ? `${data.applicationsNew} / ${data.applicationsTotal}` : "—"}
           </p>
         </div>
         <div className="stat-card">

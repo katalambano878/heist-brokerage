@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { postJson } from "@/lib/publicApi";
 import styles from "./CareersForm.module.css";
 
 type FormState = {
@@ -13,17 +14,7 @@ type FormState = {
   message: string;
 };
 
-const initial: FormState = {
-  fullName: "",
-  email: "",
-  phone: "",
-  position: "",
-  experience: "",
-  portfolio: "",
-  message: "",
-};
-
-const positions = [
+export const CAREER_POSITIONS = [
   "Real Estate Sales Agent",
   "Marketing & Social Media Coordinator",
   "Construction Site Supervisor",
@@ -31,12 +22,31 @@ const positions = [
   "General Application",
 ];
 
-export function CareersForm() {
+type CareersFormProps = {
+  /** Pre-selected role; when set the position field is locked. */
+  defaultPosition?: string;
+  /** Hide the intro heading (e.g. when shown inside a modal that has its own title). */
+  hideHeading?: boolean;
+};
+
+export function CareersForm({ defaultPosition, hideHeading }: CareersFormProps) {
+  const lockPosition = Boolean(defaultPosition);
+  const initial: FormState = {
+    fullName: "",
+    email: "",
+    phone: "",
+    position: defaultPosition ?? "",
+    experience: "",
+    portfolio: "",
+    message: "",
+  };
+
   const [values, setValues] = useState<FormState>(initial);
   const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>(
     {},
   );
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "submitting" | "done">("idle");
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const set =
     (key: keyof FormState) =>
@@ -62,13 +72,33 @@ export function CareersForm() {
     return Object.keys(next).length === 0;
   };
 
-  const onSubmit = (e: FormEvent) => {
+  const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    setSubmitError(null);
     if (!validate()) return;
-    setSubmitted(true);
+    setStatus("submitting");
+    try {
+      await postJson("/api/v1/applications", {
+        fullName: values.fullName.trim(),
+        email: values.email.trim(),
+        phone: values.phone.trim(),
+        position: values.position,
+        experience: values.experience,
+        portfolio: values.portfolio.trim(),
+        message: values.message.trim(),
+      });
+      setStatus("done");
+    } catch (err) {
+      setStatus("idle");
+      setSubmitError(
+        err instanceof Error
+          ? "We couldn't submit your application. Please try again or email us directly."
+          : "Submission failed.",
+      );
+    }
   };
 
-  if (submitted) {
+  if (status === "done") {
     return (
       <div className={styles.card}>
         <div className={styles.success} role="status">
@@ -84,9 +114,9 @@ export function CareersForm() {
           </svg>
           <h3 className={styles.successTitle}>Application Received</h3>
           <p className={styles.successText}>
-            Thank you for your interest in joining Heist. Our team will review
-            your application and reach out if there&apos;s a fit. We keep
-            promising candidates in mind for future openings too.
+            Thank you for applying{values.position ? ` for ${values.position}` : ""}.
+            Our team will review your application and reach out if there&apos;s a
+            fit. We keep promising candidates in mind for future openings too.
           </p>
         </div>
       </div>
@@ -95,12 +125,17 @@ export function CareersForm() {
 
   return (
     <form className={styles.card} onSubmit={onSubmit} noValidate>
-      <h3 className={styles.formTitle}>Apply to join Heist</h3>
-      <p className={styles.formLead}>
-        Complete the form below and tell us why you&apos;d be a great fit. All
-        fields marked with <span className={styles.required}>*</span> are
-        required.
-      </p>
+      {!hideHeading && (
+        <>
+          <h3 className={styles.formTitle}>
+            {lockPosition ? `Apply: ${defaultPosition}` : "Apply to join Heist"}
+          </h3>
+          <p className={styles.formLead}>
+            Complete the form below and tell us why you&apos;d be a great fit.
+            Fields marked <span className={styles.required}>*</span> are required.
+          </p>
+        </>
+      )}
 
       <div className={styles.grid}>
         <label className={styles.field}>
@@ -122,20 +157,29 @@ export function CareersForm() {
           <span className={styles.label}>
             Position <span className={styles.required}>*</span>
           </span>
-          <select
-            className={styles.input}
-            name="position"
-            value={values.position}
-            onChange={set("position")}
-            aria-invalid={errors.position ? true : undefined}
-          >
-            <option value="">Select a role</option>
-            {positions.map((p) => (
-              <option key={p} value={p}>
-                {p}
-              </option>
-            ))}
-          </select>
+          {lockPosition ? (
+            <input
+              className={`${styles.input} ${styles.inputLocked}`}
+              name="position"
+              value={values.position}
+              readOnly
+            />
+          ) : (
+            <select
+              className={styles.input}
+              name="position"
+              value={values.position}
+              onChange={set("position")}
+              aria-invalid={errors.position ? true : undefined}
+            >
+              <option value="">Select a role</option>
+              {CAREER_POSITIONS.map((p) => (
+                <option key={p} value={p}>
+                  {p}
+                </option>
+              ))}
+            </select>
+          )}
           {errors.position && <span className={styles.error}>{errors.position}</span>}
         </label>
 
@@ -180,11 +224,11 @@ export function CareersForm() {
             onChange={set("experience")}
           >
             <option value="">Select</option>
-            <option value="0-1">Less than 1 year</option>
-            <option value="1-3">1 – 3 years</option>
-            <option value="3-5">3 – 5 years</option>
-            <option value="5-10">5 – 10 years</option>
-            <option value="10+">10+ years</option>
+            <option value="Less than 1 year">Less than 1 year</option>
+            <option value="1 – 3 years">1 – 3 years</option>
+            <option value="3 – 5 years">3 – 5 years</option>
+            <option value="5 – 10 years">5 – 10 years</option>
+            <option value="10+ years">10+ years</option>
           </select>
         </label>
 
@@ -217,8 +261,10 @@ export function CareersForm() {
         </label>
       </div>
 
-      <button type="submit" className={styles.submit}>
-        Submit Application
+      {submitError && <p className={styles.error} style={{ marginBottom: "0.75rem" }}>{submitError}</p>}
+
+      <button type="submit" className={styles.submit} disabled={status === "submitting"}>
+        {status === "submitting" ? "Submitting…" : "Submit Application"}
       </button>
     </form>
   );

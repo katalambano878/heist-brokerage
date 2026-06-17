@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { NavLink, Navigate, Route, Routes, useNavigate } from "react-router-dom";
+import { ApplicationsPage } from "./pages/ApplicationsPage";
 import { DashboardPage } from "./pages/DashboardPage";
 import { ExclusivePage } from "./pages/ExclusivePage";
 import { LeadsPage } from "./pages/LeadsPage";
@@ -58,6 +59,11 @@ const icons = {
       <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" /><circle cx="12" cy="7" r="4" />
     </svg>
   ),
+  applications: (
+    <svg className="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /><polyline points="10 9 9 9 8 9" />
+    </svg>
+  ),
   logout: (
     <svg className="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
       <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" /><polyline points="16 17 21 12 16 7" /><line x1="21" y1="12" x2="9" y2="12" />
@@ -87,6 +93,7 @@ function Shell({ children }: { children: ReactNode }) {
           <NavLink to="/properties">{icons.properties} Properties</NavLink>
           <NavLink to="/exclusive">{icons.exclusive} Exclusive</NavLink>
           <NavLink to="/leads">{icons.leads} Leads</NavLink>
+          <NavLink to="/applications">{icons.applications} Applications</NavLink>
         </nav>
         <p className="sidebar-label">Content</p>
         <nav className="nav">
@@ -122,6 +129,7 @@ export function App() {
       <Route path="/properties" element={<RequireAuth><PropertiesPage /></RequireAuth>} />
       <Route path="/exclusive" element={<RequireAuth><ExclusivePage /></RequireAuth>} />
       <Route path="/leads" element={<RequireAuth><LeadsPage /></RequireAuth>} />
+      <Route path="/applications" element={<RequireAuth><ApplicationsPage /></RequireAuth>} />
       <Route path="/team" element={<RequireAuth><TeamPage /></RequireAuth>} />
       <Route path="/services" element={<RequireAuth><ServicesPage /></RequireAuth>} />
       <Route path="/testimonials" element={<RequireAuth><TestimonialsPage /></RequireAuth>} />

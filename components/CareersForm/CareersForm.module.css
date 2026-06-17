@@ -74,6 +74,13 @@
   border-color: #c0392b;
 }
 
+.inputLocked {
+  background: var(--color-bg-subtle, rgba(0, 0, 0, 0.04));
+  color: var(--color-text);
+  font-weight: 600;
+  cursor: default;
+}
+
 .textarea {
   min-height: 120px;
   padding: 0.65rem 0.75rem;
@@ -120,6 +127,12 @@ select.input {
 .submit:focus-visible {
   background: #1c1c1c;
   transform: translateY(-2px);
+}
+
+.submit:disabled {
+  opacity: 0.6;
+  cursor: progress;
+  transform: none;
 }
 
 /* ---------- Success state ---------- */

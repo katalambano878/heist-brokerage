@@ -852,6 +852,15 @@ tbody tr:hover { background: var(--panel-hover); }
 .badge-lost { background: var(--danger-subtle); color: var(--danger); }
 .badge-published { background: var(--success-subtle); color: var(--success); }
 
+/* ---------- Application status badges ---------- */
+
+.badge-app-new { background: var(--info-subtle); color: var(--info); }
+.badge-app-reviewing { background: var(--warning-subtle); color: var(--warning); }
+.badge-app-shortlisted { background: rgba(139, 92, 246, 0.08); color: #7c3aed; }
+.badge-app-interview { background: rgba(234, 88, 12, 0.08); color: #ea580c; }
+.badge-app-hired { background: var(--success-subtle); color: var(--success); }
+.badge-app-rejected { background: var(--danger-subtle); color: var(--danger); }
+
 /* ---------- Settings stat rows ---------- */
 
 .stat-edit-row {
