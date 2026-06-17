@@ -81,11 +81,11 @@ export default function ContactPage() {
         <Container>
           <ScrollReveal variant="blur" className={styles.mapFrame}>
             <iframe
-              title="Map showing Heist office at East Legon Hills, Accra"
+              title="Map showing Heist Brokerage & Construction Ltd, Nmai Dzorn Papafio Hills Rd, Nanakrom"
               className={styles.map}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              src="https://www.openstreetmap.org/export/embed.html?bbox=-0.12%2C5.66%2C-0.05%2C5.72&amp;layer=mapnik&amp;marker=5.6900%2C-0.0850"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=-0.123933%2C5.680333%2C-0.103933%2C5.696333&amp;layer=mapnik&amp;marker=5.688333%2C-0.113933"
             />
           </ScrollReveal>
         </Container>
