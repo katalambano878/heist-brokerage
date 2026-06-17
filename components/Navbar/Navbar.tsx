@@ -84,6 +84,9 @@ export function Navbar() {
             className={styles.brandMark}
             priority
           />
+          <span className={styles.brandName}>
+            Heist Brokerage &amp; Construction
+          </span>
         </Link>
 
         <nav className={styles.nav} aria-label="Primary">
