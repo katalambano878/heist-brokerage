@@ -117,6 +117,7 @@ export function ContactForm() {
             <option value="sell">Sell a property</option>
             <option value="rent">Lease a residence</option>
             <option value="invest">Invest with guidance</option>
+            <option value="joint-venture">Joint Venture</option>
           </select>
         </label>
       </div>
