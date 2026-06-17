@@ -880,14 +880,19 @@ export const exclusiveListings: ExclusiveListing[] = pick(
 export type Partner = {
   name: string;
   slug: string;
+  logo: string;
 };
 
 export const partners: Partner[] = [
-  { name: "Devtraco", slug: "devtraco" },
-  { name: "Vaal Real Estate", slug: "vaal" },
-  { name: "Imaani Homes", slug: "imaani" },
-  { name: "Importex Trading & Logistics", slug: "importex" },
-  { name: "Visura", slug: "visura" },
+  { name: "Devtraco Plus", slug: "devtraco", logo: "/partners/devtraco.png" },
+  { name: "Vaal Real Estate", slug: "vaal", logo: "/partners/vaal.png" },
+  { name: "Imaani Homes", slug: "imaani", logo: "/partners/imaani.png" },
+  {
+    name: "Importex Trading & Logistics",
+    slug: "importex",
+    logo: "/partners/importex.png",
+  },
+  { name: "Visura Architecture", slug: "visura", logo: "/partners/visura.png" },
 ];
 
 export const regions = [

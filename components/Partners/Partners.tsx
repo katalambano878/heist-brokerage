@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Container } from "@/components/Container/Container";
 import { ScrollReveal } from "@/components/ScrollReveal/ScrollReveal";
 import { partners } from "@/lib/data";
@@ -25,7 +26,13 @@ export function Partners() {
           <div className={styles.grid}>
             {partners.map((partner) => (
               <div key={partner.slug} className={styles.card}>
-                <span className={styles.name}>{partner.name}</span>
+                <Image
+                  src={partner.logo}
+                  alt={partner.name}
+                  width={200}
+                  height={80}
+                  className={styles.logo}
+                />
               </div>
             ))}
           </div>
