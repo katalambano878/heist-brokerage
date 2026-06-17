@@ -44,12 +44,16 @@
 }
 
 .brandLogo {
+  display: inline-block;
   width: auto;
-  height: 52px;
+  height: 48px;
   object-fit: contain;
   margin: 0 0 var(--space-md);
-  /* The mark is dark; invert it to warm white so it reads on the dark footer. */
-  filter: brightness(0) invert(0.96);
+  /* The mark is dark, so sit it on a light badge to read on the dark footer
+     while preserving the logo's original two-tone detail. */
+  padding: 12px 18px;
+  background: var(--color-warm-white, #f7f4ef);
+  border-radius: 14px;
 }
 
 .brand {
