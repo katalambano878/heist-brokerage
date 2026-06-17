@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Container } from "@/components/Container/Container";
 import { ScrollReveal } from "@/components/ScrollReveal/ScrollReveal";
 import { PageHero } from "@/components/PageHero/PageHero";
+import { CareersForm } from "@/components/CareersForm/CareersForm";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -189,7 +190,7 @@ export default function CareersPage() {
                   </div>
                 </div>
                 <p className={styles.jobDesc}>{job.desc}</p>
-                <Link href="/contact" className={styles.applyBtn}>
+                <Link href="#apply" className={styles.applyBtn}>
                   Apply Now
                 </Link>
               </ScrollReveal>
@@ -198,21 +199,29 @@ export default function CareersPage() {
         </Container>
       </section>
 
-      <section className={styles.howTo} aria-labelledby="howto-heading">
+      <section id="apply" className={styles.apply} aria-labelledby="apply-heading">
         <Container>
-          <ScrollReveal variant="fadeUp" className={styles.howToInner}>
-            <h2 id="howto-heading" className={styles.howToTitle}>
-              Don&apos;t see the right role?
-            </h2>
-            <p className={styles.howToText}>
-              We&apos;re always interested in hearing from talented
-              professionals. Send your CV and a brief cover note to our team, and
-              we&apos;ll keep you in mind for future opportunities.
-            </p>
-            <Link href="/contact" className={styles.howToCta}>
-              Get in Touch
-            </Link>
-          </ScrollReveal>
+          <div className={styles.applyLayout}>
+            <ScrollReveal variant="fadeUp" className={styles.applyIntro}>
+              <p className={styles.kicker}>Apply Now</p>
+              <h2 id="apply-heading" className={styles.sectionTitle}>
+                Send us your application
+              </h2>
+              <p className={styles.sectionLead}>
+                Don&apos;t see the perfect role? Apply anyway. We&apos;re always
+                interested in hearing from talented professionals and keep
+                promising candidates in mind for future opportunities.
+              </p>
+              <ul className={styles.applyPoints}>
+                <li>Tell us which role fits you best</li>
+                <li>Share your experience and a CV or portfolio link</li>
+                <li>Our team responds to every application</li>
+              </ul>
+            </ScrollReveal>
+            <ScrollReveal variant="fadeUp" delayMs={90} className={styles.applyFormWrap}>
+              <CareersForm />
+            </ScrollReveal>
+          </div>
         </Container>
       </section>
     </div>
