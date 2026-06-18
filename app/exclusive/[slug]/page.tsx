@@ -6,6 +6,7 @@ import { Container } from "@/components/Container/Container";
 import { ScrollReveal } from "@/components/ScrollReveal/ScrollReveal";
 import { PageHero } from "@/components/PageHero/PageHero";
 import { CtaBannerWrapper } from "@/components/CtaBanner/CtaBannerWrapper";
+import { BrochureGate } from "@/components/BrochureGate/BrochureGate";
 import {
   exclusiveListings,
   getExclusiveListingBySlug,
@@ -161,10 +162,9 @@ export default async function ExclusiveDetailPage({ params }: PageProps) {
               <Link href="/contact" className={styles.factsCta}>
                 Book a Viewing
               </Link>
-              <a
-                href={listing.brochureUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+              <BrochureGate
+                brochureUrl={listing.brochureUrl}
+                title={listing.name}
                 className={styles.factsCtaAlt}
               >
                 <svg viewBox="0 0 24 24" width="17" height="17" fill="none" aria-hidden>
@@ -177,7 +177,7 @@ export default async function ExclusiveDetailPage({ params }: PageProps) {
                   />
                 </svg>
                 Download brochure
-              </a>
+              </BrochureGate>
               <a
                 href={waHref}
                 target="_blank"

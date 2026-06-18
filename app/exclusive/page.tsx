@@ -5,6 +5,7 @@ import { Container } from "@/components/Container/Container";
 import { ScrollReveal } from "@/components/ScrollReveal/ScrollReveal";
 import { PageHero } from "@/components/PageHero/PageHero";
 import { exclusiveListings } from "@/lib/data";
+import { BrochureGate } from "@/components/BrochureGate/BrochureGate";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -109,14 +110,13 @@ export default function ExclusivePage() {
                   >
                     Explore development
                   </Link>
-                  <a
-                    href={listing.brochureUrl}
+                  <BrochureGate
+                    brochureUrl={listing.brochureUrl}
+                    title={listing.name}
                     className={styles.rowSecondary}
-                    target="_blank"
-                    rel="noopener noreferrer"
                   >
                     Download brochure
-                  </a>
+                  </BrochureGate>
                 </div>
               </div>
             </ScrollReveal>
