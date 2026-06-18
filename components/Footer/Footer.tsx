@@ -6,6 +6,23 @@ import styles from "./Footer.module.css";
 
 const year = new Date().getFullYear();
 
+const exploreLinks = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/services", label: "Services" },
+  { href: "/careers", label: "Careers" },
+  { href: "/contact", label: "Contact" },
+];
+
+const listingLinks = [
+  { href: "/properties?category=sale", label: "For Sale" },
+  { href: "/properties?category=rent", label: "For Rent" },
+  { href: "/properties?category=land", label: "Land" },
+  { href: "/exclusive", label: "Exclusive Listings" },
+  { href: "/save-and-buy", label: "Save & Buy" },
+  { href: "/build-in-stages", label: "Build in Stages" },
+];
+
 const socials = [
   {
     label: "Instagram",
@@ -37,7 +54,28 @@ export function Footer() {
   return (
     <footer className={styles.footer}>
       <Container>
-        <div className={styles.top}>
+        <div className={styles.cta}>
+          <div className={styles.ctaText}>
+            <p className={styles.ctaKicker}>Let&apos;s talk property</p>
+            <h2 className={styles.ctaTitle}>
+              Ready to make your next move?
+            </h2>
+          </div>
+          <Link href="/contact" className={styles.ctaBtn}>
+            Book a Strategy Call
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden>
+              <path
+                d="M5 12h14M13 6l6 6-6 6"
+                stroke="currentColor"
+                strokeWidth="1.7"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </Link>
+        </div>
+
+        <div className={styles.main}>
           <div className={styles.brandCol}>
             <Image
               src="/logo.png"
@@ -46,88 +84,85 @@ export function Footer() {
               height={288}
               className={styles.brandLogo}
             />
-            <p className={styles.brand}>Heist Brokerage &amp; Construction</p>
+            <p className={styles.brandName}>Heist Brokerage &amp; Construction</p>
             <p className={styles.tagline}>Real Estate, Reimagined.</p>
+            <ul className={styles.social} aria-label="Social media">
+              {socials.map((s) => (
+                <li key={s.label}>
+                  <a
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Heist on ${s.label}`}
+                    className={styles.socialLink}
+                  >
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
+                      <path
+                        d={s.path}
+                        {...(s.stroke
+                          ? { stroke: "currentColor", strokeWidth: 1.4 }
+                          : { fill: "currentColor" })}
+                      />
+                    </svg>
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
 
-          <div className={styles.col}>
-              <h2 className={styles.heading}>Explore</h2>
-              <ul className={styles.list}>
-                <li>
-                  <Link href="/">Home</Link>
+          <nav className={styles.linksCol} aria-label="Explore">
+            <h3 className={styles.heading}>Explore</h3>
+            <ul className={styles.list}>
+              {exploreLinks.map((l) => (
+                <li key={l.href}>
+                  <Link href={l.href}>{l.label}</Link>
                 </li>
-                <li>
-                  <Link href="/about">About</Link>
-                </li>
-                <li>
-                  <Link href="/services">Services</Link>
-                </li>
-                <li>
-                  <Link href="/properties">Listings</Link>
-                </li>
-                <li>
-                  <Link href="/exclusive">Exclusive Listings</Link>
-                </li>
-                <li>
-                  <Link href="/save-and-buy">Save &amp; Buy</Link>
-                </li>
-                <li>
-                  <Link href="/build-in-stages">Build in Stages</Link>
-                </li>
-                <li>
-                  <Link href="/careers">Careers</Link>
-                </li>
-                <li>
-                  <Link href="/contact">Contact</Link>
-                </li>
-              </ul>
-            </div>
+              ))}
+            </ul>
+          </nav>
 
-            <div className={styles.col}>
-              <h2 className={styles.heading}>Contact</h2>
-              <address className={styles.address}>
-                {contactInfo.address.line1}
-                <br />
-                {contactInfo.address.line2}
-                <br />
-                {contactInfo.address.city}
-              </address>
-              <p className={styles.contact}>
+          <nav className={styles.linksCol} aria-label="Listings">
+            <h3 className={styles.heading}>Listings</h3>
+            <ul className={styles.list}>
+              {listingLinks.map((l) => (
+                <li key={l.href}>
+                  <Link href={l.href}>{l.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <div className={styles.contactCol}>
+            <h3 className={styles.heading}>Get in touch</h3>
+            <address className={styles.address}>
+              {contactInfo.address.line1}
+              <br />
+              {contactInfo.address.line2}
+              <br />
+              {contactInfo.address.city}
+            </address>
+            <ul className={styles.contactList}>
+              <li>
                 <a href={`tel:+233${contactInfo.phones[0].slice(1)}`}>
                   {contactInfo.phones[0]}
                 </a>
-                <br />
+              </li>
+              <li>
                 <a href={`tel:+233${contactInfo.phones[1].slice(1)}`}>
                   {contactInfo.phones[1]}
                 </a>
-              </p>
-            </div>
-
-            <div className={styles.col}>
-              <h2 className={styles.heading}>Follow</h2>
-              <ul className={styles.social} aria-label="Social media">
-                {socials.map((s) => (
-                  <li key={s.label}>
-                    <a
-                      href={s.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`Heist on ${s.label}`}
-                      className={styles.socialLink}
-                    >
-                      <svg viewBox="0 0 24 24" width="20" height="20" fill="none">
-                        <path
-                          d={s.path}
-                          {...(s.stroke
-                            ? { stroke: "currentColor", strokeWidth: 1.4 }
-                            : { fill: "currentColor" })}
-                        />
-                      </svg>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
+              </li>
+              <li>
+                <a
+                  href={`https://wa.me/${contactInfo.whatsapp}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  WhatsApp us
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
 
         <div className={styles.bottom}>
