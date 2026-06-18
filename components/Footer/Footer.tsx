@@ -47,23 +47,7 @@ export function Footer() {
               className={styles.brandLogo}
             />
             <p className={styles.brand}>Heist Brokerage &amp; Construction</p>
-            <p className={styles.lead}>
-              Strategic real estate and construction solutions built on trust,
-              precision, and results.
-            </p>
             <p className={styles.tagline}>Real Estate, Reimagined.</p>
-            <Link href="/contact" className={styles.cta}>
-              Book a Strategy Call
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden>
-                <path
-                  d="M5 12h14M13 6l6 6-6 6"
-                  stroke="currentColor"
-                  strokeWidth="1.7"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </Link>
           </div>
 
           <div className={styles.col}>
