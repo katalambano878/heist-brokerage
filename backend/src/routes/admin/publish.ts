@@ -27,7 +27,12 @@ export function adminPublishRouter(env: Env) {
         headers["Authorization"] = `Bearer ${env.COOLIFY_DEPLOY_TOKEN}`;
       }
 
-      const resp = await fetch(env.COOLIFY_DEPLOY_URL, { method: "GET", headers });
+      // Force a no-cache rebuild. The site fetches admin content at build time,
+      // so a cached Docker build would reuse stale content and publish nothing.
+      const deployUrl = new URL(env.COOLIFY_DEPLOY_URL);
+      deployUrl.searchParams.set("force", "true");
+
+      const resp = await fetch(deployUrl.toString(), { method: "GET", headers });
       if (!resp.ok) {
         const text = await resp.text().catch(() => "");
         throw new AppError(
