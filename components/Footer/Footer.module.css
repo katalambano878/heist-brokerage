@@ -21,14 +21,14 @@
 
 @media (min-width: 980px) {
   .top {
-    grid-template-columns: 1.7fr 1fr 1.1fr 1fr;
-    gap: var(--space-2xl);
+    grid-template-columns: 1.6fr 1fr 1.2fr 1fr;
+    gap: var(--space-3xl) var(--space-2xl);
     align-items: start;
   }
 }
 
 .brandCol {
-  max-width: 40ch;
+  max-width: 34ch;
 }
 
 @media (min-width: 600px) {
@@ -46,35 +46,31 @@
 .brandLogo {
   display: inline-block;
   width: auto;
-  height: 48px;
+  height: 40px;
   object-fit: contain;
-  margin: 0 0 var(--space-md);
+  margin: 0 0 var(--space-lg);
   /* The mark is dark, so sit it on a light badge to read on the dark footer
      while preserving the logo's original two-tone detail. */
-  padding: 12px 18px;
+  padding: 10px 14px;
   background: var(--color-warm-white, #f7f4ef);
-  border-radius: 14px;
+  border-radius: 12px;
 }
 
 .brand {
   font-family: var(--font-serif);
-  font-size: clamp(1.4rem, 2.4vw, 1.9rem);
-  letter-spacing: 0.02em;
-  margin: 0 0 var(--space-md);
+  font-size: clamp(1.2rem, 1.8vw, 1.45rem);
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: 0.01em;
+  max-width: 18ch;
+  margin: 0 0 var(--space-xs);
   color: var(--color-warm-white);
 }
 
-.lead {
-  font-size: 1rem;
-  line-height: 1.7;
-  margin: 0 0 var(--space-md);
-  color: rgba(255, 252, 247, 0.78);
-}
-
 .tagline {
-  margin: 0 0 var(--space-xl);
-  font-size: 0.82rem;
-  letter-spacing: 0.18em;
+  margin: 0;
+  font-size: 0.74rem;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--color-accent);
 }
