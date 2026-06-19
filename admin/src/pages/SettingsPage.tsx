@@ -1,5 +1,6 @@
 import { type FormEvent, useEffect, useState } from "react";
 import { api } from "../api";
+import { ImageField } from "../components/ImageField";
 
 type TrustStat = { label: string; target: number; suffix?: string };
 
@@ -13,6 +14,7 @@ type Settings = {
   instagram: string;
   tiktok: string;
   facebook: string;
+  aboutImage: string;
   trustStats: TrustStat[];
 };
 
@@ -26,6 +28,7 @@ const empty: Settings = {
   instagram: "",
   tiktok: "",
   facebook: "",
+  aboutImage: "",
   trustStats: [],
 };
 
@@ -181,6 +184,22 @@ export function SettingsPage() {
                 </div>
               ))}
             </div>
+          </div>
+
+          <div className="card settings-card">
+            <div className="settings-card-head">
+              <div>
+                <h2>Homepage image</h2>
+                <p>Photo shown in the “Heist Mentality” section on the homepage.</p>
+              </div>
+            </div>
+            <ImageField
+              label="Heist Mentality photo"
+              value={data.aboutImage}
+              onChange={(url) => setData({ ...data, aboutImage: url })}
+              variant="dropzone"
+              hint="Portrait orientation works best (roughly 700×1024)."
+            />
           </div>
 
           <div className="card settings-card settings-card-wide">

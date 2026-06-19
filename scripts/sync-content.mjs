@@ -166,6 +166,7 @@ async function main() {
       exclusiveListings,
       trustStats: Array.isArray(settings?.trustStats) ? settings.trustStats : undefined,
       contactInfo: settings && settings.id ? mapContactInfo(settings) : undefined,
+      aboutImage: settings?.aboutImage || undefined,
     };
 
     await writeFile(generatedPath, `${JSON.stringify(content, null, 2)}\n`);

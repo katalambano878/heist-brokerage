@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/Container/Container";
 import { ScrollReveal } from "@/components/ScrollReveal/ScrollReveal";
+import { aboutImage } from "@/lib/data";
 import styles from "./AboutPreview.module.css";
 
 export function AboutPreview() {
@@ -16,7 +17,7 @@ export function AboutPreview() {
           >
             <div className={styles.frame}>
               <Image
-                src="/images/team/samirah-sulleiman-portrait.jpg"
+                src={aboutImage}
                 alt="Samirah Sulleiman, Founder & Lead Strategist of Heist"
                 width={697}
                 height={1024}

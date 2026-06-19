@@ -227,6 +227,8 @@ model SiteSettings {
   instagram    String   @default("")
   tiktok       String   @default("")
   facebook     String   @default("")
+  /// Image for the homepage "Heist Mentality" / About preview section
+  aboutImage   String   @default("")
   /// Homepage stats: {label, target, suffix}[]
   trustStats   Json     @default("[]")
   updatedAt    DateTime @updatedAt

@@ -14,6 +14,7 @@ const settingsSchema = z.object({
   instagram: z.string().optional(),
   tiktok: z.string().optional(),
   facebook: z.string().optional(),
+  aboutImage: z.string().optional(),
   trustStats: z
     .array(
       z.object({

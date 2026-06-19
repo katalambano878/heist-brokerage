@@ -13,9 +13,13 @@ type GeneratedContent = {
   exclusiveListings?: ExclusiveListing[];
   trustStats?: TrustStat[];
   contactInfo?: typeof defaultContactInfo;
+  aboutImage?: string;
 };
 
 const generated = generatedContent as GeneratedContent;
+
+/** Homepage "Heist Mentality" image — admin-editable, with a static fallback. */
+export const aboutImage = generated.aboutImage || "/images/heist-mentality.png";
 
 function pick<T>(value: T[] | undefined, fallback: T[]): T[] {
   return value && value.length > 0 ? value : fallback;
