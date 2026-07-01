@@ -1,6 +1,7 @@
 import { type FormEvent, useCallback, useEffect, useState } from "react";
 import { api, imagePreviewUrl } from "../api";
 import { ImageField } from "../components/ImageField";
+import { GalleryField } from "../components/GalleryField";
 import { Modal } from "../components/Modal";
 
 type Listing = {
@@ -314,6 +315,15 @@ export function ExclusivePage() {
               <ImageField label="Card image" value={String(draft.cardImage)} onChange={(v) => set("cardImage", v)} />
             </div>
 
+            <div style={{ marginTop: "1.25rem" }}>
+              <GalleryField
+                label="Gallery images"
+                value={String(draft.gallery)}
+                onChange={(v) => set("gallery", v)}
+                hint="Upload, reorder, rename or delete the photos shown in this listing's gallery."
+              />
+            </div>
+
             <div className="field" style={{ marginTop: "1rem" }}>
               <label>Brochure URL (PDF)</label>
               <input
@@ -325,7 +335,7 @@ export function ExclusivePage() {
 
             <details className="json-details" style={{ marginTop: "1.25rem" }}>
               <summary>Structured content (JSON)</summary>
-              {JSON_FIELDS.map((f) => (
+              {JSON_FIELDS.filter((f) => f.key !== "gallery").map((f) => (
                 <div key={f.key} className="field" style={{ marginTop: "1rem" }}>
                   <label>{f.label}</label>
                   <textarea

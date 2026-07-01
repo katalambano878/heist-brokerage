@@ -215,6 +215,12 @@
   box-shadow: var(--shadow-sm);
 }
 
+.error {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #c0392b;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .backdrop,
   .dialog {

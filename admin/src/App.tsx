@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { NavLink, Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import { ApplicationsPage } from "./pages/ApplicationsPage";
+import { BlogPage } from "./pages/BlogPage";
 import { DashboardPage } from "./pages/DashboardPage";
 import { ExclusivePage } from "./pages/ExclusivePage";
 import { LeadsPage } from "./pages/LeadsPage";
@@ -64,6 +65,11 @@ const icons = {
       <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /><polyline points="10 9 9 9 8 9" />
     </svg>
   ),
+  blog: (
+    <svg className="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 19.5A2.5 2.5 0 016.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" /><line x1="9" y1="7" x2="16" y2="7" /><line x1="9" y1="11" x2="14" y2="11" />
+    </svg>
+  ),
   logout: (
     <svg className="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
       <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" /><polyline points="16 17 21 12 16 7" /><line x1="21" y1="12" x2="9" y2="12" />
@@ -97,6 +103,7 @@ function Shell({ children }: { children: ReactNode }) {
         </nav>
         <p className="sidebar-label">Content</p>
         <nav className="nav">
+          <NavLink to="/blog">{icons.blog} Blog</NavLink>
           <NavLink to="/team">{icons.team} Team</NavLink>
           <NavLink to="/services">{icons.services} Services</NavLink>
           <NavLink to="/testimonials">{icons.testimonials} Testimonials</NavLink>
@@ -130,6 +137,7 @@ export function App() {
       <Route path="/exclusive" element={<RequireAuth><ExclusivePage /></RequireAuth>} />
       <Route path="/leads" element={<RequireAuth><LeadsPage /></RequireAuth>} />
       <Route path="/applications" element={<RequireAuth><ApplicationsPage /></RequireAuth>} />
+      <Route path="/blog" element={<RequireAuth><BlogPage /></RequireAuth>} />
       <Route path="/team" element={<RequireAuth><TeamPage /></RequireAuth>} />
       <Route path="/services" element={<RequireAuth><ServicesPage /></RequireAuth>} />
       <Route path="/testimonials" element={<RequireAuth><TestimonialsPage /></RequireAuth>} />

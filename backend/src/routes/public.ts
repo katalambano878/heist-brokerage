@@ -114,6 +114,30 @@ export function publicRouter() {
     }
   });
 
+  r.get("/posts", async (_req, res, next) => {
+    try {
+      const items = await prisma.post.findMany({
+        where: { status: "PUBLISHED" },
+        orderBy: [{ publishedAt: "desc" }, { createdAt: "desc" }],
+      });
+      res.json({ data: items });
+    } catch (e) {
+      next(e);
+    }
+  });
+
+  r.get("/posts/:slug", async (req, res, next) => {
+    try {
+      const item = await prisma.post.findFirst({
+        where: { slug: String(req.params.slug), status: "PUBLISHED" },
+      });
+      if (!item) throw new AppError(404, "NOT_FOUND", "Post not found");
+      res.json(item);
+    } catch (e) {
+      next(e);
+    }
+  });
+
   r.get("/settings", async (_req, res, next) => {
     try {
       const settings = await prisma.siteSettings.findUnique({

@@ -29,6 +29,7 @@ const navLinks: NavItem[] = [
   { href: "/exclusive", label: "Exclusive" },
   { href: "/save-and-buy", label: "Save & Buy" },
   { href: "/build-in-stages", label: "Build in Stages" },
+  { href: "/blog", label: "Blog" },
   { href: "/careers", label: "Careers" },
   { href: "/contact", label: "Contact" },
 ];
@@ -79,8 +80,8 @@ export function Navbar() {
           <Image
             src="/logo.png"
             alt="Heist Brokerage & Construction"
-            width={866}
-            height={288}
+            width={380}
+            height={240}
             className={styles.brandMark}
             priority
           />

@@ -10,6 +10,7 @@ const exploreLinks = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/services", label: "Services" },
+  { href: "/blog", label: "Blog" },
   { href: "/careers", label: "Careers" },
   { href: "/contact", label: "Contact" },
 ];
@@ -80,8 +81,8 @@ export function Footer() {
             <Image
               src="/logo.png"
               alt="Heist Brokerage & Construction"
-              width={866}
-              height={288}
+              width={380}
+              height={240}
               className={styles.brandLogo}
             />
             <p className={styles.brandName}>Heist Brokerage &amp; Construction</p>

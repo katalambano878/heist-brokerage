@@ -1,7 +1,18 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { postJson } from "@/lib/publicApi";
 import styles from "./ContactForm.module.css";
+
+const intentLabels: Record<string, string> = {
+  buy: "Purchase a home",
+  land: "Purchase a land",
+  build: "Build a house",
+  sell: "Sell a property",
+  rent: "Lease a residence",
+  invest: "Invest with guidance",
+  "joint-venture": "Joint Venture",
+};
 
 type FormState = {
   name: string;
@@ -24,7 +35,8 @@ export function ContactForm() {
   const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>(
     {},
   );
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "submitting" | "done">("idle");
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const validate = () => {
     const next: Partial<Record<keyof FormState, string>> = {};
@@ -40,10 +52,29 @@ export function ContactForm() {
     return Object.keys(next).length === 0;
   };
 
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!validate()) return;
-    setSubmitted(true);
+    setSubmitError(null);
+    setStatus("submitting");
+    try {
+      const intentLabel = intentLabels[values.intent] ?? values.intent;
+      await postJson("/api/v1/leads", {
+        name: values.name.trim(),
+        email: values.email.trim(),
+        phone: values.phone.trim(),
+        source: "CONTACT_FORM",
+        message: `Looking to: ${intentLabel}\n\n${values.message.trim()}`,
+      });
+      setStatus("done");
+    } catch (err) {
+      setStatus("idle");
+      setSubmitError(
+        err instanceof Error
+          ? err.message
+          : "Something went wrong. Please try again.",
+      );
+    }
   };
 
   return (
@@ -137,12 +168,22 @@ export function ContactForm() {
           <span className={styles.error}>{errors.message}</span>
         ) : null}
       </label>
-      <button type="submit" className={styles.submit}>
-        Send message
+      <button
+        type="submit"
+        className={styles.submit}
+        disabled={status === "submitting" || status === "done"}
+      >
+        {status === "submitting" ? "Sending…" : "Send message"}
       </button>
-      {submitted ? (
+      {status === "done" ? (
         <p className={styles.success} role="status">
-          Thank you. Your message has been recorded for this demo experience.
+          Thank you. Your message has been received — a specialist will be in
+          touch shortly.
+        </p>
+      ) : null}
+      {submitError ? (
+        <p className={styles.error} role="alert">
+          {submitError}
         </p>
       ) : null}
     </form>

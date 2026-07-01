@@ -11,6 +11,7 @@ type GeneratedContent = {
   team?: TeamMember[];
   testimonials?: Testimonial[];
   exclusiveListings?: ExclusiveListing[];
+  blogPosts?: BlogPost[];
   trustStats?: TrustStat[];
   contactInfo?: typeof defaultContactInfo;
   aboutImage?: string;
@@ -880,6 +881,56 @@ export const exclusiveListings: ExclusiveListing[] = pick(
   generated.exclusiveListings,
   defaultExclusiveListings,
 );
+
+export type BlogPost = {
+  slug: string;
+  title: string;
+  excerpt: string;
+  coverImage?: string;
+  coverAlt?: string;
+  /** Body text; paragraphs separated by blank lines */
+  body: string;
+  author: string;
+  category: string;
+  tags: string[];
+  /** ISO date string */
+  publishedAt: string | null;
+};
+
+const defaultBlogPosts: BlogPost[] = [
+  {
+    slug: "east-legon-hills-2026-outlook",
+    title: "East Legon Hills in 2026: Why Buyers Keep Heading East",
+    excerpt:
+      "Infrastructure upgrades, new gated communities and steady price growth are keeping East Legon Hills at the top of every serious buyer's shortlist.",
+    coverImage: "/images/heist-mentality.png",
+    coverAlt: "Aerial view of a developing residential neighbourhood",
+    body: "East Legon Hills has quietly become one of the most sought-after addresses in Greater Accra. What began as an overflow from East Legon proper is now a destination in its own right — with tarred access roads, reliable utilities and a growing cluster of gated communities.\n\nFor buyers, the appeal is simple: land and homes here still cost a fraction of what comparable properties fetch closer to the airport, yet values have appreciated steadily year after year.\n\nAt Heist, we help clients secure the right plot or home before the next wave of development prices them out. Whether you are buying to live or to hold, the fundamentals point in one direction.",
+    author: "Heist Research",
+    category: "Market Insights",
+    tags: ["East Legon Hills", "Market", "Investment"],
+    publishedAt: "2026-06-01T09:00:00.000Z",
+  },
+  {
+    slug: "save-and-buy-explained",
+    title: "Save & Buy, Explained: Owning a Home Without the Lump Sum",
+    excerpt:
+      "Our Save & Buy programme lets you lock in today's price and pay in structured instalments. Here's how it works and who it's for.",
+    coverImage: "/images/heist-mentality.png",
+    coverAlt: "Keys being handed over",
+    body: "The single biggest barrier to home ownership in Ghana is the upfront cost. Save & Buy is our answer: you reserve a property at today's price, then pay it down on a schedule that fits your income.\n\nYou get price certainty in a rising market, and we get to walk the journey with you from reservation to keys.\n\nRegistration takes a few minutes — you'll need your basic details and an idea of your monthly budget. A specialist then builds a plan around you.",
+    author: "Heist Team",
+    category: "Guides",
+    tags: ["Save & Buy", "Ownership"],
+    publishedAt: "2026-05-20T09:00:00.000Z",
+  },
+];
+
+export const blogPosts: BlogPost[] = pick(generated.blogPosts, defaultBlogPosts);
+
+export function getPostBySlug(slug: string): BlogPost | undefined {
+  return blogPosts.find((p) => p.slug === slug);
+}
 
 export type Partner = {
   name: string;

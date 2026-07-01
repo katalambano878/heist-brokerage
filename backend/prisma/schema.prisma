@@ -46,6 +46,11 @@ enum ApplicationStatus {
   REJECTED
 }
 
+enum PostStatus {
+  DRAFT
+  PUBLISHED
+}
+
 model AdminUser {
   id            String         @id @default(uuid())
   email         String         @unique
@@ -214,6 +219,27 @@ model Application {
   status     ApplicationStatus @default(NEW)
   createdAt  DateTime          @default(now())
   updatedAt  DateTime          @updatedAt
+}
+
+/// Blog / real-estate update articles shown under /blog.
+model Post {
+  id          String     @id @default(uuid())
+  slug        String     @unique
+  title       String
+  excerpt     String     @default("")
+  coverImage  String     @default("")
+  coverAlt    String     @default("")
+  /// Article body (Markdown-lite: paragraphs separated by blank lines)
+  body        String     @default("")
+  author      String     @default("")
+  category    String     @default("")
+  /// string[] of tag labels
+  tags        Json       @default("[]")
+  status      PostStatus @default(DRAFT)
+  publishedAt DateTime?
+  sortOrder   Int        @default(0)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
 }
 
 model SiteSettings {

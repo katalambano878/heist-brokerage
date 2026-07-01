@@ -1,0 +1,194 @@
+.page {
+  padding-bottom: var(--space-4xl);
+}
+
+.header {
+  padding-block: var(--space-4xl) var(--space-xl);
+  background: var(--color-bg);
+}
+
+.headerInner {
+  max-width: 820px;
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  margin-bottom: var(--space-lg);
+}
+
+.back:hover {
+  color: var(--color-accent);
+}
+
+.category {
+  display: inline-block;
+  margin-bottom: var(--space-md);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.title {
+  margin: 0 0 var(--space-md);
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 3.1rem);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.92rem;
+  color: var(--color-text-muted);
+}
+
+.dot {
+  opacity: 0.6;
+}
+
+.coverWrap {
+  margin-top: var(--space-xl);
+}
+
+.cover {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg, 16px);
+  object-fit: cover;
+}
+
+.bodyWrap {
+  max-width: 760px;
+  margin-top: var(--space-3xl);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.body p {
+  margin: 0;
+  font-size: 1.12rem;
+  line-height: 1.8;
+  color: var(--color-text);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  list-style: none;
+  padding: 0;
+  margin: var(--space-2xl) 0 0;
+}
+
+.tag {
+  padding: 0.35rem 0.8rem;
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+  background: var(--color-bg-subtle, rgba(0, 0, 0, 0.04));
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+}
+
+.cta {
+  margin-top: var(--space-3xl);
+  padding: var(--space-2xl);
+  text-align: center;
+  background: var(--color-bg-subtle, #f7f4ef);
+  border-radius: var(--radius-lg, 16px);
+}
+
+.ctaTitle {
+  margin: 0 0 var(--space-sm);
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.ctaLead {
+  margin: 0 0 var(--space-lg);
+  color: var(--color-text-muted);
+}
+
+.ctaButton {
+  display: inline-block;
+  padding: 0.85rem 1.8rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--color-accent);
+  border-radius: 999px;
+  text-decoration: none;
+  transition: transform var(--transition, 0.2s ease), opacity var(--transition, 0.2s ease);
+}
+
+.ctaButton:hover {
+  transform: translateY(-2px);
+  opacity: 0.94;
+}
+
+.related {
+  margin-top: var(--space-4xl);
+  padding-top: var(--space-3xl);
+  border-top: 1px solid var(--color-border);
+}
+
+.relatedTitle {
+  margin: 0 0 var(--space-xl);
+  font-family: var(--font-serif);
+  font-size: 1.7rem;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.relatedGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--space-xl);
+}
+
+.relatedCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  text-decoration: none;
+}
+
+.relatedImage {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: var(--radius-md, 10px);
+  transition: transform var(--transition, 0.2s ease);
+}
+
+.relatedCard:hover .relatedImage {
+  transform: translateY(-3px);
+}
+
+.relatedCardTitle {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--color-text);
+}
+
+.relatedCard:hover .relatedCardTitle {
+  color: var(--color-accent);
+}

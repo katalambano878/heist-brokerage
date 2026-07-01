@@ -303,6 +303,9 @@
   position: relative;
   width: 100%;
   max-width: 720px;
+  max-height: calc(100vh - 2rem);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   background: var(--color-bg);
   border-radius: var(--radius-lg, 14px);
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);

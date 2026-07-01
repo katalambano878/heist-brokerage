@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { ScrollReveal } from "@/components/ScrollReveal/ScrollReveal";
 import { CareersForm } from "@/components/CareersForm/CareersForm";
 import styles from "@/app/careers/page.module.css";
@@ -18,8 +19,13 @@ type CareersBoardProps = {
 
 export function CareersBoard({ openings }: CareersBoardProps) {
   const [activeRole, setActiveRole] = useState<string | null>(null);
+  const [mounted, setMounted] = useState(false);
 
   const close = useCallback(() => setActiveRole(null), []);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     if (!activeRole) return;
@@ -74,29 +80,37 @@ export function CareersBoard({ openings }: CareersBoardProps) {
         ))}
       </div>
 
-      {activeRole ? (
-        <div
-          className={styles.modalOverlay}
-          role="presentation"
-          onClick={(e) => {
-            if (e.target === e.currentTarget) close();
-          }}
-        >
-          <div className={styles.modalPanel} role="dialog" aria-modal="true" aria-label={`Apply for ${activeRole}`}>
-            <button
-              type="button"
-              className={styles.modalClose}
-              onClick={close}
-              aria-label="Close application form"
+      {mounted && activeRole
+        ? createPortal(
+            <div
+              className={styles.modalOverlay}
+              role="presentation"
+              onClick={(e) => {
+                if (e.target === e.currentTarget) close();
+              }}
             >
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden>
-                <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-              </svg>
-            </button>
-            <CareersForm defaultPosition={activeRole} />
-          </div>
-        </div>
-      ) : null}
+              <div
+                className={styles.modalPanel}
+                role="dialog"
+                aria-modal="true"
+                aria-label={`Apply for ${activeRole}`}
+              >
+                <button
+                  type="button"
+                  className={styles.modalClose}
+                  onClick={close}
+                  aria-label="Close application form"
+                >
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden>
+                    <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                  </svg>
+                </button>
+                <CareersForm defaultPosition={activeRole} />
+              </div>
+            </div>,
+            document.body,
+          )
+        : null}
     </>
   );
 }

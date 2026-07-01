@@ -1,1 +1,673 @@
-{}
+{
+  "properties": [
+    {
+      "id": "off-plan-properties",
+      "title": "LEGATO HEIGHTS BY VAAL",
+      "location": "Ridge, Accra",
+      "price": "Starting From USD 126,000.00",
+      "beds": 1,
+      "baths": 1,
+      "sqft": "592",
+      "imageSeed": "off-plan-properties",
+      "imageSrc": "https://api.heistbrokerage.com/uploads/1782918516178-8dbf69e54d897be7.jpg",
+      "tag": "New listing",
+      "type": "Apartment",
+      "description": "In the heart of Accra, Legato Heights was born from a vision of seamless living, akin to mellifluous notes. Inspired by the musical term \"Legato\" signifying smooth and connected\nmelodies, our name embodies unity and grace, which reflect in our singular tower's design-a soaring ode to elegance, thoughtful amenities, and prime location.\n",
+      "category": "sale",
+      "region": "Greater Accra"
+    },
+    {
+      "id": "off-plan-prperties",
+      "title": "PUNA BY VAAL",
+      "location": "Airport West, Accra",
+      "price": "Starting From USD 108,000.00",
+      "beds": 1,
+      "baths": 1,
+      "sqft": "335.942",
+      "imageSeed": "off-plan-prperties",
+      "imageSrc": "https://api.heistbrokerage.com/uploads/1782926418292-545e18d1f453b18c.jpg",
+      "tag": "Premium build",
+      "type": "Apartment",
+      "description": "Live a standard above, at the city's most peaceful height, PUNA offers a home that stands apart in calm and permanence. \nThe word PUNA comes from the high plateaus of South America- places where air thins, horizons widen and life moves differently.\nPUNA is not about reaching higher than others, it's about living at a level where things feel clear, balanced and lasting. It is designed with discipline- beauty without noise.\n\nConstruction officially commenced with the groundbreaking March 2026, and the project is scheduled for completion in July 2029.\n\nKEY FEATURES\n\nLocation: Airport West, Accra's premier residential neighborhood, secure, accessible and refined.\nStructure: High-rise luxury tower off the liberation road.\nResidence: Studios, One-Bedroom, and Two-Bedroom Apartments.\nAmenities: Restaurant, Pharmacy, Rooftop Gym, Supermarket, Rooftop Swimming Pool, Rooftop BBQ Area, Gaming Lounge, Garden, Children's Play Area.\nLifestyle: For professionals, families and investors seeking comfort and permanence.\nProximity: Minutes from Kotoka International Airport, Airport City, and Marina Mall.\n",
+      "category": "sale",
+      "region": "Greater Accra"
+    },
+    {
+      "id": "labadi-oceanfront-pavilion",
+      "title": "Labadi Oceanfront Pavilion",
+      "location": "Labadi, Accra, Ghana",
+      "price": "GHS 6,275,000",
+      "beds": 5,
+      "baths": 4,
+      "sqft": "4,050",
+      "imageSeed": "labadi-oceanfront-pavilion",
+      "imageSrc": "/images/properties/coastal-glass-pavilion.jpg",
+      "tag": "Waterfront",
+      "type": "Waterfront Home",
+      "description": "A serene oceanfront pavilion minutes from Labadi, designed around the horizon. Sliding glass walls dissolve the boundary between living space and sea breeze, while a wraparound deck invites slow mornings and golden-hour evenings. Coastal living, reimagined for the discerning owner.",
+      "category": "sale",
+      "region": "Labadi"
+    },
+    {
+      "id": "airport-residential-loft-compound",
+      "title": "Airport Residential Loft Compound",
+      "location": "Airport Residential Area, Accra, Ghana",
+      "price": "GHS 9,800,000",
+      "beds": 4,
+      "baths": 4,
+      "sqft": "3,890",
+      "imageSeed": "airport-residential-loft-compound",
+      "imageSrc": "/images/properties/tribeca-loft-compound.jpg",
+      "tag": "Investment-grade",
+      "type": "Loft Compound",
+      "description": "An investment-grade loft compound in the sought-after Airport Residential Area, ideal for owner-occupiers and yield-focused investors alike. Flexible, light-filled units, robust rental demand, and a central location combine to make this a strategic addition to any portfolio.",
+      "category": "sale",
+      "region": "Airport Residential Area"
+    },
+    {
+      "id": "ridge-gallery-residence",
+      "title": "Ridge Gallery Residence",
+      "location": "Ridge, Accra, Ghana",
+      "price": "GHS 18,200,000",
+      "beds": 4,
+      "baths": 4,
+      "sqft": "3,200",
+      "imageSeed": "ridge-gallery-residence",
+      "imageSrc": "/images/properties/central-park-gallery.jpg",
+      "tag": "Flagship",
+      "type": "Gallery Residence",
+      "description": "Heist's flagship residence on Ridge — a gallery-like home where proportion and light take centre stage. Museum-grade walls, bespoke joinery, and a sculptural staircase anchor the interiors, while the rooftop offers panoramic city views. A rare trophy asset for the collector of fine spaces.",
+      "category": "sale",
+      "region": "Ridge"
+    },
+    {
+      "id": "osu-heritage-residence",
+      "title": "Osu Heritage Residence",
+      "location": "Osu, Accra, Ghana",
+      "price": "GHS 4,650,000",
+      "beds": 5,
+      "baths": 3,
+      "sqft": "3,600",
+      "imageSeed": "osu-heritage-residence",
+      "imageSrc": "/images/properties/brooklyn-heights-brownstone.jpg",
+      "tag": "Save & Buy ready",
+      "type": "Heritage Home",
+      "description": "A characterful heritage residence in vibrant Osu, sensitively restored to marry period charm with contemporary comfort. With its Save & Buy readiness, it offers a flexible, structured path to ownership in one of Accra's most storied neighbourhoods.",
+      "category": "sale",
+      "region": "Osu"
+    },
+    {
+      "id": "oxford-street-commercial-loft",
+      "title": "Oxford Street Commercial Loft",
+      "location": "Oxford Street, Osu, Accra, Ghana",
+      "price": "GHS 7,125,000",
+      "beds": 3,
+      "baths": 2,
+      "sqft": "2,980",
+      "imageSeed": "oxford-street-commercial-loft",
+      "imageSrc": "/images/properties/soho-cast-iron-loft.jpg",
+      "tag": "Commercial",
+      "type": "Commercial Loft",
+      "description": "A high-visibility commercial loft on bustling Oxford Street — flexible floorplates suited to retail, hospitality, or creative studio use. Strong footfall, premium frontage, and an iconic address make this a compelling commercial opportunity in the heart of Osu.",
+      "category": "sale",
+      "region": "Oxford Street"
+    },
+    {
+      "id": "cantonments-sky-home",
+      "title": "Cantonments Sky Home",
+      "location": "Cantonments, Accra, Ghana",
+      "price": "GHS 5,890,000",
+      "beds": 3,
+      "baths": 3,
+      "sqft": "2,650",
+      "imageSeed": "cantonments-sky-home",
+      "imageSrc": "/images/properties/battery-park-sky-residence.jpg",
+      "tag": "Skyline views",
+      "type": "Sky Residence",
+      "description": "An elevated sky home in Cantonments framing uninterrupted skyline views through full-height glazing. Refined, low-maintenance interiors and a private terrace make this an ideal lock-up-and-leave residence for the modern professional or international owner.",
+      "category": "sale",
+      "region": "Cantonments"
+    },
+    {
+      "id": "labone-garden-duplex",
+      "title": "Labone Garden Duplex",
+      "location": "Labone, Accra, Ghana",
+      "price": "GHS 11,300,000",
+      "beds": 4,
+      "baths": 4,
+      "sqft": "3,740",
+      "imageSeed": "labone-garden-duplex",
+      "imageSrc": "/images/properties/west-village-garden-duplex.jpg",
+      "tag": "Build in Stages",
+      "type": "Garden Duplex",
+      "description": "A graceful garden duplex in leafy Labone, available through our Build in Stages plan. Dual living wings open onto mature landscaped gardens, offering privacy and flexibility for growing families. Build progressively while staying in full control of every milestone.",
+      "category": "sale",
+      "region": "Labone"
+    },
+    {
+      "id": "devtraco-woodlands-serviced-plot",
+      "title": "Devtraco Woodlands Serviced Plot",
+      "location": "Dawhenya, Greater Accra",
+      "price": "From $12,000",
+      "beds": 0,
+      "baths": 0,
+      "sqft": "2,800",
+      "imageSeed": "devtraco-woodlands-serviced-plot",
+      "imageSrc": "/images/exclusive/woodlands-streetscape.jpg",
+      "tag": "Serviced Plot",
+      "type": "Residential Land",
+      "description": "A litigation-free serviced plot within the master-planned Devtraco Woodlands gated city in Dawhenya. Tarred roads, water, power, and 24/7 security in place — build your dream home at your own pace, minutes from the coast.",
+      "category": "land",
+      "region": "Dawhenya"
+    },
+    {
+      "id": "east-legon-hills-prime-land",
+      "title": "East Legon Hills Prime Land",
+      "location": "East Legon Hills, Accra",
+      "price": "GHS 850,000",
+      "beds": 0,
+      "baths": 0,
+      "sqft": "5,000",
+      "imageSeed": "east-legon-hills-prime-land",
+      "imageSrc": "/images/exclusive/woodlands-gate.jpg",
+      "tag": "Prime Location",
+      "type": "Residential Land",
+      "description": "A prime residential plot in the sought-after East Legon Hills area. Ideal for custom home builds or investment. Close to major amenities and well-connected to the city.",
+      "category": "land",
+      "region": "East Legon Hills"
+    }
+  ],
+  "services": [
+    {
+      "id": "real-estate",
+      "title": "Real Estate",
+      "description": "Premium property sales, acquisitions, and rentals tailored to modern homeowners and investors. Every transaction is guided by market insight, strategic positioning, and a commitment to securing lasting value.",
+      "imageSrc": "/images/services/service-real-estate.jpg",
+      "imageAlt": "A modern luxury home exterior at golden hour"
+    },
+    {
+      "id": "construction",
+      "title": "Construction",
+      "description": "From luxury residences to commercial developments, we deliver projects defined by craftsmanship, structural integrity, and refined design — executed with meticulous attention to detail and quality.",
+      "imageSrc": "/images/services/service-construction.jpg",
+      "imageAlt": "A premium building under construction with steel framework and a crane"
+    },
+    {
+      "id": "renovation",
+      "title": "Renovation & Demolition",
+      "description": "Whether restoring existing spaces or preparing for new development, we handle renovations and demolitions with professionalism, safety, and precision.",
+      "imageSrc": "/images/services/service-renovation.jpg",
+      "imageAlt": "A home interior mid-renovation with new finishes and materials"
+    },
+    {
+      "id": "save-and-buy",
+      "title": "Save & Buy Program",
+      "description": "A smarter path to property ownership. Our Save & Buy Program allows clients to secure properties and build progressively through structured payment plans designed for flexibility and peace of mind.",
+      "imageSrc": "/images/services/service-save-and-buy.jpg",
+      "imageAlt": "A happy couple holding house keys in front of a modern home"
+    },
+    {
+      "id": "design",
+      "title": "Interior & Exterior Design",
+      "description": "We create spaces that balance beauty, comfort, and functionality. From elegant interiors to striking exterior concepts, every design reflects intentional living and timeless aesthetics.",
+      "imageSrc": "/images/services/service-design.jpg",
+      "imageAlt": "An elegant modern living room with refined furniture and designer lighting"
+    },
+    {
+      "id": "sourcing",
+      "title": "Importation & Product Sourcing",
+      "description": "Through our global sourcing network, we connect clients to premium finishes, fixtures, materials, and branded products that elevate residential and commercial spaces.",
+      "imageSrc": "/images/services/service-sourcing.jpg",
+      "imageAlt": "A curated flat-lay of premium tiles, stone, and brass fixtures"
+    }
+  ],
+  "team": [
+    {
+      "id": "5b618bea-d0fe-4403-b56f-aaad9be2b809",
+      "name": "Mokie Melissa Banks",
+      "title": "Front Desk Executive",
+      "focus": "",
+      "imageSrc": "https://api.heistbrokerage.com/uploads/1781779377430-8eef072957678722.png",
+      "featured": false
+    },
+    {
+      "id": "bb1f8f6a-46e3-4add-9a28-f5725a1f7a96",
+      "name": "Samirah Sulleiman",
+      "title": "Founder & Lead Strategist",
+      "focus": "With a background in urban development and hands-on real estate experience, Samirah founded Heist to help clients navigate property decisions strategically and confidently — known for identifying opportunities early and negotiating with precision. ",
+      "imageSrc": "https://api.heistbrokerage.com/uploads/1781788939598-9945c710f94b4116.png",
+      "featured": true
+    },
+    {
+      "id": "282a5daa-d7ed-4e8f-a0c8-0978b8fdb86a",
+      "name": "Abdul-Rashid Abubakar Kabena",
+      "title": "Chief Marketing Officer",
+      "focus": "Drives Heist's brand and marketing strategy — positioning every property and project to reach the right audience and stand out in a competitive market.",
+      "imageSrc": "/images/team/abdul-rashid-abubakar-kabena.jpg",
+      "featured": false
+    },
+    {
+      "id": "2f5c2fd0-ce02-4442-b8ba-f9a8431ead14",
+      "name": "Joseph Opoku",
+      "title": "Sales Associate",
+      "focus": "Guides clients through listings, viewings, and negotiations, pairing market knowledge with a client-first approach to every deal.",
+      "imageSrc": "/images/team/joseph-opoku.jpg",
+      "featured": false
+    },
+    {
+      "id": "41c70ee7-95a8-41f3-a9c3-c1444008175b",
+      "name": "Ramatu Alidu",
+      "title": "Sales Associate",
+      "focus": "Supports clients through viewings, negotiations, and closings with a warm, detail-oriented approach — making every step of the journey clear and reassuring.",
+      "imageSrc": "/images/team/ramatu-alidu.jpg",
+      "featured": false
+    },
+    {
+      "id": "b9158be2-fe7d-4010-a467-c843f4293490",
+      "name": "Ramat Sulleiman",
+      "title": "Media & Videographer",
+      "focus": "Captures every property and project in its best light — producing the photography, video, and visual stories that bring Heist listings to life.",
+      "imageSrc": "/images/team/ramat-sulleiman.jpg",
+      "featured": false
+    },
+    {
+      "id": "714ee98e-b95c-4b74-a0e5-647935e341b4",
+      "name": "Kwame Pilimana",
+      "title": "Site Manager",
+      "focus": "Runs construction sites day to day, keeping builds on schedule, on standard, and safely delivered from groundwork to finishing.",
+      "imageSrc": "/images/team/kwame-pilimana.jpg",
+      "featured": false
+    },
+    {
+      "id": "929a3d19-c914-4c77-8f14-06abb5e7d103",
+      "name": "Issah Sumaila",
+      "title": "Personal Assistant & Sales Associate",
+      "focus": "Keeps operations running smoothly behind the scenes while supporting clients through the sales journey with care and attention to detail.",
+      "imageSrc": "/images/team/issah-sumaila.jpg",
+      "featured": false
+    }
+  ],
+  "testimonials": [
+    {
+      "id": "b70236b3-95a0-40c7-b8b8-0a95cb6c47b7",
+      "quote": "Heist made the entire process feel strategic and seamless. I felt informed and confident every step of the way.",
+      "name": "A. Sadiq",
+      "role": "Home Buyer"
+    },
+    {
+      "id": "0bb3db0e-d556-496c-b03a-c906117eab39",
+      "quote": "They didn't just market my property, they positioned it to stand out and closed within a month.",
+      "name": "Alhaji Abu",
+      "role": "Seller / Developer"
+    },
+    {
+      "id": "27de5c0e-90f9-4b44-a140-b4c3b3a50feb",
+      "quote": "What impressed me most was the professionalism, transparency, and investment insight.",
+      "name": "Simon",
+      "role": "Investor"
+    }
+  ],
+  "exclusiveListings": [
+    {
+      "slug": "devtraco-woodlands",
+      "name": "Devtraco Woodlands",
+      "developer": "Devtraco Group",
+      "category": "Master-Planned Gated City",
+      "location": "Dawhenya, Greater Accra",
+      "status": "Selling Now",
+      "tagline": "Coastal calm meets city energy across a 592-acre gated city.",
+      "summary": "A self-sustaining 592-acre master-planned gated city in Dawhenya — litigation-free serviced plots, contemporary homes, and resort-grade amenities, minutes from the coast.",
+      "heroImage": "/images/exclusive/woodlands-gate.jpg",
+      "cardImage": "/images/exclusive/woodlands-streetscape.jpg",
+      "overview": [
+        "Devtraco Woodlands is a master-planned gated city sprawling over an expansive 592-acre site in Dawhenya, just a minute's drive from Central University. Offering litigation-free plots of land, contemporary homes, modern infrastructure, a commercial area, a medical center, and police and fire stations, it promises a self-sustaining city away from the bustle while keeping an urban feel.",
+        "Every detail is designed with your convenience prioritized — from well-planned roads and robust facility management to water and power supply, with round-the-clock security and swift emergency response. With breathtaking beaches within a 15-minute drive, it blends invigorating coastal ambiance with the vibrant energy of city living."
+      ],
+      "facts": [
+        {
+          "label": "Total area",
+          "value": "592 acres"
+        },
+        {
+          "label": "Master plan",
+          "value": "3 phases"
+        },
+        {
+          "label": "Phase 1 plots",
+          "value": "1,608 plots"
+        },
+        {
+          "label": "Tenure",
+          "value": "Litigation-free, serviced"
+        },
+        {
+          "label": "Lease term",
+          "value": "70 yrs / 50 yrs*"
+        },
+        {
+          "label": "Starting price",
+          "value": "From $12,000"
+        }
+      ],
+      "highlights": [
+        "Complimentary architectural plan and Bill of Quantities (BOQ) with every plot",
+        "24/7 security service with controlled, access-managed gated clusters",
+        "On-site police station and fire station",
+        "Meticulously tarred roads with an extensive street-lighting system",
+        "Ghana Water connection and electrical power supply",
+        "Dedicated facility management and estate by-laws"
+      ],
+      "typologies": [],
+      "amenities": [
+        "Clubhouse",
+        "Swimming pools",
+        "Tennis court",
+        "Basketball court",
+        "5-a-side football court",
+        "Playgrounds",
+        "Walking trail",
+        "Recreational gardens",
+        "First-aid medical center",
+        "Convenience retail shops",
+        "Gym"
+      ],
+      "connectivity": [
+        {
+          "time": "1 min",
+          "place": "Central University"
+        },
+        {
+          "time": "16 mins",
+          "place": "Prampram Community"
+        },
+        {
+          "time": "20 mins",
+          "place": "Tema Community"
+        },
+        {
+          "time": "30 mins",
+          "place": "Lashibi"
+        },
+        {
+          "time": "41 mins",
+          "place": "Tetteh Quashie Interchange"
+        },
+        {
+          "time": "45 mins",
+          "place": "Kotoka International Airport"
+        }
+      ],
+      "gallery": [
+        {
+          "alt": "The grand entrance gateway to Devtraco Woodlands",
+          "src": "/images/exclusive/woodlands-gate.jpg"
+        },
+        {
+          "alt": "A landscaped residential street within Devtraco Woodlands",
+          "src": "/images/exclusive/woodlands-streetscape.jpg"
+        },
+        {
+          "alt": "The access-controlled gatehouse at Devtraco Woodlands",
+          "src": "/images/exclusive/woodlands-gatehouse.jpg"
+        },
+        {
+          "alt": "The Woodlands clubhouse and surrounding recreation area",
+          "src": "/images/exclusive/woodlands-clubhouse.jpg"
+        },
+        {
+          "alt": "Tennis courts at Devtraco Woodlands",
+          "src": "/images/exclusive/woodlands-tennis.jpg"
+        },
+        {
+          "alt": "Children's playground set among the gardens at Woodlands",
+          "src": "/images/exclusive/woodlands-playground.jpg"
+        }
+      ],
+      "startingPrice": "From $12,000",
+      "paymentNote": "Flexible plans from a self-financed 14-day option up to 12-month installments, with a $2,000 reservation fee. Mortgage financing available through partner banks.",
+      "brochureUrl": "/brochures/devtraco-woodlands.pdf"
+    },
+    {
+      "slug": "orchid-cluster",
+      "name": "Orchid Cluster",
+      "developer": "Devtraco Group",
+      "category": "Residential Cluster",
+      "partOf": "devtraco-woodlands",
+      "location": "Devtraco Woodlands, Dawhenya",
+      "status": "Selling Now",
+      "tagline": "153 premium four-bedroom homes on generous 80×70 plots.",
+      "summary": "The premium cluster — 153 four-bedroom, two-storey residences on spacious 80×70 plots, arranged around landscaped recreational greens.",
+      "heroImage": "/images/exclusive/orchid-primrose.jpg",
+      "cardImage": "/images/exclusive/orchid-sunflower.jpg",
+      "overview": [
+        "Orchid is the premium residential cluster within Devtraco Woodlands — 26.02 acres of generous 80×70 plots laid out around landscaped recreational greens. Every home here is a four-bedroom, two-storey residence, designed for family living and effortless entertaining.",
+        "Choose from three signature typologies, each delivered to estate standards with the option of a complimentary architectural plan and Bill of Quantities to guide your build."
+      ],
+      "facts": [
+        {
+          "label": "Area",
+          "value": "26.02 acres"
+        },
+        {
+          "label": "No. of plots",
+          "value": "153"
+        },
+        {
+          "label": "Plot size",
+          "value": "80′ × 70′"
+        },
+        {
+          "label": "Home type",
+          "value": "4-bedroom"
+        },
+        {
+          "label": "Phase",
+          "value": "Phase 01"
+        },
+        {
+          "label": "Status",
+          "value": "Selling Now"
+        }
+      ],
+      "highlights": [
+        "Spacious 80×70 plots — the largest in Woodlands",
+        "Four-bedroom, two-storey residences",
+        "Private swimming-pool option on the Sunflower typology",
+        "Help's quarters available on the Tulipa typology",
+        "Arranged around dedicated landscaped recreational greens"
+      ],
+      "typologies": [
+        {
+          "beds": "4 Bedrooms",
+          "name": "Sunflower",
+          "blurb": "A luxurious 4-bedroom, 2-storey residence with spacious living and dining areas, a modern kitchen, and three further bedrooms upstairs. Enjoy a private outdoor swimming pool right on the compound — perfect for family living and entertaining.",
+          "storeys": "2-storey",
+          "imageSrc": "/images/exclusive/orchid-sunflower.jpg"
+        },
+        {
+          "beds": "4 Bedrooms",
+          "name": "Primrose",
+          "blurb": "A stylish residence with a spacious living and dining area, a modern kitchen, and a convenient ground-floor bedroom. Three additional bedrooms on the first floor make it ideal for comfortable family living.",
+          "storeys": "2-storey",
+          "imageSrc": "/images/exclusive/orchid-primrose.jpg"
+        },
+        {
+          "beds": "4 Bedrooms + Help's Quarters",
+          "name": "Tulipa",
+          "blurb": "An elegant 4-bedroom, 2-storey home featuring generous living and dining areas, help's quarters, and a modern kitchen. Three additional bedrooms and a balcony on the first floor complete this residence built for luxurious family living.",
+          "storeys": "2-storey",
+          "imageSrc": "/images/exclusive/orchid-tulipa.jpg"
+        }
+      ],
+      "amenities": [],
+      "connectivity": [],
+      "gallery": [
+        {
+          "alt": "Sunflower — 4-bedroom two-storey residence in the Orchid Cluster",
+          "src": "/images/exclusive/orchid-sunflower.jpg"
+        },
+        {
+          "alt": "Primrose — 4-bedroom two-storey residence in the Orchid Cluster",
+          "src": "/images/exclusive/orchid-primrose.jpg"
+        },
+        {
+          "alt": "Tulipa — 4-bedroom residence with help's quarters in the Orchid Cluster",
+          "src": "/images/exclusive/orchid-tulipa.jpg"
+        },
+        {
+          "alt": "Sunflower floor plan with private pool layout",
+          "src": "/images/exclusive/orchid-sunflower-plan.jpg"
+        }
+      ],
+      "sitemap": {
+        "alt": "Orchid Cluster site plan within Devtraco Woodlands Phase 01",
+        "src": "/images/exclusive/orchid-sitemap.jpg"
+      },
+      "brochureUrl": "/brochures/orchid-cluster-typologies.pdf"
+    },
+    {
+      "slug": "jute-cluster",
+      "name": "Jute Cluster",
+      "developer": "Devtraco Group",
+      "category": "Residential Cluster",
+      "partOf": "devtraco-woodlands",
+      "location": "Devtraco Woodlands, Dawhenya",
+      "status": "Selling Now",
+      "tagline": "414 homes across four smart layouts on 40×70 plots.",
+      "summary": "The largest cluster — 414 plots (40×70) offering flexible 2-, 3-, and 4-bedroom layouts, from the cozy Aster to the elegant two-storey Tulip.",
+      "heroImage": "/images/exclusive/jute-cornflower.jpg",
+      "cardImage": "/images/exclusive/jute-tulip.jpg",
+      "overview": [
+        "Jute is the largest residential cluster in Devtraco Woodlands — 37.7 acres of 40×70 plots offering the widest choice of home layouts in the city. Whether you're a first-time buyer, a growing family, or an investor, there's a typology sized to your needs.",
+        "Four distinct designs range from the cozy single-storey Aster through to the elegant two-storey Tulip, all delivered to the same estate standards as the wider community."
+      ],
+      "facts": [
+        {
+          "label": "Area",
+          "value": "37.7 acres"
+        },
+        {
+          "label": "No. of plots",
+          "value": "414"
+        },
+        {
+          "label": "Plot size",
+          "value": "40′ × 70′"
+        },
+        {
+          "label": "Home types",
+          "value": "2, 3 & 4-bedroom"
+        },
+        {
+          "label": "Phase",
+          "value": "Phase 01"
+        },
+        {
+          "label": "Status",
+          "value": "Selling Now"
+        }
+      ],
+      "highlights": [
+        "The widest range of layouts in Woodlands — 2, 3 and 4-bedroom homes",
+        "Efficient 40×70 plots ideal for first homes and investment",
+        "Single-storey and two-storey designs to suit every household",
+        "All homes built to Devtraco Woodlands estate standards"
+      ],
+      "typologies": [
+        {
+          "beds": "2 Bedrooms",
+          "name": "Aster",
+          "blurb": "A charming single-storey residence with two cozy bedrooms, a bright living and dining area, and a modern kitchen. Surrounded by greenery — perfect for nature lovers seeking comfort and tranquility.",
+          "storeys": "Single-storey",
+          "imageSrc": "/images/exclusive/jute-aster.jpg"
+        },
+        {
+          "beds": "3 Bedrooms",
+          "name": "Cornflower",
+          "blurb": "A delightful 3-bedroom, single-storey residence with an open living and dining area and a modern kitchen. Cozy, comfortable, and perfect for family living.",
+          "storeys": "Single-storey",
+          "imageSrc": "/images/exclusive/jute-cornflower.jpg"
+        },
+        {
+          "beds": "3 Bedrooms",
+          "name": "Daisy",
+          "blurb": "A charming 3-bedroom, single-storey home featuring spacious living and dining areas alongside a modern kitchen — ideal for a unique, comfortable family lifestyle.",
+          "storeys": "Single-storey",
+          "imageSrc": "/images/exclusive/jute-daisy.jpg"
+        },
+        {
+          "beds": "4 Bedrooms",
+          "name": "Tulip",
+          "blurb": "An elegant 4-bedroom, 2-storey residence with spacious living and dining areas and a modern kitchen. The first floor adds three bedrooms and a balcony — ideal for luxurious family living.",
+          "storeys": "2-storey",
+          "imageSrc": "/images/exclusive/jute-tulip.jpg"
+        }
+      ],
+      "amenities": [],
+      "connectivity": [],
+      "gallery": [
+        {
+          "alt": "Aster — 2-bedroom single-storey home with floor plan, Jute Cluster",
+          "src": "/images/exclusive/jute-aster.jpg"
+        },
+        {
+          "alt": "Cornflower — 3-bedroom single-storey residence in the Jute Cluster",
+          "src": "/images/exclusive/jute-cornflower.jpg"
+        },
+        {
+          "alt": "Daisy — 3-bedroom single-storey residence in the Jute Cluster",
+          "src": "/images/exclusive/jute-daisy.jpg"
+        },
+        {
+          "alt": "Tulip — 4-bedroom two-storey residence in the Jute Cluster",
+          "src": "/images/exclusive/jute-tulip.jpg"
+        }
+      ],
+      "sitemap": {
+        "alt": "Jute Cluster site plan within Devtraco Woodlands Phase 01",
+        "src": "/images/exclusive/jute-sitemap.jpg"
+      },
+      "brochureUrl": "/brochures/jute-cluster-typologies.pdf"
+    }
+  ],
+  "blogPosts": [],
+  "trustStats": [
+    {
+      "label": "Projects completed",
+      "suffix": "+",
+      "target": 50
+    },
+    {
+      "label": "Years of combined expertise",
+      "suffix": "+",
+      "target": 12
+    },
+    {
+      "label": "Client satisfaction score",
+      "suffix": "%",
+      "target": 98
+    },
+    {
+      "label": "Regions served",
+      "suffix": "+",
+      "target": 6
+    }
+  ],
+  "contactInfo": {
+    "phones": [
+      "0243889512",
+      "0203436540"
+    ],
+    "whatsapp": "233203436540",
+    "address": {
+      "line1": "Nmai Dzorn Papafio Rd",
+      "line2": "Nanakrom-East Legon Hills",
+      "city": "Accra, Ghana"
+    },
+    "socials": {
+      "instagram": "https://www.instagram.com/heisthomes?igsh=MWNtNnl4c2lxbGc3ag%3D%3D&utm_source=qr",
+      "tiktok": "https://www.tiktok.com/@heistbrokerage?_r=1&_t=ZT-96lzMk8Dnav",
+      "facebook": "https://www.facebook.com/share/1DzUtKMzVg/?mibextid=wwXIfr"
+    }
+  }
+}

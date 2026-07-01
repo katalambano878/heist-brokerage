@@ -99,6 +99,21 @@ function mapExclusive(e) {
   };
 }
 
+function mapPost(p) {
+  return {
+    slug: p.slug,
+    title: p.title,
+    excerpt: p.excerpt ?? "",
+    coverImage: resolveImage(p.coverImage),
+    coverAlt: p.coverAlt ?? "",
+    body: p.body ?? "",
+    author: p.author ?? "",
+    category: p.category ?? "",
+    tags: Array.isArray(p.tags) ? p.tags : [],
+    publishedAt: p.publishedAt ?? p.createdAt ?? null,
+  };
+}
+
 function mapContactInfo(s) {
   const phones = Array.isArray(s.phones) && s.phones.length ? s.phones : ["0243889512", "0203436540"];
   return {
@@ -117,7 +132,7 @@ function mapContactInfo(s) {
   };
 }
 
-function buildSitemap(properties, exclusive) {
+function buildSitemap(properties, exclusive, posts) {
   const staticRoutes = [
     "/",
     "/about",
@@ -127,6 +142,7 @@ function buildSitemap(properties, exclusive) {
     "/save-and-buy",
     "/build-in-stages",
     "/careers",
+    "/blog",
     "/contact",
   ];
   const today = new Date().toISOString().slice(0, 10);
@@ -134,6 +150,7 @@ function buildSitemap(properties, exclusive) {
     ...staticRoutes,
     ...properties.map((p) => `/properties/${p.id}`),
     ...exclusive.map((e) => `/exclusive/${e.slug}`),
+    ...posts.map((p) => `/blog/${p.slug}`),
   ];
   const body = urls
     .map(
@@ -146,17 +163,20 @@ function buildSitemap(properties, exclusive) {
 
 async function main() {
   try {
-    const [props, services, team, testimonials, exclusive, settings] = await Promise.all([
-      getJson("/api/v1/properties"),
-      getJson("/api/v1/services"),
-      getJson("/api/v1/team"),
-      getJson("/api/v1/testimonials"),
-      getJson("/api/v1/exclusive"),
-      getJson("/api/v1/settings"),
-    ]);
+    const [props, services, team, testimonials, exclusive, posts, settings] =
+      await Promise.all([
+        getJson("/api/v1/properties"),
+        getJson("/api/v1/services"),
+        getJson("/api/v1/team"),
+        getJson("/api/v1/testimonials"),
+        getJson("/api/v1/exclusive"),
+        getJson("/api/v1/posts").catch(() => ({ data: [] })),
+        getJson("/api/v1/settings"),
+      ]);
 
     const properties = (props.data ?? []).map(mapProperty);
     const exclusiveListings = (exclusive.data ?? []).map(mapExclusive);
+    const blogPosts = (posts.data ?? []).map(mapPost);
 
     const content = {
       properties,
@@ -164,15 +184,16 @@ async function main() {
       team: (team.data ?? []).map(mapTeam),
       testimonials: (testimonials.data ?? []).map(mapTestimonial),
       exclusiveListings,
+      blogPosts,
       trustStats: Array.isArray(settings?.trustStats) ? settings.trustStats : undefined,
       contactInfo: settings && settings.id ? mapContactInfo(settings) : undefined,
       aboutImage: settings?.aboutImage || undefined,
     };
 
     await writeFile(generatedPath, `${JSON.stringify(content, null, 2)}\n`);
-    await writeFile(sitemapPath, buildSitemap(properties, exclusiveListings));
+    await writeFile(sitemapPath, buildSitemap(properties, exclusiveListings, blogPosts));
     console.log(
-      `[sync-content] ${properties.length} properties, ${content.services.length} services, ${content.team.length} team, ${exclusiveListings.length} exclusive from ${API}`,
+      `[sync-content] ${properties.length} properties, ${content.services.length} services, ${content.team.length} team, ${exclusiveListings.length} exclusive, ${blogPosts.length} posts from ${API}`,
     );
   } catch (err) {
     console.warn(`[sync-content] API unavailable (${err.message}); using hardcoded defaults.`);

@@ -9,6 +9,7 @@ import { adminLeadsRouter } from "./routes/admin/leads.js";
 import { adminPropertiesRouter } from "./routes/admin/properties.js";
 import { adminSettingsRouter } from "./routes/admin/settings.js";
 import { adminApplicationsRouter } from "./routes/admin/applications.js";
+import { adminBlogRouter } from "./routes/admin/blog.js";
 import { adminPublishRouter } from "./routes/admin/publish.js";
 import { adminUploadsRouter } from "./routes/admin/uploads.js";
 import { adminUsersRouter } from "./routes/admin/users.js";
@@ -58,6 +59,7 @@ app.use("/api/v1/admin/users", adminUsersRouter(env));
 app.use("/api/v1/admin/uploads", adminUploadsRouter(env));
 app.use("/api/v1/admin/publish", adminPublishRouter(env));
 app.use("/api/v1/admin/applications", adminApplicationsRouter(env));
+app.use("/api/v1/admin/blog", adminBlogRouter(env));
 
 app.use(errorHandler);
 

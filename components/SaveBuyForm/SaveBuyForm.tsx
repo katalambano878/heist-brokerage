@@ -1,7 +1,16 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { postJson } from "@/lib/publicApi";
 import styles from "./SaveBuyForm.module.css";
+
+const incomeLabels: Record<string, string> = {
+  "below-3000": "Below GHS 3,000",
+  "3000-5000": "GHS 3,000 – 5,000",
+  "5000-10000": "GHS 5,000 – 10,000",
+  "10000-20000": "GHS 10,000 – 20,000",
+  "above-20000": "Above GHS 20,000",
+};
 
 type FormState = {
   fullName: string;
@@ -27,6 +36,8 @@ export function SaveBuyForm() {
   const [values, setValues] = useState<FormState>(initial);
   const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const set = (key: keyof FormState) => (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
@@ -44,10 +55,37 @@ export function SaveBuyForm() {
     return Object.keys(next).length === 0;
   };
 
-  const onSubmit = (e: FormEvent) => {
+  const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
-    setSubmitted(true);
+    setSubmitError(null);
+    setSubmitting(true);
+    try {
+      const income = incomeLabels[values.incomeRange] ?? values.incomeRange;
+      const message = [
+        "Save & Buy Program registration",
+        `Gender: ${values.gender || "—"}`,
+        `Nationality: ${values.nationality || "—"}`,
+        `WhatsApp: ${values.whatsapp || "—"}`,
+        `Monthly income: ${income || "—"}`,
+      ].join("\n");
+      await postJson("/api/v1/leads", {
+        name: values.fullName.trim(),
+        email: values.email.trim(),
+        phone: values.phone.trim(),
+        source: "OTHER",
+        message,
+      });
+      setSubmitted(true);
+    } catch (err) {
+      setSubmitError(
+        err instanceof Error
+          ? err.message
+          : "Something went wrong. Please try again.",
+      );
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   if (submitted) {
@@ -187,8 +225,13 @@ export function SaveBuyForm() {
         </label>
       </div>
 
-      <button type="submit" className={styles.submit}>
-        Register for Save &amp; Buy
+      {submitError ? (
+        <span className={styles.error} role="alert">
+          {submitError}
+        </span>
+      ) : null}
+      <button type="submit" className={styles.submit} disabled={submitting}>
+        {submitting ? "Submitting…" : "Register for Save & Buy"}
       </button>
     </form>
   );
