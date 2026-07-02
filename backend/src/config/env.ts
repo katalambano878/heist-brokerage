@@ -18,6 +18,25 @@ const schema = z.object({
   COOLIFY_DEPLOY_URL: z.string().default(""),
   /** Bearer token for the Coolify deploy endpoint */
   COOLIFY_DEPLOY_TOKEN: z.string().default(""),
+  /** Resend — transactional email (https://resend.com) */
+  RESEND_API_KEY: z.string().optional(),
+  EMAIL_FROM: z.string().optional(),
+  SITE_URL: z.string().optional(),
+  ADMIN_URL: z.string().optional(),
+  /** Team inboxes for admin alerts */
+  NOTIFY_EMAIL_CORPORATE: z.string().optional(),
+  NOTIFY_EMAIL_HR: z.string().optional(),
+  NOTIFY_EMAIL_GENERAL: z.string().optional(),
+  /** Staff mobiles for SMS alerts (Ghana format ok) */
+  NOTIFY_PHONE_CORPORATE: z.string().optional(),
+  NOTIFY_PHONE_HR: z.string().optional(),
+  NOTIFY_PHONE_GENERAL: z.string().optional(),
+  /** Moolre SMS VAS key — https://docs.moolre.com/#/send-sms */
+  MOOLRE_SMS_API_KEY: z.string().optional(),
+  MOOLRE_API_KEY: z.string().optional(),
+  SMS_SENDER_ID: z.string().optional(),
+  MOOLRE_SMS_SENDER_ID: z.string().optional(),
+  DEFAULT_COUNTRY_CODE: z.string().optional(),
 });
 
 export type Env = z.infer<typeof schema>;

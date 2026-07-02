@@ -1,6 +1,10 @@
 import { Router } from "express";
 import { z } from "zod";
 import { prisma } from "../lib/prisma.js";
+import {
+  notifyApplicationCreated,
+  notifyLeadCreated,
+} from "../lib/notifications/index.js";
 import { AppError } from "../middleware/errorHandler.js";
 
 const leadSchema = z.object({
@@ -163,6 +167,7 @@ export function publicRouter() {
           message: body.message ?? "",
         },
       });
+      notifyApplicationCreated(application);
       res.status(201).json({ id: application.id, ok: true });
     } catch (e) {
       next(e);
@@ -182,6 +187,7 @@ export function publicRouter() {
           propertyId: body.propertyId ?? undefined,
         },
       });
+      notifyLeadCreated(lead);
       res.status(201).json({ id: lead.id, ok: true });
     } catch (e) {
       next(e);
