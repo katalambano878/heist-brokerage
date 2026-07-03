@@ -40,8 +40,8 @@ export default function BlogPage() {
         title="Real estate updates, insights & guides"
         lead="Market movements, ownership guides and news from the Heist team — written to help you buy, build and invest with confidence."
         headingId="blog-hero"
-        imageSrc="/images/heist-mentality.png"
-        imageAlt="The Heist team at work"
+        imageSrc="/images/blog-hero.png"
+        imageAlt="Heist Brokerage Blog — insights, strategies and opportunities"
       />
 
       <section className={styles.listSection} aria-label="Blog articles">
