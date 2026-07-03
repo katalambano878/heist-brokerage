@@ -186,6 +186,40 @@ export function PropertiesPage() {
     }
   }
 
+  async function reorderImages(nextOrder: PropertyImage[]) {
+    if (!editing) return;
+    const prev = editing;
+    // Optimistic update so the grid reflects the new order immediately.
+    setEditing({ ...editing, images: nextOrder });
+    try {
+      await api(`/api/v1/admin/properties/${editing.id}/images/reorder`, {
+        method: "PUT",
+        body: JSON.stringify({ ids: nextOrder.map((img) => img.id) }),
+      });
+      await load();
+    } catch (e) {
+      setEditing(prev);
+      setErr(e instanceof Error ? e.message : "Reorder failed");
+    }
+  }
+
+  function moveImage(index: number, dir: -1 | 1) {
+    if (!editing) return;
+    const imgs = [...editing.images];
+    const target = index + dir;
+    if (target < 0 || target >= imgs.length) return;
+    [imgs[index], imgs[target]] = [imgs[target], imgs[index]];
+    void reorderImages(imgs);
+  }
+
+  function makeCover(index: number) {
+    if (!editing || index === 0) return;
+    const imgs = [...editing.images];
+    const [chosen] = imgs.splice(index, 1);
+    imgs.unshift(chosen);
+    void reorderImages(imgs);
+  }
+
   const modalOpen = creating || editing !== null;
   const galleryImages = creating ? pendingImages : (editing?.images ?? []);
 
@@ -427,6 +461,38 @@ export function PropertiesPage() {
                           >
                             ×
                           </button>
+                          <div className="gallery-item-controls">
+                            <button
+                              type="button"
+                              className="gallery-ctrl"
+                              onClick={() => moveImage(i, -1)}
+                              disabled={i === 0}
+                              aria-label="Move left"
+                              title="Move left"
+                            >
+                              ‹
+                            </button>
+                            {i !== 0 ? (
+                              <button
+                                type="button"
+                                className="gallery-ctrl gallery-ctrl-cover"
+                                onClick={() => makeCover(i)}
+                                title="Make cover image"
+                              >
+                                Make cover
+                              </button>
+                            ) : null}
+                            <button
+                              type="button"
+                              className="gallery-ctrl"
+                              onClick={() => moveImage(i, 1)}
+                              disabled={i === (editing?.images.length ?? 0) - 1}
+                              aria-label="Move right"
+                              title="Move right"
+                            >
+                              ›
+                            </button>
+                          </div>
                         </div>
                       ))}
                 </div>

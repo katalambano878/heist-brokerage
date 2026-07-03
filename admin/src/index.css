@@ -735,6 +735,52 @@ tbody tr:hover { background: var(--panel-hover); }
 
 .gallery-remove:hover { background: var(--danger); }
 
+.gallery-item-controls {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  padding: 4px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.gallery-item:hover .gallery-item-controls,
+.gallery-item:focus-within .gallery-item-controls {
+  opacity: 1;
+}
+
+.gallery-ctrl {
+  border: none;
+  background: rgba(255, 255, 255, 0.9);
+  color: #111;
+  border-radius: 6px;
+  padding: 2px 7px;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.gallery-ctrl-cover {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 3px 8px;
+}
+
+.gallery-ctrl:hover:not(:disabled) { background: #fff; }
+
+.gallery-ctrl:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
 /* ---------- Gallery field (multi-image editor) ---------- */
 
 .gf-grid {
