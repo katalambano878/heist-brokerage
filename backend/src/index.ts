@@ -26,6 +26,10 @@ import { publicRouter } from "./routes/public.js";
 const env = loadEnv();
 const app = express();
 
+// Running behind Traefik/Coolify reverse proxy — trust the first proxy hop so
+// express-rate-limit reads the real client IP from X-Forwarded-For.
+app.set("trust proxy", 1);
+
 app.use(helmet({ crossOriginResourcePolicy: { policy: "cross-origin" } }));
 app.use(
   cors({

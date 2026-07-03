@@ -77,7 +77,7 @@ export function authRouter(env: Env) {
         throw new AppError(401, "INVALID_REFRESH", "Refresh token invalid or expired");
       }
 
-      await prisma.refreshToken.delete({ where: { id: existing.id } });
+      await prisma.refreshToken.deleteMany({ where: { id: existing.id } });
 
       const user = await prisma.adminUser.findUniqueOrThrow({ where: { id: sub } });
       if (!user.active) {
