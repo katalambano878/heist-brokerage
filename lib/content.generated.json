@@ -1,6 +1,30 @@
 {
   "properties": [
     {
+      "id": "prime-land",
+      "title": "PRIME LAND",
+      "location": "East Legon, Accra",
+      "price": "USD 900,000.00",
+      "beds": 0,
+      "baths": 0,
+      "sqft": "20,909",
+      "imageSeed": "prime-land",
+      "imageSrc": "https://api.heistbrokerage.com/uploads/1783344917723-4ae9d146249dd7c7.jpg",
+      "gallery": [
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1783344917723-4ae9d146249dd7c7.jpg",
+          "alt": "PRIME LAND"
+        }
+      ],
+      "tag": "Gated Property",
+      "type": "Titled Land",
+      "description": "A titled land located in the heart of East Legon, approximately 2 minutes drive from Papa's Pizza, 3 minutes Drive from Mtn Office & 5 minutes drive from Melcom.\n\nApproximately 0.48 Acres.",
+      "category": "land",
+      "region": "East Legon",
+      "featured": false,
+      "highlights": []
+    },
+    {
       "id": "palm-haven-by-heist",
       "title": "PALM HAVEN BY HEIST",
       "location": "Dedeman, Accra",
@@ -353,14 +377,14 @@
       "baths": 1,
       "sqft": "335.942",
       "imageSeed": "puna-by-vaal",
-      "imageSrc": "https://api.heistbrokerage.com/uploads/1782926471341-34b19cf31a14c07b.jpg",
+      "imageSrc": "https://api.heistbrokerage.com/uploads/1782926418292-545e18d1f453b18c.jpg",
       "gallery": [
         {
-          "src": "https://api.heistbrokerage.com/uploads/1782926471341-34b19cf31a14c07b.jpg",
+          "src": "https://api.heistbrokerage.com/uploads/1782926418292-545e18d1f453b18c.jpg",
           "alt": "PUNA BY VAAL"
         },
         {
-          "src": "https://api.heistbrokerage.com/uploads/1782926418292-545e18d1f453b18c.jpg",
+          "src": "https://api.heistbrokerage.com/uploads/1782926471341-34b19cf31a14c07b.jpg",
           "alt": "PUNA BY VAAL"
         },
         {

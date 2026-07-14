@@ -156,6 +156,26 @@
   display: block;
 }
 
+.moreGrid {
+  margin-top: var(--space-md);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-md);
+}
+
+@media (min-width: 760px) {
+  .moreGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.moreCell {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  background: var(--color-bg-alt);
+}
+
 .body {
   padding-block: var(--space-xl) var(--space-3xl);
 }

@@ -48,18 +48,21 @@ export default async function PropertyDetailPage({ params }: PageProps) {
     notFound();
   }
 
-  const mainSrc =
-    property.gallery?.[0]?.src ??
-    property.imageSrc ??
-    `https://picsum.photos/seed/${property.imageSeed}/1200/800`;
-  // Real photos from the admin gallery; placeholder thumbs only if none exist.
-  const thumbs =
-    property.gallery && property.gallery.length > 1
-      ? property.gallery.slice(1, 5)
-      : [
-          { src: `https://picsum.photos/seed/${property.imageSeed}-a/800/600`, alt: "" },
-          { src: `https://picsum.photos/seed/${property.imageSeed}-b/800/600`, alt: "" },
-        ];
+  // Real photos from the admin gallery; placeholders only when none exist.
+  const galleryImages = property.gallery ?? [];
+  const hasRealGallery = galleryImages.length > 0;
+  const mainSrc = hasRealGallery
+    ? galleryImages[0].src
+    : (property.imageSrc ??
+      `https://picsum.photos/seed/${property.imageSeed}/1200/800`);
+  const thumbs = hasRealGallery
+    ? galleryImages.slice(1, 3)
+    : [
+        { src: `https://picsum.photos/seed/${property.imageSeed}-a/800/600`, alt: "" },
+        { src: `https://picsum.photos/seed/${property.imageSeed}-b/800/600`, alt: "" },
+      ];
+  // Everything beyond the hero trio renders in a full-width grid below.
+  const morePhotos = hasRealGallery ? galleryImages.slice(3) : [];
   const highlights =
     property.highlights && property.highlights.length > 0
       ? property.highlights
@@ -148,6 +151,27 @@ export default async function PropertyDetailPage({ params }: PageProps) {
               ))}
             </div>
           </div>
+          {morePhotos.length > 0 ? (
+            <div className={styles.moreGrid} aria-label="More photos">
+              {morePhotos.map((img, i) => (
+                <ScrollReveal
+                  key={`${img.src}-${i}`}
+                  variant="fadeUp"
+                  staggerIndex={i % 4}
+                  className={styles.moreCell}
+                >
+                  <Image
+                    src={img.src}
+                    alt={img.alt || `${property.title} photo ${i + 4}`}
+                    width={800}
+                    height={600}
+                    className={styles.galleryImage}
+                    sizes="(max-width: 760px) 50vw, 25vw"
+                  />
+                </ScrollReveal>
+              ))}
+            </div>
+          ) : null}
         </Container>
       </section>
 
