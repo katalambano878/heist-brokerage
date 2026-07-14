@@ -19,6 +19,7 @@ type Property = {
   category: "sale" | "rent" | "land";
   region: string;
   description: string;
+  highlights: string[];
   status: "DRAFT" | "PUBLISHED" | "ARCHIVED";
   featured: boolean;
   images: PropertyImage[];
@@ -39,8 +40,15 @@ const emptyDraft: Draft = {
   category: "sale",
   region: "",
   description: "",
+  highlights: [],
   status: "DRAFT",
   featured: false,
+};
+
+const categoryLabels: Record<Property["category"], string> = {
+  sale: "For Sale",
+  rent: "For Rent",
+  land: "Land",
 };
 
 function slugify(s: string) {
@@ -83,7 +91,7 @@ export function PropertiesPage() {
 
   function openEdit(p: Property) {
     const { id: _id, images: _images, ...rest } = p;
-    setDraft(rest);
+    setDraft({ ...rest, highlights: Array.isArray(p.highlights) ? p.highlights : [] });
     setPendingImages([]);
     setNewImage("");
     setEditing(p);
@@ -112,11 +120,15 @@ export function PropertiesPage() {
     e.preventDefault();
     setSaving(true);
     setErr(null);
+    const payload = {
+      ...draft,
+      highlights: draft.highlights.map((h) => h.trim()).filter(Boolean),
+    };
     try {
       if (creating) {
         const created = await api<Property>("/api/v1/admin/properties", {
           method: "POST",
-          body: JSON.stringify(draft),
+          body: JSON.stringify(payload),
         });
         const urls = [...pendingImages, newImage].filter(Boolean);
         if (urls.length) {
@@ -125,7 +137,7 @@ export function PropertiesPage() {
       } else if (editing) {
         await api(`/api/v1/admin/properties/${editing.id}`, {
           method: "PATCH",
-          body: JSON.stringify(draft),
+          body: JSON.stringify(payload),
         });
       }
       close();
@@ -244,6 +256,7 @@ export function PropertiesPage() {
               <tr>
                 <th></th>
                 <th>Property</th>
+                <th>Category</th>
                 <th>Location</th>
                 <th>Price</th>
                 <th>Status</th>
@@ -262,6 +275,7 @@ export function PropertiesPage() {
                     )}
                   </td>
                   <td style={{ fontWeight: 500, color: "var(--text)" }}>{p.title}</td>
+                  <td>{categoryLabels[p.category] ?? p.category}</td>
                   <td>{p.location}</td>
                   <td className="mono">{p.price}</td>
                   <td><span className={`badge badge-${p.status.toLowerCase()}`}>{p.status}</span></td>
@@ -330,6 +344,26 @@ export function PropertiesPage() {
                   placeholder="Describe the property, highlights, and what makes it stand out…"
                   onChange={(e) => setDraft((d) => ({ ...d, description: e.target.value }))}
                 />
+              </div>
+              <div className="field" style={{ marginTop: "1rem" }}>
+                <label>Highlights</label>
+                <textarea
+                  rows={5}
+                  value={draft.highlights.join("\n")}
+                  placeholder={
+                    "One highlight per line, e.g.\nTitled land with full documentation\n24/7 gated security\n5 minutes from East Legon"
+                  }
+                  onChange={(e) =>
+                    setDraft((d) => ({
+                      ...d,
+                      highlights: e.target.value.split("\n"),
+                    }))
+                  }
+                />
+                <small className="hint">
+                  Shown as the bullet-point "Highlights" list on the property page. One
+                  per line — leave empty to use the standard set.
+                </small>
               </div>
             </div>
 

@@ -39,11 +39,16 @@ function mapProperty(p) {
     sqft: p.sqft ?? "",
     imageSeed: p.slug,
     imageSrc: resolveImage(p.images?.[0]?.url),
-    tag: p.tag ?? "",
-    type: p.type ?? "",
+    gallery: (p.images ?? [])
+      .map((img) => ({ src: resolveImage(img.url), alt: img.alt ?? "" }))
+      .filter((img) => img.src),
+    tag: (p.tag ?? "").trim(),
+    type: (p.type ?? "").trim(),
     description: p.description ?? "",
     category: p.category ?? "sale",
-    region: p.region ?? "",
+    region: (p.region ?? "").trim(),
+    featured: Boolean(p.featured),
+    highlights: Array.isArray(p.highlights) ? p.highlights : [],
   };
 }
 

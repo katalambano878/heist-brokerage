@@ -7,7 +7,7 @@ import { ScrollReveal } from "@/components/ScrollReveal/ScrollReveal";
 import { PropertyCard } from "@/components/PropertyCard/PropertyCard";
 import { CtaBannerWrapper } from "@/components/CtaBanner/CtaBannerWrapper";
 import {
-  featuredProperties,
+  allProperties,
   getPropertyById,
   propertyHighlights,
   contactInfo,
@@ -19,7 +19,7 @@ type PageProps = {
 };
 
 export function generateStaticParams() {
-  return featuredProperties.map((property) => ({ id: property.id }));
+  return allProperties.map((property) => ({ id: property.id }));
 }
 
 export async function generateMetadata({
@@ -49,14 +49,25 @@ export default async function PropertyDetailPage({ params }: PageProps) {
   }
 
   const mainSrc =
+    property.gallery?.[0]?.src ??
     property.imageSrc ??
     `https://picsum.photos/seed/${property.imageSeed}/1200/800`;
-  const gallery = [
-    `https://picsum.photos/seed/${property.imageSeed}-a/800/600`,
-    `https://picsum.photos/seed/${property.imageSeed}-b/800/600`,
-  ];
-  const related = featuredProperties
-    .filter((p) => p.id !== property.id)
+  // Real photos from the admin gallery; placeholder thumbs only if none exist.
+  const thumbs =
+    property.gallery && property.gallery.length > 1
+      ? property.gallery.slice(1, 5)
+      : [
+          { src: `https://picsum.photos/seed/${property.imageSeed}-a/800/600`, alt: "" },
+          { src: `https://picsum.photos/seed/${property.imageSeed}-b/800/600`, alt: "" },
+        ];
+  const highlights =
+    property.highlights && property.highlights.length > 0
+      ? property.highlights
+      : propertyHighlights;
+  const isLand = property.category === "land";
+  const related = allProperties
+    .filter((p) => p.id !== property.id && p.category === property.category)
+    .concat(allProperties.filter((p) => p.id !== property.id && p.category !== property.category))
     .slice(0, 3);
 
   const waHref = `https://wa.me/${contactInfo.whatsapp}?text=${encodeURIComponent(
@@ -118,16 +129,16 @@ export default async function PropertyDetailPage({ params }: PageProps) {
               />
             </ScrollReveal>
             <div className={styles.galleryThumbs}>
-              {gallery.map((src, i) => (
+              {thumbs.map((img, i) => (
                 <ScrollReveal
-                  key={src}
+                  key={`${img.src}-${i}`}
                   variant="fadeUp"
                   staggerIndex={i}
                   className={styles.thumb}
                 >
                   <Image
-                    src={src}
-                    alt={`${property.title} view ${i + 1}`}
+                    src={img.src}
+                    alt={img.alt || `${property.title} view ${i + 1}`}
                     width={800}
                     height={600}
                     className={styles.galleryImage}
@@ -145,20 +156,30 @@ export default async function PropertyDetailPage({ params }: PageProps) {
           <div className={styles.layout}>
             <div className={styles.main}>
               <div className={styles.specs}>
+                {!isLand ? (
+                  <>
+                    <div className={styles.spec}>
+                      <span className={styles.specValue}>{property.beds}</span>
+                      <span className={styles.specLabel}>Bedrooms</span>
+                    </div>
+                    <div className={styles.spec}>
+                      <span className={styles.specValue}>{property.baths}</span>
+                      <span className={styles.specLabel}>Bathrooms</span>
+                    </div>
+                  </>
+                ) : null}
+                {property.sqft ? (
+                  <div className={styles.spec}>
+                    <span className={styles.specValue}>{property.sqft}</span>
+                    <span className={styles.specLabel}>
+                      {isLand ? "Plot Size" : "Sq Ft"}
+                    </span>
+                  </div>
+                ) : null}
                 <div className={styles.spec}>
-                  <span className={styles.specValue}>{property.beds}</span>
-                  <span className={styles.specLabel}>Bedrooms</span>
-                </div>
-                <div className={styles.spec}>
-                  <span className={styles.specValue}>{property.baths}</span>
-                  <span className={styles.specLabel}>Bathrooms</span>
-                </div>
-                <div className={styles.spec}>
-                  <span className={styles.specValue}>{property.sqft}</span>
-                  <span className={styles.specLabel}>Sq Ft</span>
-                </div>
-                <div className={styles.spec}>
-                  <span className={styles.specValue}>{property.type}</span>
+                  <span className={styles.specValue}>
+                    {property.type || (isLand ? "Land" : "Residence")}
+                  </span>
                   <span className={styles.specLabel}>Type</span>
                 </div>
               </div>
@@ -171,7 +192,7 @@ export default async function PropertyDetailPage({ params }: PageProps) {
               <div className={styles.block}>
                 <h2 className={styles.blockTitle}>Highlights</h2>
                 <ul className={styles.features}>
-                  {propertyHighlights.map((item) => (
+                  {highlights.map((item) => (
                     <li key={item} className={styles.feature}>
                       <span className={styles.featureMark} aria-hidden />
                       {item}

@@ -91,6 +91,8 @@ model Property {
   /// Region used for site search filtering, e.g. "East Legon Hills"
   region      String          @default("")
   description String          @default("")
+  /// string[] of bullet-point highlights shown on the detail page
+  highlights  Json            @default("[]")
   status      PropertyStatus  @default(DRAFT)
   featured    Boolean         @default(false)
   sortOrder   Int             @default(0)

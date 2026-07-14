@@ -103,18 +103,29 @@ export function PropertyCard({ property }: PropertyCardProps) {
           {property.location}
         </p>
         <div className={styles.meta}>
-          <span className={styles.metaItem}>
-            <BedIcon />
-            {property.beds} Beds
-          </span>
-          <span className={styles.metaItem}>
-            <BathIcon />
-            {property.baths} Baths
-          </span>
-          <span className={styles.metaItem}>
-            <AreaIcon />
-            {property.sqft} sqft
-          </span>
+          {property.category !== "land" ? (
+            <>
+              <span className={styles.metaItem}>
+                <BedIcon />
+                {property.beds} Beds
+              </span>
+              <span className={styles.metaItem}>
+                <BathIcon />
+                {property.baths} Baths
+              </span>
+            </>
+          ) : (
+            <span className={styles.metaItem}>
+              <PinIcon />
+              {property.type || "Land"}
+            </span>
+          )}
+          {property.sqft ? (
+            <span className={styles.metaItem}>
+              <AreaIcon />
+              {property.sqft} sqft
+            </span>
+          ) : null}
         </div>
         <Link href={href} className={styles.cta}>
           <span>View details</span>

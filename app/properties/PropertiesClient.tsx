@@ -6,7 +6,7 @@ import { Container } from "@/components/Container/Container";
 import { ScrollReveal } from "@/components/ScrollReveal/ScrollReveal";
 import { PageHero } from "@/components/PageHero/PageHero";
 import { PropertyCard } from "@/components/PropertyCard/PropertyCard";
-import { featuredProperties, regions, propertyTypes } from "@/lib/data";
+import { allProperties, regions, propertyTypes } from "@/lib/data";
 import type { PropertyCategory } from "@/lib/data";
 import styles from "./page.module.css";
 
@@ -43,7 +43,7 @@ export function PropertiesClient() {
   }, [searchParams]);
 
   const filtered = useMemo(() => {
-    return featuredProperties.filter((p) => {
+    return allProperties.filter((p) => {
       if (category !== "all" && p.category !== category) return false;
       if (location && p.region !== location) return false;
       if (type && p.type !== type) return false;

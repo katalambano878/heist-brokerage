@@ -18,6 +18,7 @@ const propertySchema = z.object({
   category: z.enum(["sale", "rent", "land"]).optional().default("sale"),
   region: z.string().optional().default(""),
   description: z.string().optional().default(""),
+  highlights: z.array(z.string().max(300)).max(20).optional(),
   status: z.enum(["DRAFT", "PUBLISHED", "ARCHIVED"]).optional(),
   featured: z.boolean().optional(),
   sortOrder: z.number().int().optional(),

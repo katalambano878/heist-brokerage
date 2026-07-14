@@ -28,6 +28,8 @@ function pick<T>(value: T[] | undefined, fallback: T[]): T[] {
 
 export type PropertyCategory = "sale" | "rent" | "land";
 
+export type PropertyGalleryImage = { src: string; alt: string };
+
 export type Property = {
   id: string;
   title: string;
@@ -40,15 +42,21 @@ export type Property = {
   imageSeed: string;
   /** Optional path under `/public` (e.g. `/images/properties/foo.jpg`) */
   imageSrc?: string;
+  /** Full photo gallery from the admin (first image = cover) */
+  gallery?: PropertyGalleryImage[];
   tag: string;
   type: string;
   description: string;
   category: PropertyCategory;
   /** Region for search filtering */
   region?: string;
+  /** Show in the homepage featured carousel */
+  featured?: boolean;
+  /** Per-property bullet points from the admin */
+  highlights?: string[];
 };
 
-/** Premium standard features shown on every property detail page */
+/** Fallback highlights when a property has none of its own */
 export const propertyHighlights: string[] = [
   "Premium finishes and fixtures throughout",
   "Strategic, high-growth location",
@@ -59,7 +67,7 @@ export const propertyHighlights: string[] = [
 ];
 
 export function getPropertyById(id: string): Property | undefined {
-  return featuredProperties.find((property) => property.id === id);
+  return allProperties.find((property) => property.id === id);
 }
 
 const defaultFeaturedProperties: Property[] = [
@@ -252,10 +260,21 @@ const defaultFeaturedProperties: Property[] = [
   },
 ];
 
-export const featuredProperties: Property[] = pick(
+/** Every published property (all categories) — used by listings & search. */
+export const allProperties: Property[] = pick(
   generated.properties,
   defaultFeaturedProperties,
 );
+
+/**
+ * Homepage carousel: only properties with the "Featured on homepage" toggle.
+ * Falls back to the first six listings if nothing is flagged, so the section
+ * never renders empty.
+ */
+export const featuredProperties: Property[] =
+  allProperties.filter((p) => p.featured).length > 0
+    ? allProperties.filter((p) => p.featured)
+    : allProperties.slice(0, 6);
 
 export type Service = {
   id: string;
@@ -950,7 +969,7 @@ export const partners: Partner[] = [
   { name: "Visura Architecture", slug: "visura", logo: "/partners/visura.png" },
 ];
 
-export const regions = [
+const defaultRegions = [
   "East Legon Hills",
   "Cantonments",
   "Labadi",
@@ -961,7 +980,7 @@ export const regions = [
   "Dawhenya",
 ];
 
-export const propertyTypes = [
+const defaultPropertyTypes = [
   "Detached Villa",
   "Townhouse",
   "Waterfront Home",
@@ -973,6 +992,23 @@ export const propertyTypes = [
   "Garden Duplex",
   "Residential Land",
 ];
+
+/** Unique, trimmed values pulled from the live listings so the search
+ *  dropdowns always match what's actually filterable. */
+function derive(values: (string | undefined)[], fallback: string[]): string[] {
+  const cleaned = [...new Set(values.map((v) => (v ?? "").trim()).filter(Boolean))];
+  return cleaned.length > 0 ? cleaned.sort() : fallback;
+}
+
+export const regions = derive(
+  allProperties.map((p) => p.region),
+  defaultRegions,
+);
+
+export const propertyTypes = derive(
+  allProperties.map((p) => p.type),
+  defaultPropertyTypes,
+);
 
 const defaultContactInfo = {
   phones: ["0243889512", "0203436540"],
