@@ -33,14 +33,15 @@ export function LeadModal({ open, onClose }: LeadModalProps) {
   const [closing, setClosing] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [intent, setIntent] = useState("buy");
   const [status, setStatus] = useState<"idle" | "submitting" | "done">("idle");
   const [error, setError] = useState<string | null>(null);
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!name.trim() || !email.trim()) {
-      setError("Please enter your name and email.");
+    if (!name.trim() || !email.trim() || !phone.trim()) {
+      setError("Please enter your name, email and phone number.");
       return;
     }
     setError(null);
@@ -50,6 +51,7 @@ export function LeadModal({ open, onClose }: LeadModalProps) {
       await postJson("/api/v1/leads", {
         name: name.trim(),
         email: email.trim(),
+        phone: phone.trim(),
         source: "LEAD_MODAL",
         message: `Book a strategy call — looking to: ${intentLabel}`,
       });
@@ -92,6 +94,7 @@ export function LeadModal({ open, onClose }: LeadModalProps) {
     document.body.style.overflow = "hidden";
     setName("");
     setEmail("");
+    setPhone("");
     setIntent("buy");
     setStatus("idle");
     setError(null);
@@ -174,6 +177,20 @@ export function LeadModal({ open, onClose }: LeadModalProps) {
                   name="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </label>
+              <label className={styles.field}>
+                <span className={styles.label}>Phone number</span>
+                <input
+                  className={styles.input}
+                  type="tel"
+                  name="phone"
+                  inputMode="tel"
+                  autoComplete="tel"
+                  placeholder="e.g. 024 123 4567"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
                   required
                 />
               </label>
