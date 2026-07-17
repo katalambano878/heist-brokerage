@@ -133,6 +133,7 @@ function mapContactInfo(s) {
       instagram: s.instagram || "",
       tiktok: s.tiktok || "",
       facebook: s.facebook || "",
+      youtube: s.youtube || "https://youtube.com/@heistbrokerage?si=8xZbBXUP9Sr4ZXBW",
     },
   };
 }

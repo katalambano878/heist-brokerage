@@ -14,6 +14,7 @@ type Settings = {
   instagram: string;
   tiktok: string;
   facebook: string;
+  youtube: string;
   aboutImage: string;
   trustStats: TrustStat[];
 };
@@ -28,6 +29,7 @@ const empty: Settings = {
   instagram: "",
   tiktok: "",
   facebook: "",
+  youtube: "",
   aboutImage: "",
   trustStats: [],
 };
@@ -36,6 +38,7 @@ const socialFields = [
   { key: "instagram" as const, label: "Instagram", placeholder: "https://instagram.com/…" },
   { key: "tiktok" as const, label: "TikTok", placeholder: "https://tiktok.com/@…" },
   { key: "facebook" as const, label: "Facebook", placeholder: "https://facebook.com/…" },
+  { key: "youtube" as const, label: "YouTube", placeholder: "https://youtube.com/@…" },
 ];
 
 export function SettingsPage() {

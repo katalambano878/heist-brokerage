@@ -150,6 +150,7 @@ const jsonLd = {
         "https://www.instagram.com/heisthomes",
         "https://www.tiktok.com/@heistbrokerage",
         "https://www.facebook.com/share/1DzUtKMzVg/",
+        "https://youtube.com/@heistbrokerage",
       ],
       areaServed: {
         "@type": "City",

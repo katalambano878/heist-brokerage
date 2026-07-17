@@ -1023,6 +1023,7 @@ const defaultContactInfo = {
       "https://www.instagram.com/heisthomes?igsh=MWNtNnl4c2lxbGc3ag%3D%3D&utm_source=qr",
     tiktok: "https://www.tiktok.com/@heistbrokerage?_r=1&_t=ZT-96lzMk8Dnav",
     facebook: "https://www.facebook.com/share/1DzUtKMzVg/?mibextid=wwXIfr",
+    youtube: "https://youtube.com/@heistbrokerage?si=8xZbBXUP9Sr4ZXBW",
   },
 };
 

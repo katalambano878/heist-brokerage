@@ -255,6 +255,7 @@ model SiteSettings {
   instagram    String   @default("")
   tiktok       String   @default("")
   facebook     String   @default("")
+  youtube      String   @default("")
   /// Image for the homepage "Heist Mentality" / About preview section
   aboutImage   String   @default("")
   /// Homepage stats: {label, target, suffix}[]
