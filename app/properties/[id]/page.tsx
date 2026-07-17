@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/Container/Container";
 import { ScrollReveal } from "@/components/ScrollReveal/ScrollReveal";
 import { PropertyCard } from "@/components/PropertyCard/PropertyCard";
+import { PropertyGallery } from "@/components/PropertyGallery/PropertyGallery";
 import { CtaBannerWrapper } from "@/components/CtaBanner/CtaBannerWrapper";
 import {
   allProperties,
@@ -50,19 +50,25 @@ export default async function PropertyDetailPage({ params }: PageProps) {
 
   // Real photos from the admin gallery; placeholders only when none exist.
   const galleryImages = property.gallery ?? [];
-  const hasRealGallery = galleryImages.length > 0;
-  const mainSrc = hasRealGallery
-    ? galleryImages[0].src
-    : (property.imageSrc ??
-      `https://picsum.photos/seed/${property.imageSeed}/1200/800`);
-  const thumbs = hasRealGallery
-    ? galleryImages.slice(1, 3)
-    : [
-        { src: `https://picsum.photos/seed/${property.imageSeed}-a/800/600`, alt: "" },
-        { src: `https://picsum.photos/seed/${property.imageSeed}-b/800/600`, alt: "" },
-      ];
-  // Everything beyond the hero trio renders in a full-width grid below.
-  const morePhotos = hasRealGallery ? galleryImages.slice(3) : [];
+  const viewerImages =
+    galleryImages.length > 0
+      ? galleryImages
+      : [
+          {
+            src:
+              property.imageSrc ??
+              `https://picsum.photos/seed/${property.imageSeed}/1200/800`,
+            alt: "",
+          },
+          {
+            src: `https://picsum.photos/seed/${property.imageSeed}-a/800/600`,
+            alt: "",
+          },
+          {
+            src: `https://picsum.photos/seed/${property.imageSeed}-b/800/600`,
+            alt: "",
+          },
+        ];
   const highlights =
     property.highlights && property.highlights.length > 0
       ? property.highlights
@@ -119,59 +125,7 @@ export default async function PropertyDetailPage({ params }: PageProps) {
 
       <section className={styles.gallerySection} aria-label="Property gallery">
         <Container>
-          <div className={styles.gallery}>
-            <ScrollReveal variant="scale" className={styles.galleryMain}>
-              <Image
-                src={mainSrc}
-                alt={`${property.title}, ${property.location}`}
-                width={1200}
-                height={800}
-                className={styles.galleryImage}
-                sizes="(max-width: 980px) 100vw, 66vw"
-                priority
-              />
-            </ScrollReveal>
-            <div className={styles.galleryThumbs}>
-              {thumbs.map((img, i) => (
-                <ScrollReveal
-                  key={`${img.src}-${i}`}
-                  variant="fadeUp"
-                  staggerIndex={i}
-                  className={styles.thumb}
-                >
-                  <Image
-                    src={img.src}
-                    alt={img.alt || `${property.title} view ${i + 1}`}
-                    width={800}
-                    height={600}
-                    className={styles.galleryImage}
-                    sizes="(max-width: 980px) 33vw, 22vw"
-                  />
-                </ScrollReveal>
-              ))}
-            </div>
-          </div>
-          {morePhotos.length > 0 ? (
-            <div className={styles.moreGrid} aria-label="More photos">
-              {morePhotos.map((img, i) => (
-                <ScrollReveal
-                  key={`${img.src}-${i}`}
-                  variant="fadeUp"
-                  staggerIndex={i % 4}
-                  className={styles.moreCell}
-                >
-                  <Image
-                    src={img.src}
-                    alt={img.alt || `${property.title} photo ${i + 4}`}
-                    width={800}
-                    height={600}
-                    className={styles.galleryImage}
-                    sizes="(max-width: 760px) 50vw, 25vw"
-                  />
-                </ScrollReveal>
-              ))}
-            </div>
-          ) : null}
+          <PropertyGallery images={viewerImages} title={property.title} />
         </Container>
       </section>
 
