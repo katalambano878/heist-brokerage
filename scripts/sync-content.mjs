@@ -124,6 +124,14 @@ function mapContactInfo(s) {
   return {
     phones,
     whatsapp: s.whatsapp || "233203436540",
+    emails: [
+      {
+        address: s.email || "corporate@heistbrokerage.com",
+        label: "Corporate & general",
+      },
+      { address: "ssamirah@heistbrokerage.com", label: "Client relations" },
+      { address: "hr@heistbrokerage.com", label: "Careers & HR" },
+    ],
     address: {
       line1: s.addressLine1 || "Nmai Dzorn Papafio Rd",
       line2: s.addressLine2 || "Nanakrom-East Legon Hills",

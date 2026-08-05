@@ -9,14 +9,27 @@
       "baths": 0,
       "sqft": "20,909",
       "imageSeed": "prime-land",
-      "gallery": [],
+      "imageSrc": "https://api.heistbrokerage.com/uploads/1784623783327-e6305cb28c192ada.jpg",
+      "gallery": [
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784623783327-e6305cb28c192ada.jpg",
+          "alt": "PRIME LAND"
+        }
+      ],
       "tag": "Gated Property",
       "type": "Titled Land",
       "description": "A titled land located in the heart of East Legon, approximately 2 minutes drive from Papa's Pizza, 3 minutes Drive from Mtn Office & 5 minutes drive from Melcom.\n\nApproximately 0.48 Acres.",
       "category": "land",
       "region": "East Legon",
       "featured": false,
-      "highlights": []
+      "highlights": [
+        "Titled with documents",
+        "Prime Location",
+        "Can be used for Commercial or Residential developments",
+        "Easy access to schools, restaurants, shopping malls etc",
+        "12 minutes (6.7 km) to the Airport",
+        "6 minutes to Accra Mall"
+      ]
     },
     {
       "id": "palm-haven-by-heist",
@@ -27,14 +40,28 @@
       "baths": 0,
       "sqft": "7,000",
       "imageSeed": "palm-haven-by-heist",
-      "gallery": [],
+      "imageSrc": "https://api.heistbrokerage.com/uploads/1784623694878-cf03691750e72df2.png",
+      "gallery": [
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784623694878-cf03691750e72df2.png",
+          "alt": "PALM HAVEN BY HEIST"
+        }
+      ],
       "tag": "Serviced Plot",
       "type": "Residential Land",
       "description": "Palm Haven is a mix of Diasporas and Ghanaian locals, master-planned free zone residential estate designed to give buyers the freedom to build homes that reflect their own preferences and lifestyles. Unlike many gated communities that require homeowners to follow a fixed architectural design, this development allows buyers to construct their preferred homes while complying with applicable planning regulations.\n\nThe area is known for:\n\nExcellent road accessibility\nA rapidly growing residential community\nA scenic hillside setting\nStrong potential for capital appreciation due to ongoing development\nClose proximity to the expanding Kwabenya & Pokuase corridor, one of Accra’s fast-growing residential and investment destinations\n\nInvestment Appeal\n\nDedeman offers an attractive opportunity for:\n\nFirst-time land buyers\nIndividuals planning to build custom homes\nReal estate investors seeking long-term appreciation\nDevelopers looking to acquire land in a high-growth area\n\nPayment Plan\n\nTo make land ownership more accessible, Dedeman offers flexible payment options:\n\nReservation Fee: Reserve your plot before payment\nOutright Purchase: Full payment at the time of purchase.\n6-Month Payment Plan: Make 30% Deposit And Spread payments over six months.\n8-Month Payment Plan: Make 30% Deposit and Pay in equal monthly installments over 8 months.  \n\n\n\n\n\nThe project is planned to feature:\n\nWell-laid internal road network\nProper drainage system\nStreet naming and house numbering\nSecurity post and entrance gate\nEstate signage and boundary demarcation\nPotential community amenities such as a park, playground, commercial area, and surveillance infrastructure",
       "category": "sale",
       "region": "Greater Accra",
       "featured": true,
-      "highlights": []
+      "highlights": [
+        "Title Land with Documentation",
+        "Easy road accessibility",
+        "A rapidly growing residential community",
+        "A scenic hillside setting",
+        "Strong potential for capital appreciation due to ongoing development",
+        "Close proximity to the expanding Kwabenya & Pokuase corridor",
+        "One of Accra’s fast-growing residential and investment destinations"
+      ]
     },
     {
       "id": "arlo-by-devtraco",
@@ -45,14 +72,79 @@
       "baths": 1,
       "sqft": "417.86",
       "imageSeed": "arlo-by-devtraco",
-      "gallery": [],
+      "imageSrc": "https://api.heistbrokerage.com/uploads/1784624176368-9f064947a2d92ced.jpg",
+      "gallery": [
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784624176368-9f064947a2d92ced.jpg",
+          "alt": "ARLO BY DEVTRACO"
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784624190226-8849f8843fa57871.jpg",
+          "alt": "ARLO BY DEVTRACO"
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784624219722-14dce215c6d8d776.jpg",
+          "alt": "ARLO BY DEVTRACO"
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784624232962-c287bb429e7737dd.jpg",
+          "alt": "ARLO BY DEVTRACO"
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784624247582-fcca3b65b1436bf5.jpg",
+          "alt": "ARLO BY DEVTRACO"
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784624268964-45b2a5db82e200a9.jpg",
+          "alt": "ARLO BY DEVTRACO"
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784624287092-aed459f2d3008237.jpg",
+          "alt": "ARLO BY DEVTRACO"
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784624306496-8fad8557c0e21227.jpg",
+          "alt": "ARLO BY DEVTRACO"
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784624347577-1421798d0a48407b.jpg",
+          "alt": "ARLO BY DEVTRACO"
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784624371628-84c44f8ffce71f32.jpg",
+          "alt": "ARLO BY DEVTRACO"
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784624389474-1308f425f1b9fc3e.jpg",
+          "alt": "ARLO BY DEVTRACO"
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784624401581-0c3eb4013def3777.jpg",
+          "alt": "ARLO BY DEVTRACO"
+        }
+      ],
       "tag": "Premium",
       "type": "Apartment",
       "description": "Anchored in the prestigious and serene suburb of Cantonments, ARLO is a curated collection of residences ranging from studios to three-bedroom penthouses; each designed with the modern investor and luxury lifestyle buyer in mind. Every line, every finish, every square metre is deliberate. Offering a balance of form, function, and elevated experiences.\n\nExpansive floor-to-ceiling windows flood each residence with natural light, creating an ever-changing interplay of sun and shadow.\n\nEach residence is designed to feel open, serene, and effortlessly connected to its surroundings. Light becomes a living element—shifting with the day, enhancing the mood, and softening every corner.\n\nCarefully layered ambient lighting adds depth and warmth, creating a sense of calm that lingers from morning to night.\n\n\nArlo is an income-generating asset designed for effortless ownership. At Arlo, your apartment is more than a living space—it’s a smart investment. An experienced management partner takes care of everything on your behalf: from marketing and tenant screening to maintenance, guest services, and detailed reporting. With rising demand for short- and mid-term stays from business travelers, expats, and tourists, Arlo offers high occupancy potential and consistent rental income all without lifting a finger.\n\nRich textures and tones define the interiors—warm woods, soft matte finishes, and understated detailing come together to create spaces that feel both timeless and tactile.\n\nThe kitchens are refined and efficient, blending elegance with intuitive design.\n\nBathrooms are equally considered, fitted with sleek fixtures that speak to subtle luxury and enduring quality. Nothing is Random!\n\nArlo isn’t about excess, it’s about precision, breathtaking architecture, indulgent interiors, smart layouts, thoughtful amenities, and premium finishes that speak quietly but confidently. Anchored in the prestigious and serene suburb of Cantonments, ARLO is a curated collection of residences ranging from studios to three-bedroom penthouses; each designed with the modern investor in mind. Every layout, finish, window placement and square meter is deliberate coming together to create a space\nthat feels inspiring, seamless and balanced.\n\nWith unit types in high demand and its prime location, ARLO offers a highly efficient vehicle for capital growth and rental income. Whether you’re looking for a place to call home, a pied-à-terre or you are looking to expand your portfolio, ARLO meets you at the peak of lifestyle fulfillment and investment power.\n\nThere are a few locations in Accra that embody prestige, privacy, and security quite like Cantonments. Lined with embassies, tree-shaded streets, security services and some of the city's most refined restaurants, this location provides a calm atmosphere that is hard to replicate yet remains deeply connected to the pulse of the capital.\n\nFrom ARLO, you’re just minutes from Beautiful Beaches, Kotoka International Airport and Airport City’s business district. Osu and Labone, Accra’s social and cultural hotspots are also just minutes away from your new home. Housing diplomats, executives, and global citizens, Cantonments makes every investment a confident move. \n\nAt ARLO, life unfolds beautifully. From peaceful mornings on your private balcony to curated social events, every detail is designed foryour comfort and ease. With wellness-focused amenities, modern conveniences, and spaces for connection, daily living feels luxurious. Whether it’s a quiet night in,\nrooftop hosting, or exploring vibrant Cantonments, ARLO moves to your rhythm.",
       "category": "sale",
       "region": "Cantonment",
       "featured": true,
-      "highlights": []
+      "highlights": [
+        "Spa",
+        "Gym",
+        "Cafe",
+        "Salon",
+        "Firepit",
+        "Infinity Pool",
+        "Kids Playroom",
+        "Zen Garden",
+        "Shops & Offices",
+        "Co-working Space",
+        "Padel Court",
+        "Amphitheater",
+        "Indoor/Outdoor Lounge",
+        "BBQ Area"
+      ]
     },
     {
       "id": "regalia-by-imaani",
@@ -63,7 +155,61 @@
       "baths": 1,
       "sqft": "430.56",
       "imageSeed": "regalia-by-imaani",
-      "gallery": [],
+      "imageSrc": "https://api.heistbrokerage.com/uploads/1784636280955-cf7121fdaacecf30.jpg",
+      "gallery": [
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784636280955-cf7121fdaacecf30.jpg",
+          "alt": "REGALIA BY IMAANI "
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784636296053-d6384a9d2c2b8b5b.jpg",
+          "alt": "REGALIA BY IMAANI "
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784636334823-30a4c3f8a008f011.jpg",
+          "alt": "REGALIA BY IMAANI "
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784636344493-61f8a0bbf31f3a4a.jpg",
+          "alt": "REGALIA BY IMAANI "
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784636352970-bc446e8bf898d30f.jpg",
+          "alt": "REGALIA BY IMAANI "
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784636363110-c2c37678a6268e06.jpg",
+          "alt": "REGALIA BY IMAANI "
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784636371965-a8f379ec4363dd9e.jpg",
+          "alt": "REGALIA BY IMAANI "
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784636385185-70a3afc5cf783ee2.jpg",
+          "alt": "REGALIA BY IMAANI "
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784636397280-46075003c5335958.jpg",
+          "alt": "REGALIA BY IMAANI "
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784636409471-5664dc6c30d68daf.jpg",
+          "alt": "REGALIA BY IMAANI "
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784636442335-dc64b439831676bc.jpg",
+          "alt": "REGALIA BY IMAANI "
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784636455510-0801fe470ae73dc6.jpg",
+          "alt": "REGALIA BY IMAANI "
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784636483005-c860c7829582a747.jpg",
+          "alt": "REGALIA BY IMAANI "
+        }
+      ],
       "tag": "Exclusive",
       "type": "Private Courtyard",
       "description": "Private Courtyard Address.\n\n\nRegalia is a composed residential development at Airport on the prestigious Patrice Lumumba Street. \nCentered around a private landscaped courtyard from spacious studios to expansive penthouses, each residence reflects intelligent planning and refined detail.\n\nRegalia is not a tower reaching for attention. It is a composed, mid-rise residence — seven stories of precision-crafted living arranged around a private landscaped courtyard.\n\nEvery design decision serves a purpose: natural ventilation paths reduce mechanical cooling, recessed balconies create shade and privacy, and floor-to-ceiling glazing invites the garden inward.\n\nFrom the lobby to the rooftop, every surface has been considered. Porcelain floor tiles, engineered stone countertops, solid timber joinery, and brushed metal fixtures combine to create spaces that feel permanent and considered.\n\nTwo levels of dedicated basement parking provide secure, covered spaces for every unit. The building infrastructure includes backup power systems, dedicated water storage, pre-installed high-speed fibre connections, and EV-charging provisions.\n",
@@ -81,7 +227,49 @@
       "baths": 1,
       "sqft": "258.334",
       "imageSeed": "agora-by-vaal",
-      "gallery": [],
+      "imageSrc": "https://api.heistbrokerage.com/uploads/1784636641227-182e8bd7356e9788.jpg",
+      "gallery": [
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784636641227-182e8bd7356e9788.jpg",
+          "alt": "AGORA BY VAAL"
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784636659615-48a19084882c0943.jpg",
+          "alt": "AGORA BY VAAL"
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784636672425-a7e8bf2b8d405d20.jpg",
+          "alt": "AGORA BY VAAL"
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784636687018-5373141059d73381.jpg",
+          "alt": "AGORA BY VAAL"
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784636697170-e1cc77b94f390c8e.jpg",
+          "alt": "AGORA BY VAAL"
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784636709483-d9ae8d7b2da7d8b1.jpg",
+          "alt": "AGORA BY VAAL"
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784636748341-cc912e150ecc4930.jpg",
+          "alt": "AGORA BY VAAL"
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784636760577-1bf1a71f9fd862f1.jpg",
+          "alt": "AGORA BY VAAL"
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784636781131-d9b19ab06e75cc4c.jpg",
+          "alt": "AGORA BY VAAL"
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784636819318-a52fdcf78cf95fde.jpg",
+          "alt": "AGORA BY VAAL"
+        }
+      ],
       "tag": "Exclusive",
       "type": "Apartment",
       "description": "AGORA, Your Comfort Investment.\n\n\nAGORA, a name inspired by ancient Greek themes, represents the heart of social and economic life. Experience unparalleled convenience where modern living, business ventures, and culture experiences converge, creating a timeless spirit of connection and endless possibilities.\nStrategically located along the prestigious Liberation Road, just 1 minute from the Kotoka International Airport, this development offers the perfect blend of comfort and investment potential in one of Accra's most sought-after areas.\n",
@@ -99,7 +287,65 @@
       "baths": 4,
       "sqft": "2,325",
       "imageSeed": "villanova-by-vaal",
-      "gallery": [],
+      "imageSrc": "https://api.heistbrokerage.com/uploads/1784636877675-60cce60170a06f76.jpg",
+      "gallery": [
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784636877675-60cce60170a06f76.jpg",
+          "alt": "VILLANOVA BY VAAL"
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784636898130-2ef18532b384e215.jpg",
+          "alt": "VILLANOVA BY VAAL"
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784636913744-a98b10606f8a9132.jpg",
+          "alt": "VILLANOVA BY VAAL"
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784636924980-471e505c96bb5233.jpg",
+          "alt": "VILLANOVA BY VAAL"
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784636935113-2deaa4edf9573a5b.jpg",
+          "alt": "VILLANOVA BY VAAL"
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784636953188-69dc04c09f0a22c6.jpg",
+          "alt": "VILLANOVA BY VAAL"
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784636964839-eda956bc62bb85dc.jpg",
+          "alt": "VILLANOVA BY VAAL"
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784636974931-53fd7eadbd93ed1b.jpg",
+          "alt": "VILLANOVA BY VAAL"
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784636992167-2fb7110ba19f160b.jpg",
+          "alt": "VILLANOVA BY VAAL"
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784637008002-daaaa343fdd085d7.jpg",
+          "alt": "VILLANOVA BY VAAL"
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784637017882-3a2d7d4c6c4c03f9.jpg",
+          "alt": "VILLANOVA BY VAAL"
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784637030818-50111dece0afe4e7.jpg",
+          "alt": "VILLANOVA BY VAAL"
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784637145169-110b4c5343b93ead.jpg",
+          "alt": "VILLANOVA BY VAAL"
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784637169315-00983893685af191.jpg",
+          "alt": "VILLANOVA BY VAAL"
+        }
+      ],
       "tag": "Villa",
       "type": "Villa",
       "description": "Welcome to VILLANOVA\n\n\nWhere elegance meets tranquility. This high-quality residential compound is the epitome of elite living, offering a serene and calm home environment in the heart of Accra. Inspired by the timeless beauty of Spanish architecture, Villanova blends classical style with modern comforts, creating a sanctuary for those seeking the finest in community living. \nThe carefully selected color palette enhances its serene, nature-inspired aesthetic, creating a warm and harmonious environment that positions Villanova as a distinctive landmark in Accra.",
@@ -117,7 +363,45 @@
       "baths": 1,
       "sqft": "592",
       "imageSeed": "legato-heights-by-vaal",
-      "gallery": [],
+      "imageSrc": "https://api.heistbrokerage.com/uploads/1784635993306-aba2312b68b11ce7.jpg",
+      "gallery": [
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784635993306-aba2312b68b11ce7.jpg",
+          "alt": "LEGATO HEIGHTS BY VAAL"
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784636044689-3febda0a85055739.jpg",
+          "alt": "LEGATO HEIGHTS BY VAAL"
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784636065249-620f3b2eff0d1a81.jpg",
+          "alt": "LEGATO HEIGHTS BY VAAL"
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784636078753-255593b449aa7e17.jpg",
+          "alt": "LEGATO HEIGHTS BY VAAL"
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784636089400-bb2f02275b5fa9f1.jpg",
+          "alt": "LEGATO HEIGHTS BY VAAL"
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784636104200-f6e909b33e76741c.jpg",
+          "alt": "LEGATO HEIGHTS BY VAAL"
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784636115743-aca27bc5e4cf89e7.jpg",
+          "alt": "LEGATO HEIGHTS BY VAAL"
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784636139110-70ad79a3ee7c593e.jpg",
+          "alt": "LEGATO HEIGHTS BY VAAL"
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784636152292-ade9c49a6a8c8d8f.jpg",
+          "alt": "LEGATO HEIGHTS BY VAAL"
+        }
+      ],
       "tag": "New listing",
       "type": "Apartment",
       "description": "In the heart of Accra, Legato Heights was born from a vision of seamless living, akin to mellifluous notes. Inspired by the musical term \"Legato\" signifying smooth and connected\nmelodies, our name embodies unity and grace, which reflect in our singular tower's design-a soaring ode to elegance, thoughtful amenities, and prime location.\n",
@@ -135,7 +419,53 @@
       "baths": 1,
       "sqft": "335.942",
       "imageSeed": "puna-by-vaal",
-      "gallery": [],
+      "imageSrc": "https://api.heistbrokerage.com/uploads/1784637357048-614d7a67a3fff736.jpg",
+      "gallery": [
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784637357048-614d7a67a3fff736.jpg",
+          "alt": "PUNA BY VAAL"
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784637383130-51582dac26f7799b.jpg",
+          "alt": "PUNA BY VAAL"
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784637392155-b4eda50153c54e54.jpg",
+          "alt": "PUNA BY VAAL"
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784637400567-4e37282fa650304b.jpg",
+          "alt": "PUNA BY VAAL"
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784637410336-fcbab6b539585b6c.jpg",
+          "alt": "PUNA BY VAAL"
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784637419100-892ac4aef03856f1.jpg",
+          "alt": "PUNA BY VAAL"
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784637428729-67888bfb9fcd3a10.jpg",
+          "alt": "PUNA BY VAAL"
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784637438842-50e3f3ee1e855365.jpg",
+          "alt": "PUNA BY VAAL"
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784637451387-92e254f316dd508b.jpg",
+          "alt": "PUNA BY VAAL"
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784637466966-bd0ec8258e5837f1.jpg",
+          "alt": "PUNA BY VAAL"
+        },
+        {
+          "src": "https://api.heistbrokerage.com/uploads/1784637477281-427a0ec011f4f2a8.jpg",
+          "alt": "PUNA BY VAAL"
+        }
+      ],
       "tag": "Premium build",
       "type": "Apartment",
       "description": "Live a standard above, at the city's most peaceful height, PUNA offers a home that stands apart in calm and permanence. \nThe word PUNA comes from the high plateaus of South America- places where air thins, horizons widen and life moves differently.\nPUNA is not about reaching higher than others, it's about living at a level where things feel clear, balanced and lasting. It is designed with discipline- beauty without noise.\n\nConstruction officially commenced with the groundbreaking March 2026, and the project is scheduled for completion in July 2029.\n\n\n\n\nKEY FEATURES\n\nLocation: Airport West, Accra's premier residential neighborhood, secure, accessible and refined.\nStructure: High-rise luxury tower off the liberation road.\nResidence: Studios, One-Bedroom, and Two-Bedroom Apartments.\nAmenities: Restaurant, Pharmacy, Rooftop Gym, Supermarket, Rooftop Swimming Pool, Rooftop BBQ Area, Gaming Lounge, Garden, Children's Play Area.\nLifestyle: For professionals, families and investors seeking comfort and permanence.\nProximity: Minutes from Kotoka International Airport, Airport City, and Marina Mall.\n",
@@ -215,20 +545,20 @@
   ],
   "team": [
     {
-      "id": "5b618bea-d0fe-4403-b56f-aaad9be2b809",
-      "name": "Mokie Melissa Banks",
-      "title": "Front Desk Executive",
-      "focus": "",
-      "imageSrc": "",
-      "featured": false
-    },
-    {
       "id": "bb1f8f6a-46e3-4add-9a28-f5725a1f7a96",
       "name": "Samirah Sulleiman",
       "title": "Founder & Lead Strategist",
       "focus": "With a background in urban development and hands-on real estate experience, Samirah founded Heist to help clients navigate property decisions strategically and confidently — known for identifying opportunities early and negotiating with precision. ",
-      "imageSrc": "",
+      "imageSrc": "https://api.heistbrokerage.com/uploads/1784654480036-857f0b4b7478dd95.png",
       "featured": true
+    },
+    {
+      "id": "5b618bea-d0fe-4403-b56f-aaad9be2b809",
+      "name": "Mokie Melissa Banks",
+      "title": "Front Desk Executive",
+      "focus": "",
+      "imageSrc": "https://api.heistbrokerage.com/uploads/1784654940450-436718c8f98539b9.png",
+      "featured": false
     },
     {
       "id": "282a5daa-d7ed-4e8f-a0c8-0978b8fdb86a",
@@ -627,6 +957,7 @@
       "slug": "ghana-real-estate-market-trends-2026-expert-insights-from-heist-brokerage-construction",
       "title": "GHANA REAL ESTATE MARKET TRENDS 2026 | EXPERT INSIGHTS FROM HEIST BROKERAGE & CONSTRUCTION",
       "excerpt": "Explore the latest Ghana real estate market trends in 2026. Learn about investment opportunities, buyer behavior, sustainability, property demand and expert insights from Heist Brokerage & Construction.",
+      "coverImage": "https://api.heistbrokerage.com/uploads/1784713249665-a1959213a08e31c0.png",
       "coverAlt": "Cover image for Heist Brokerage & Construction’s 2026 Ghana Real Estate Market Trends report, featuring a modern Accra skyline, luxury residential developments, and key insights on property investment, market growth, sustainability, and transparency.”",
       "body": "Ghana’s Real Estate Market in 2026: A Market That’s Growing Smarter, Not Just Bigger\n\nPublished by Heist Brokerage & Construction\n\nThere is a saying in real estate that “markets don’t change overnight—they evolve.” Looking at Ghana’s property sector in 2026, that couldn’t be more accurate.\n\nFor the past few years, the conversation around real estate has largely revolved around rising construction costs, inflation and affordability. While those issues haven’t disappeared completely, this year feels different. Confidence is gradually returning, buyers are becoming more informed, and developers are shifting their focus from simply building more homes to building better communities.\n\nAt Heist Brokerage & Construction, we believe understanding the market is just as important as investing in it. Here’s what we’re seeing across Ghana’s real estate landscape in 2026.\n\n\n\nSTABILITY IS RETURNING TO THE MARKET\n\nOne of the biggest changes this year isn’t visible in the buildings—it’s happening in the economy.\n\nWith inflation easing compared to previous years, the Ghana Cedi showing greater stability, and financing conditions gradually improving, investors are beginning to regain confidence. Developers who delayed projects during periods of economic uncertainty are returning to the market, while buyers who had adopted a “wait and see” approach are becoming more willing to make long-term decisions.  \n\nAlthough financing remains a challenge for many households, the overall environment is considerably healthier than it was just a few years ago.\n\n\n\nBUYERS ARE LOOKING BEYOND LUXURY\n\nFor years, luxury apartments dominated conversations about Ghanaian real estate. Today, however, demand is shifting.\n\nThe strongest interest is coming from middle-income professionals, young families and entrepreneurs searching for homes that balance affordability with quality.\n\nPeople are asking practical questions:\n\nIs the location accessible?\nIs the land documentation reliable?\nAre there schools and hospitals nearby?\nWill this property appreciate over time?\nCan I comfortably maintain it?\n\nThese questions are changing the way developers design projects, placing greater emphasis on functionality rather than unnecessary extravagance.\n\n\n\nCLEAN DOCUMENTATION IS BECOMING A COMPETITIVE ADVANTAGE\n\nPerhaps the biggest lesson buyers have learned over the past decade is that location alone isn’t enough.\n\nIn 2026, property buyers are placing far greater value on properly documented land, transparent transactions and reputable developers.\n\nThe market is rewarding companies that prioritise due diligence, professional project management and honest communication.\n\nTrust is no longer a marketing slogan—it has become a genuine competitive advantage.\n\n\n\nSECONDARY LOCATIONS ARE ATTRACTING SERIOUS ATTENTION\n\nWhile Accra remains Ghana’s busiest property market, surrounding communities are becoming increasingly attractive.\n\nAreas experiencing infrastructure improvements and expanding road networks are seeing growing demand from buyers who want more space without paying premium city-centre prices.\n\nInvestors are also recognising that long-term returns often come from identifying tomorrow’s growth areas rather than competing for yesterday’s hotspots.  \n\n\n\nSUSTAINABILITY IS MOVING INTO THE MAINSTREAM\n\nNot long ago, environmentally conscious housing was considered a luxury.\n\nToday, buyers are paying closer attention to energy efficiency, water conservation and building materials that reduce long-term maintenance costs.\n\nFeatures such as:\n\nSolar-ready electrical systems\nRainwater harvesting\nNatural ventilation\nEnergy-efficient lighting\nSmart home technology\n\nare becoming increasingly desirable—not because they are fashionable, but because they reduce the cost of ownership over time.\n\n\n\nOFF-PLAN SALES CONTINUE TO GROW\n\nOff-plan purchasing remains one of the most attractive ways to enter Ghana’s property market.\n\nWith phased payment structures and lower entry prices, many buyers are choosing to secure properties before construction is completed.\n\nHowever, the market has also become more cautious.\n\nBuyers now want clear construction timelines, transparent payment schedules and regular project updates before committing their money.\n\nDevelopers who consistently deliver on their promises are earning stronger reputations than ever before.\n\n\n\nTHE DIASPORA REMAINS A POWERFUL DRIVER\n\nGhanaians living abroad continue to play a significant role in the country’s property market.\n\nWhether purchasing family homes, retirement properties or investment apartments, diaspora buyers remain an important source of demand.\n\nWhat has changed is that overseas investors now expect greater transparency, digital communication and professional after-sales service.\n\nVirtual property tours, online documentation and secure payment processes have become standard expectations rather than optional extras.  \n\n\n\nLOOKING AHEAD\n\nThe Ghanaian property market isn’t experiencing explosive growth.\n\nInstead, it is becoming more disciplined, more transparent and more sustainable.\n\nThis is healthy.\n\nMarkets built on solid fundamentals tend to outperform markets driven purely by speculation.\n\nFor investors, homeowners and developers alike, 2026 presents opportunities—but success will increasingly depend on careful planning, informed decisions and working with professionals who understand both the opportunities and the responsibilities that come with real estate.\n\n\n\nOUR PERSPECTIVE\n\nAt Heist Brokerage & Construction, we see real estate as more than buying land or constructing buildings.\n\nIt is about creating lasting value.\n\nEvery property tells a story. Every development shapes a community. Every investment has the potential to create wealth for generations when built on integrity, professionalism and thoughtful planning.\n\nAs Ghana’s real estate market continues to mature, we remain committed to helping our clients make informed decisions with confidence.\n\nBecause great investments aren’t built on hype.\n\nThey’re built on trust.\n",
       "author": "Heist Team ",
@@ -666,6 +997,20 @@
       "0203436540"
     ],
     "whatsapp": "233203436540",
+    "emails": [
+      {
+        "address": "corporate@heistbrokerage.com",
+        "label": "Corporate & general"
+      },
+      {
+        "address": "ssamirah@heistbrokerage.com",
+        "label": "Client relations"
+      },
+      {
+        "address": "hr@heistbrokerage.com",
+        "label": "Careers & HR"
+      }
+    ],
     "address": {
       "line1": "Nmai Dzorn Papafio Rd",
       "line2": "Nanakrom-East Legon Hills",

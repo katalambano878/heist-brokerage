@@ -4,6 +4,7 @@ import { ScrollReveal } from "@/components/ScrollReveal/ScrollReveal";
 import { PageHero } from "@/components/PageHero/PageHero";
 import { ContactForm } from "@/components/ContactForm/ContactForm";
 import { FaqAccordion } from "@/components/FaqAccordion/FaqAccordion";
+import { contactInfo } from "@/lib/data";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -67,6 +68,16 @@ export default function ContactPage() {
                   >
                     WhatsApp: 0203436540
                   </a>
+                </p>
+                <p className={styles.cardLabel}>Email</p>
+                <p className={styles.cardMeta}>
+                  {(contactInfo.emails ?? []).map((e) => (
+                    <span key={e.address} className={styles.emailRow}>
+                      <a href={`mailto:${e.address}`}>{e.address}</a>{" "}
+                      <span className={styles.emailLabel}>— {e.label}</span>
+                      <br />
+                    </span>
+                  ))}
                 </p>
               </div>
             </ScrollReveal>

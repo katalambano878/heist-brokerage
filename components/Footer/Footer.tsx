@@ -170,6 +170,11 @@ export function Footer() {
                   WhatsApp us
                 </a>
               </li>
+              {(contactInfo.emails ?? []).map((e) => (
+                <li key={e.address}>
+                  <a href={`mailto:${e.address}`}>{e.address}</a>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
