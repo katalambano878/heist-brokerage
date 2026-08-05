@@ -137,7 +137,7 @@ export function SettingsPage() {
                 <input
                   type="email"
                   value={data.email}
-                  placeholder="info@heistbrokerage.com"
+                  placeholder="corporate@heistbrokerage.com"
                   onChange={(e) => setData({ ...data, email: e.target.value })}
                 />
               </div>

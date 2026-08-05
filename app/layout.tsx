@@ -129,7 +129,7 @@ const jsonLd = {
         longitude: -0.085,
       },
       telephone: "+233243889512",
-      email: "info@heistbrokerage.com",
+      email: "corporate@heistbrokerage.com",
       contactPoint: [
         {
           "@type": "ContactPoint",
