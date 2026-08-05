@@ -22,7 +22,7 @@ const intentLabels: Record<string, string> = {
   land: "Purchase a land",
   build: "Build a house",
   sell: "Sell a property",
-  rent: "Lease a residence",
+  rent: "Rent a home",
   invest: "Invest with guidance",
   "joint-venture": "Joint Venture",
 };
@@ -206,7 +206,7 @@ export function LeadModal({ open, onClose }: LeadModalProps) {
                   <option value="land">Purchase a land</option>
                   <option value="build">Build a house</option>
                   <option value="sell">Sell a property</option>
-                  <option value="rent">Lease a residence</option>
+                  <option value="rent">Rent a home</option>
                   <option value="invest">Invest with guidance</option>
                   <option value="joint-venture">Joint Venture</option>
                 </select>
