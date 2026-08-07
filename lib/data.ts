@@ -1014,9 +1014,7 @@ const defaultContactInfo = {
   phones: ["0243889512", "0203436540"],
   whatsapp: "233203436540",
   emails: [
-    { address: "corporate@heistbrokerage.com", label: "Corporate & general" },
-    { address: "ssamirah@heistbrokerage.com", label: "Client relations" },
-    { address: "hr@heistbrokerage.com", label: "Careers & HR" },
+    { address: "corporate@heistbrokerage.com", label: "Corporate" },
   ],
   address: {
     line1: "Nmai Dzorn Papafio Rd",

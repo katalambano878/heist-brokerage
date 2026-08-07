@@ -127,10 +127,8 @@ function mapContactInfo(s) {
     emails: [
       {
         address: s.email || "corporate@heistbrokerage.com",
-        label: "Corporate & general",
+        label: "Corporate",
       },
-      { address: "ssamirah@heistbrokerage.com", label: "Client relations" },
-      { address: "hr@heistbrokerage.com", label: "Careers & HR" },
     ],
     address: {
       line1: s.addressLine1 || "Nmai Dzorn Papafio Rd",

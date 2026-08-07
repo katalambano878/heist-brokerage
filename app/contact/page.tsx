@@ -73,8 +73,7 @@ export default function ContactPage() {
                 <p className={styles.cardMeta}>
                   {(contactInfo.emails ?? []).map((e) => (
                     <span key={e.address} className={styles.emailRow}>
-                      <a href={`mailto:${e.address}`}>{e.address}</a>{" "}
-                      <span className={styles.emailLabel}>— {e.label}</span>
+                      <a href={`mailto:${e.address}`}>{e.address}</a>
                       <br />
                     </span>
                   ))}

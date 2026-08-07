@@ -1000,15 +1000,7 @@
     "emails": [
       {
         "address": "corporate@heistbrokerage.com",
-        "label": "Corporate & general"
-      },
-      {
-        "address": "ssamirah@heistbrokerage.com",
-        "label": "Client relations"
-      },
-      {
-        "address": "hr@heistbrokerage.com",
-        "label": "Careers & HR"
+        "label": "Corporate"
       }
     ],
     "address": {
