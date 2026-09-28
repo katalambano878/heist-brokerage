@@ -16,6 +16,24 @@ const teamCreate = z.object({
   sortOrder: z.number().int().optional().default(0),
 });
 
+// ---------- Job openings (Careers) ----------
+const jobOpeningCreate = z.object({
+  title: z.string().min(1).max(200),
+  type: z.string().max(80).optional().default("Full Time"),
+  location: z.string().max(200).optional().default(""),
+  description: z.string().max(4000).optional().default(""),
+  active: z.boolean().optional().default(true),
+  sortOrder: z.number().int().optional().default(0),
+});
+
+export function adminJobOpeningsRouter(env: Env) {
+  return crudRouter(env, {
+    delegate: prisma.jobOpening,
+    createSchema: jobOpeningCreate,
+    updateSchema: jobOpeningCreate.partial(),
+  });
+}
+
 export function adminTeamRouter(env: Env) {
   return crudRouter(env, {
     delegate: prisma.teamMember,

@@ -12,6 +12,7 @@ type GeneratedContent = {
   testimonials?: Testimonial[];
   exclusiveListings?: ExclusiveListing[];
   blogPosts?: BlogPost[];
+  careerOpenings?: CareerOpening[];
   trustStats?: TrustStat[];
   contactInfo?: typeof defaultContactInfo;
   aboutImage?: string;
@@ -434,6 +435,45 @@ const defaultTestimonials: Testimonial[] = [
     role: "Investor",
   },
 ];
+
+export type CareerOpening = {
+  title: string;
+  type: string;
+  location: string;
+  desc: string;
+};
+
+const defaultCareerOpenings: CareerOpening[] = [
+  {
+    title: "Real Estate Sales Agent",
+    type: "Full Time",
+    location: "East Legon Hills, Accra",
+    desc: "Drive property sales, conduct viewings, and build lasting client relationships. Ideal for motivated individuals with strong communication skills and a passion for real estate.",
+  },
+  {
+    title: "Marketing & Social Media Coordinator",
+    type: "Full Time",
+    location: "East Legon Hills, Accra",
+    desc: "Lead digital marketing campaigns, manage social media presence, and create compelling content that positions Heist properties and services to the right audience.",
+  },
+  {
+    title: "Construction Site Supervisor",
+    type: "Full Time",
+    location: "Various Locations, Greater Accra",
+    desc: "Oversee day-to-day construction operations, ensure quality standards, and keep projects on schedule and within budget. Experience in residential construction preferred.",
+  },
+  {
+    title: "Client Relations Officer",
+    type: "Full Time",
+    location: "East Legon Hills, Accra",
+    desc: "Manage client communications, coordinate viewings and documentation, and ensure every client experience reflects Heist's commitment to excellence and transparency.",
+  },
+];
+
+export const careerOpenings: CareerOpening[] = pick(
+  generated.careerOpenings,
+  defaultCareerOpenings,
+);
 
 export const testimonials: Testimonial[] = pick(
   generated.testimonials,

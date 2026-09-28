@@ -593,6 +593,45 @@ async function main() {
   }
   console.log(`[seed] ${testimonials.length} testimonials`);
 
+  // ----- Careers / job openings -----
+  const jobCount = await prisma.jobOpening.count();
+  if (jobCount === 0) {
+    const openings = [
+      {
+        title: "Real Estate Sales Agent",
+        type: "Full Time",
+        location: "East Legon Hills, Accra",
+        description:
+          "Drive property sales, conduct viewings, and build lasting client relationships. Ideal for motivated individuals with strong communication skills and a passion for real estate.",
+      },
+      {
+        title: "Marketing & Social Media Coordinator",
+        type: "Full Time",
+        location: "East Legon Hills, Accra",
+        description:
+          "Lead digital marketing campaigns, manage social media presence, and create compelling content that positions Heist properties and services to the right audience.",
+      },
+      {
+        title: "Construction Site Supervisor",
+        type: "Full Time",
+        location: "Various Locations, Greater Accra",
+        description:
+          "Oversee day-to-day construction operations, ensure quality standards, and keep projects on schedule and within budget. Experience in residential construction preferred.",
+      },
+      {
+        title: "Client Relations Officer",
+        type: "Full Time",
+        location: "East Legon Hills, Accra",
+        description:
+          "Manage client communications, coordinate viewings and documentation, and ensure every client experience reflects Heist's commitment to excellence and transparency.",
+      },
+    ];
+    for (const [i, job] of openings.entries()) {
+      await prisma.jobOpening.create({ data: { ...job, sortOrder: i, active: true } });
+    }
+    console.log(`[seed] ${openings.length} job openings`);
+  }
+
   // ----- Exclusive listings -----
   for (const [i, listing] of exclusiveListings.entries()) {
     const { sitemap, startingPrice, paymentNote, ...rest } = listing;

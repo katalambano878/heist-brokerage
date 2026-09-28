@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { NavLink, Navigate, Route, Routes, useNavigate } from "react-router-dom";
-import { ApplicationsPage } from "./pages/ApplicationsPage";
+import { CareersPage } from "./pages/CareersPage";
 import { BlogPage } from "./pages/BlogPage";
 import { DashboardPage } from "./pages/DashboardPage";
 import { ExclusivePage } from "./pages/ExclusivePage";
@@ -99,7 +99,7 @@ function Shell({ children }: { children: ReactNode }) {
           <NavLink to="/properties">{icons.properties} Properties</NavLink>
           <NavLink to="/exclusive">{icons.exclusive} Exclusive</NavLink>
           <NavLink to="/leads">{icons.leads} Leads</NavLink>
-          <NavLink to="/applications">{icons.applications} Applications</NavLink>
+          <NavLink to="/careers">{icons.applications} Careers</NavLink>
         </nav>
         <p className="sidebar-label">Content</p>
         <nav className="nav">
@@ -136,7 +136,8 @@ export function App() {
       <Route path="/properties" element={<RequireAuth><PropertiesPage /></RequireAuth>} />
       <Route path="/exclusive" element={<RequireAuth><ExclusivePage /></RequireAuth>} />
       <Route path="/leads" element={<RequireAuth><LeadsPage /></RequireAuth>} />
-      <Route path="/applications" element={<RequireAuth><ApplicationsPage /></RequireAuth>} />
+      <Route path="/careers" element={<RequireAuth><CareersPage /></RequireAuth>} />
+      <Route path="/applications" element={<Navigate to="/careers" replace />} />
       <Route path="/blog" element={<RequireAuth><BlogPage /></RequireAuth>} />
       <Route path="/team" element={<RequireAuth><TeamPage /></RequireAuth>} />
       <Route path="/services" element={<RequireAuth><ServicesPage /></RequireAuth>} />

@@ -30,7 +30,9 @@ function slugify(s: string) {
 
 function emptyDraft(fields: FieldDef[]): Record<string, unknown> {
   const d: Record<string, unknown> = {};
-  for (const f of fields) d[f.key] = f.kind === "checkbox" ? false : "";
+  for (const f of fields) {
+    d[f.key] = f.kind === "checkbox" ? f.key === "active" : "";
+  }
   return d;
 }
 
@@ -142,8 +144,8 @@ export function CrudPage({ title, subtitle, endpoint, fields, columns, itemName 
     <div>
       <div className="page-header page-header-row">
         <div>
-          <h1>{title}</h1>
-          <p>{subtitle}</p>
+          {title ? <h1>{title}</h1> : null}
+          {subtitle ? <p>{subtitle}</p> : null}
         </div>
         <button type="button" className="btn-primary" onClick={openCreate}>
           + New {itemName}

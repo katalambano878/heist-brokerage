@@ -4,6 +4,7 @@ import { ScrollReveal } from "@/components/ScrollReveal/ScrollReveal";
 import { PageHero } from "@/components/PageHero/PageHero";
 import { CareersForm } from "@/components/CareersForm/CareersForm";
 import { CareersBoard } from "@/components/CareersBoard/CareersBoard";
+import { careerOpenings } from "@/lib/data";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -38,33 +39,6 @@ const perks = [
     title: "Team Culture",
     desc: "A close-knit, supportive team that celebrates wins together and tackles challenges as one.",
     icon: "M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75",
-  },
-];
-
-const openings = [
-  {
-    title: "Real Estate Sales Agent",
-    type: "Full Time",
-    location: "East Legon Hills, Accra",
-    desc: "Drive property sales, conduct viewings, and build lasting client relationships. Ideal for motivated individuals with strong communication skills and a passion for real estate.",
-  },
-  {
-    title: "Marketing & Social Media Coordinator",
-    type: "Full Time",
-    location: "East Legon Hills, Accra",
-    desc: "Lead digital marketing campaigns, manage social media presence, and create compelling content that positions Heist properties and services to the right audience.",
-  },
-  {
-    title: "Construction Site Supervisor",
-    type: "Full Time",
-    location: "Various Locations, Greater Accra",
-    desc: "Oversee day-to-day construction operations, ensure quality standards, and keep projects on schedule and within budget. Experience in residential construction preferred.",
-  },
-  {
-    title: "Client Relations Officer",
-    type: "Full Time",
-    location: "East Legon Hills, Accra",
-    desc: "Manage client communications, coordinate viewings and documentation, and ensure every client experience reflects Heist's commitment to excellence and transparency.",
   },
 ];
 
@@ -152,7 +126,7 @@ export default function CareersPage() {
               fit, we&apos;d love to hear from you.
             </ScrollReveal>
           </div>
-          <CareersBoard openings={openings} />
+          <CareersBoard openings={careerOpenings} />
         </Container>
       </section>
 

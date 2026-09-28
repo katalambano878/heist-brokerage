@@ -29,7 +29,7 @@ function badgeClass(status: string) {
   return `badge badge-app-${status.toLowerCase()}`;
 }
 
-export function ApplicationsPage() {
+export function ApplicationsPage({ embedded = false }: { embedded?: boolean }) {
   const [items, setItems] = useState<Application[]>([]);
   const [filter, setFilter] = useState<string>("");
   const [q, setQ] = useState("");
@@ -81,10 +81,12 @@ export function ApplicationsPage() {
 
   return (
     <div>
-      <div className="page-header">
-        <h1>Applications</h1>
-        <p>Job applications submitted from the careers page</p>
-      </div>
+      {embedded ? null : (
+        <div className="page-header">
+          <h1>Applications</h1>
+          <p>Job applications submitted from the careers page</p>
+        </div>
+      )}
 
       <div className="toolbar">
         <input

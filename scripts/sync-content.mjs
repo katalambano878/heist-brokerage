@@ -104,6 +104,15 @@ function mapExclusive(e) {
   };
 }
 
+function mapJob(j) {
+  return {
+    title: j.title,
+    type: j.type ?? "Full Time",
+    location: j.location ?? "",
+    desc: j.description ?? "",
+  };
+}
+
 function mapPost(p) {
   return {
     slug: p.slug,
@@ -175,7 +184,7 @@ function buildSitemap(properties, exclusive, posts) {
 
 async function main() {
   try {
-    const [props, services, team, testimonials, exclusive, posts, settings] =
+    const [props, services, team, testimonials, exclusive, posts, settings, jobs] =
       await Promise.all([
         getJson("/api/v1/properties"),
         getJson("/api/v1/services"),
@@ -184,6 +193,7 @@ async function main() {
         getJson("/api/v1/exclusive"),
         getJson("/api/v1/posts").catch(() => ({ data: [] })),
         getJson("/api/v1/settings"),
+        getJson("/api/v1/jobs").catch(() => ({ data: [] })),
       ]);
 
     const properties = (props.data ?? []).map(mapProperty);
@@ -197,6 +207,7 @@ async function main() {
       testimonials: (testimonials.data ?? []).map(mapTestimonial),
       exclusiveListings,
       blogPosts,
+      careerOpenings: (jobs.data ?? []).map(mapJob),
       trustStats: Array.isArray(settings?.trustStats) ? settings.trustStats : undefined,
       contactInfo: settings && settings.id ? mapContactInfo(settings) : undefined,
       aboutImage: settings?.aboutImage || undefined,

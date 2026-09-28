@@ -58,6 +58,18 @@ export function publicRouter() {
     }
   });
 
+  r.get("/jobs", async (_req, res, next) => {
+    try {
+      const items = await prisma.jobOpening.findMany({
+        where: { active: true },
+        orderBy: [{ sortOrder: "asc" }, { createdAt: "desc" }],
+      });
+      res.json({ data: items });
+    } catch (e) {
+      next(e);
+    }
+  });
+
   r.get("/team", async (_req, res, next) => {
     try {
       const items = await prisma.teamMember.findMany({

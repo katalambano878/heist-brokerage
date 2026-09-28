@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { postJson } from "@/lib/publicApi";
+import { careerOpenings } from "@/lib/data";
 import styles from "./CareersForm.module.css";
 
 type FormState = {
@@ -15,10 +16,7 @@ type FormState = {
 };
 
 export const CAREER_POSITIONS = [
-  "Real Estate Sales Agent",
-  "Marketing & Social Media Coordinator",
-  "Construction Site Supervisor",
-  "Client Relations Officer",
+  ...careerOpenings.map((job) => job.title),
   "General Application",
 ];
 

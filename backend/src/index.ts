@@ -16,6 +16,7 @@ import { adminUsersRouter } from "./routes/admin/users.js";
 import {
   adminExclusiveRouter,
   adminServicesRouter,
+  adminJobOpeningsRouter,
   adminTeamRouter,
   adminTestimonialsRouter,
 } from "./routes/admin/content.js";
@@ -55,6 +56,7 @@ app.use("/api/v1/admin/dashboard", adminDashboardRouter(env));
 app.use("/api/v1/admin/properties", adminPropertiesRouter(env));
 app.use("/api/v1/admin/leads", adminLeadsRouter(env));
 app.use("/api/v1/admin/team", adminTeamRouter(env));
+app.use("/api/v1/admin/jobs", adminJobOpeningsRouter(env));
 app.use("/api/v1/admin/services", adminServicesRouter(env));
 app.use("/api/v1/admin/testimonials", adminTestimonialsRouter(env));
 app.use("/api/v1/admin/exclusive", adminExclusiveRouter(env));
