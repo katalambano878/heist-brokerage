@@ -3,7 +3,7 @@ import {
   parseFormattedText,
   serializeFormattedText,
   type TextBlock,
-} from "../../../lib/formattedText";
+} from "../lib/formattedText";
 
 type DraftBlock = TextBlock & { id: string };
 
