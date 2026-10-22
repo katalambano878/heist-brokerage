@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/Container/Container";
+import { FormattedCopy } from "@/components/FormattedCopy/FormattedCopy";
 import { blogPosts, getPostBySlug } from "@/lib/data";
 import styles from "./page.module.css";
 
@@ -53,11 +54,6 @@ export default async function BlogPostPage({
   const post = getPostBySlug(slug);
   if (!post) notFound();
 
-  const paragraphs = post.body
-    .split(/\n{2,}/)
-    .map((p) => p.trim())
-    .filter(Boolean);
-
   const related = blogPosts.filter((p) => p.slug !== post.slug).slice(0, 3);
 
   return (
@@ -103,8 +99,8 @@ export default async function BlogPostPage({
 
       <Container className={styles.bodyWrap}>
         <div className={styles.body}>
-          {paragraphs.length > 0 ? (
-            paragraphs.map((p, i) => <p key={i}>{p}</p>)
+          {post.body.trim() ? (
+            <FormattedCopy text={post.body} />
           ) : (
             <p>{post.excerpt}</p>
           )}

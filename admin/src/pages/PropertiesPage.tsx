@@ -2,6 +2,7 @@ import { type FormEvent, useCallback, useEffect, useState } from "react";
 import { api, imagePreviewUrl } from "../api";
 import { ImageField } from "../components/ImageField";
 import { Modal } from "../components/Modal";
+import { RichTextEditor } from "../components/RichTextEditor";
 
 type PropertyImage = { id: string; url: string; alt: string; sortOrder: number };
 
@@ -338,11 +339,11 @@ export function PropertiesPage() {
               </div>
               <div className="field" style={{ marginTop: "1rem" }}>
                 <label>Description</label>
-                <textarea
-                  rows={4}
+                <RichTextEditor
+                  key={editing?.id ?? "new-property"}
                   value={draft.description}
                   placeholder="Describe the property, highlights, and what makes it stand out…"
-                  onChange={(e) => setDraft((d) => ({ ...d, description: e.target.value }))}
+                  onChange={(description) => setDraft((d) => ({ ...d, description }))}
                 />
               </div>
               <div className="field" style={{ marginTop: "1rem" }}>

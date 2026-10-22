@@ -2,11 +2,12 @@ import { type FormEvent, useCallback, useEffect, useState } from "react";
 import { api, imagePreviewUrl } from "../api";
 import { ImageField } from "./ImageField";
 import { Modal } from "./Modal";
+import { RichTextEditor } from "./RichTextEditor";
 
 export type FieldDef = {
   key: string;
   label: string;
-  kind: "text" | "textarea" | "image" | "checkbox";
+  kind: "text" | "textarea" | "richtext" | "image" | "checkbox";
   required?: boolean;
   placeholder?: string;
   /** auto-generate this field from another (slugify) on create */
@@ -245,6 +246,19 @@ export function CrudPage({ title, subtitle, endpoint, fields, columns, itemName 
                     />
                     {f.label}
                   </label>
+                );
+              }
+              if (f.kind === "richtext") {
+                return (
+                  <div key={f.key} className="field" style={{ marginBottom: "1rem" }}>
+                    <label>{f.label}</label>
+                    <RichTextEditor
+                      key={editing?.id ?? "new"}
+                      value={String(draft[f.key] ?? "")}
+                      placeholder={f.placeholder}
+                      onChange={(value) => setField(f.key, value)}
+                    />
+                  </div>
                 );
               }
               if (f.kind === "textarea") {

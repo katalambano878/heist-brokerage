@@ -3,6 +3,7 @@ import { api, imagePreviewUrl } from "../api";
 import { ImageField } from "../components/ImageField";
 import { GalleryField } from "../components/GalleryField";
 import { Modal } from "../components/Modal";
+import { RichTextEditor } from "../components/RichTextEditor";
 
 type Listing = {
   id: string;
@@ -32,7 +33,6 @@ type Listing = {
 };
 
 const JSON_FIELDS = [
-  { key: "overview", label: "Overview paragraphs", hint: '["Paragraph one…", "Paragraph two…"]' },
   { key: "facts", label: "Key facts", hint: '[{"label": "Total area", "value": "592 acres"}]' },
   { key: "highlights", label: "Highlights", hint: '["24/7 security", "Tarred roads"]' },
   { key: "typologies", label: "Home typologies", hint: '[{"name": "Sunflower", "beds": "4 Bedrooms", "storeys": "2-storey", "blurb": "…", "imageSrc": "/images/…"}]' },
@@ -58,6 +58,9 @@ function toDraft(l: Listing | null): Draft {
     cardImage: l?.cardImage ?? "",
     startingPrice: l?.startingPrice ?? "",
     paymentNote: l?.paymentNote ?? "",
+    overview: Array.isArray(l?.overview)
+      ? l.overview.filter((item): item is string => typeof item === "string").join("\n\n")
+      : "",
     brochureUrl: l?.brochureUrl ?? "",
     sitemap: l?.sitemap ? JSON.stringify(l.sitemap, null, 2) : "",
     active: l?.active ?? true,
@@ -84,6 +87,11 @@ function fromDraft(d: Draft): Record<string, unknown> {
     cardImage: d.cardImage,
     startingPrice: d.startingPrice || null,
     paymentNote: d.paymentNote || null,
+    overview: String(d.overview ?? "")
+      .replace(/\r\n/g, "\n")
+      .split(/\n\s*\n/)
+      .map((part) => part.trim())
+      .filter(Boolean),
     brochureUrl: d.brochureUrl,
     active: d.active,
   };
@@ -304,6 +312,15 @@ export function ExclusivePage() {
             <div className="field" style={{ marginTop: "1rem" }}>
               <label>Summary</label>
               <textarea rows={3} value={String(draft.summary)} onChange={(e) => set("summary", e.target.value)} />
+            </div>
+            <div className="field" style={{ marginTop: "1rem" }}>
+              <label>Overview</label>
+              <RichTextEditor
+                key={editing?.id ?? "new-exclusive"}
+                value={String(draft.overview ?? "")}
+                onChange={(value) => set("overview", value)}
+                placeholder="Tell the story of this development. Use paragraphs, headings, and bullets."
+              />
             </div>
             <div className="field" style={{ marginTop: "1rem" }}>
               <label>Payment note</label>

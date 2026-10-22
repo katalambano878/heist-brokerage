@@ -6,6 +6,7 @@ import { ScrollReveal } from "@/components/ScrollReveal/ScrollReveal";
 import { PropertyCard } from "@/components/PropertyCard/PropertyCard";
 import { PropertyGallery } from "@/components/PropertyGallery/PropertyGallery";
 import { CtaBannerWrapper } from "@/components/CtaBanner/CtaBannerWrapper";
+import { FormattedCopy } from "@/components/FormattedCopy/FormattedCopy";
 import {
   allProperties,
   getPropertyById,
@@ -164,7 +165,7 @@ export default async function PropertyDetailPage({ params }: PageProps) {
 
               <div className={styles.block}>
                 <h2 className={styles.blockTitle}>About this property</h2>
-                <p className={styles.text}>{property.description}</p>
+                <FormattedCopy text={property.description} className={styles.text} />
               </div>
 
               <div className={styles.block}>

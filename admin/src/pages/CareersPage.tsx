@@ -43,7 +43,7 @@ export function CareersPage() {
             { key: "title", label: "Job title", kind: "text", required: true },
             { key: "type", label: "Employment type", kind: "text", placeholder: "Full Time" },
             { key: "location", label: "Location", kind: "text" },
-            { key: "description", label: "Description", kind: "textarea" },
+            { key: "description", label: "Description", kind: "richtext", placeholder: "Describe the role, responsibilities, and how to apply." },
             { key: "active", label: "Visible on site", kind: "checkbox" },
           ]}
           columns={[

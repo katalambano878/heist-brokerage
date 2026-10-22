@@ -7,6 +7,7 @@ import { ScrollReveal } from "@/components/ScrollReveal/ScrollReveal";
 import { PageHero } from "@/components/PageHero/PageHero";
 import { CtaBannerWrapper } from "@/components/CtaBanner/CtaBannerWrapper";
 import { BrochureGate } from "@/components/BrochureGate/BrochureGate";
+import { FormattedCopy } from "@/components/FormattedCopy/FormattedCopy";
 import {
   exclusiveListings,
   getExclusiveListingBySlug,
@@ -120,17 +121,12 @@ export default async function ExclusiveDetailPage({ params }: PageProps) {
               >
                 {listing.location}
               </ScrollReveal>
-              {listing.overview.map((para, i) => (
-                <ScrollReveal
-                  key={i}
-                  as="p"
-                  variant="fadeUp"
-                  delayMs={120 + i * 50}
+              <ScrollReveal variant="fadeUp" delayMs={120}>
+                <FormattedCopy
+                  text={listing.overview.join("\n\n")}
                   className={styles.overviewText}
-                >
-                  {para}
-                </ScrollReveal>
-              ))}
+                />
+              </ScrollReveal>
 
               <ScrollReveal as="ul" variant="fadeUp" delayMs={240} className={styles.highlights}>
                 {listing.highlights.map((item) => (

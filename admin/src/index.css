@@ -1433,3 +1433,67 @@ tbody tr:hover { background: var(--panel-hover); }
 .empty-compact {
   padding: 1.5rem 1rem;
 }
+
+.rich-editor {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.rich-editor-toolbar,
+.rich-block-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.rich-editor-toolbar button,
+.rich-block-bar button,
+.rich-add {
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--text);
+  border-radius: var(--radius-sm);
+  padding: 0.35rem 0.7rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.rich-editor-blocks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.rich-block {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.65rem;
+  background: var(--bg-subtle, transparent);
+}
+
+.rich-block-bar {
+  justify-content: space-between;
+  margin-bottom: 0.45rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted, #667);
+}
+
+.rich-block textarea,
+.rich-list input {
+  width: 100%;
+}
+
+.rich-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.rich-add {
+  align-self: flex-start;
+}

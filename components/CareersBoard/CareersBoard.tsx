@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { ScrollReveal } from "@/components/ScrollReveal/ScrollReveal";
 import { CareersForm } from "@/components/CareersForm/CareersForm";
+import { FormattedCopy } from "@/components/FormattedCopy/FormattedCopy";
 import styles from "@/app/careers/page.module.css";
 
 export type Opening = {
@@ -68,7 +69,7 @@ export function CareersBoard({ openings }: CareersBoardProps) {
                 </span>
               </div>
             </div>
-            <p className={styles.jobDesc}>{job.desc}</p>
+            <FormattedCopy text={job.desc} className={styles.jobDesc} />
             <button
               type="button"
               className={styles.applyBtn}

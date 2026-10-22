@@ -2,6 +2,7 @@ import { type FormEvent, useCallback, useEffect, useState } from "react";
 import { api, imagePreviewUrl } from "../api";
 import { ImageField } from "../components/ImageField";
 import { Modal } from "../components/Modal";
+import { RichTextEditor } from "../components/RichTextEditor";
 
 type Post = {
   id: string;
@@ -327,13 +328,12 @@ export function BlogPage() {
 
             <div className="field" style={{ marginTop: "1rem" }}>
               <label>Body</label>
-              <textarea
-                rows={12}
+              <RichTextEditor
+                key={editing?.id ?? "new-post"}
                 value={draft.body}
-                placeholder="Write the article here. Separate paragraphs with a blank line."
-                onChange={(e) => set("body", e.target.value)}
+                placeholder="Write the article here."
+                onChange={(value) => set("body", value)}
               />
-              <p className="hint">Separate paragraphs with a blank line.</p>
             </div>
 
             {err ? <p className="err" style={{ marginTop: "1rem" }}>{err}</p> : null}
