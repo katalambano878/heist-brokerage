@@ -22,19 +22,38 @@ export function adminPublishRouter(env: Env) {
         );
       }
 
-      const headers: Record<string, string> = {};
+      const headers: Record<string, string> = {
+        "Content-Type": "application/json",
+      };
       if (env.COOLIFY_DEPLOY_TOKEN) {
         headers["Authorization"] = `Bearer ${env.COOLIFY_DEPLOY_TOKEN}`;
       }
 
       // Force a no-cache rebuild. The site fetches admin content at build time,
       // so a cached Docker build would reuse stale content and publish nothing.
+      // Coolify only accepts POST on this endpoint; GET returns 405 and the
+      // phone browser surfaces that failed request as "Load failed".
       const deployUrl = new URL(env.COOLIFY_DEPLOY_URL);
       deployUrl.searchParams.set("force", "true");
 
-      const resp = await fetch(deployUrl.toString(), { method: "GET", headers });
+      let resp: Response;
+      try {
+        resp = await fetch(deployUrl.toString(), {
+          method: "POST",
+          headers,
+          signal: AbortSignal.timeout(20_000),
+        });
+      } catch (err) {
+        console.error("[publish] could not reach deploy service", err);
+        throw new AppError(
+          502,
+          "DEPLOY_FAILED",
+          "Could not reach the hosting service. Try again in a moment.",
+        );
+      }
       if (!resp.ok) {
         const text = await resp.text().catch(() => "");
+        console.error(`[publish] deploy trigger failed status=${resp.status}`);
         throw new AppError(
           502,
           "DEPLOY_FAILED",
