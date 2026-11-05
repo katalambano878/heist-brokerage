@@ -1,0 +1,1 @@
+ALTER TABLE "Application" ADD COLUMN "portraitUrl" TEXT NOT NULL DEFAULT '';

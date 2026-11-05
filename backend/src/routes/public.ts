@@ -1,16 +1,30 @@
 import { Router } from "express";
 import { z } from "zod";
+import type { Env } from "../config/env.js";
 import { prisma } from "../lib/prisma.js";
+import { createUploader, uploadUrl } from "../lib/uploads.js";
 import {
   notifyApplicationCreated,
   notifyLeadCreated,
 } from "../lib/notifications/index.js";
 import { AppError } from "../middleware/errorHandler.js";
+import { portraitLimiter } from "../middleware/rateLimit.js";
+
+const emailField = z.string().trim().email("Enter a valid email address.");
+const phoneField = z
+  .string()
+  .trim()
+  .min(1, "Phone number is required.")
+  .max(40)
+  .refine(
+    (value) => value.replace(/\D/g, "").length >= 9,
+    "Enter a valid phone number.",
+  );
 
 const leadSchema = z.object({
-  name: z.string().min(1).max(200),
-  email: z.string().email().optional().or(z.literal("")),
-  phone: z.string().max(40).optional().or(z.literal("")),
+  name: z.string().trim().min(1, "Name is required.").max(200),
+  email: emailField,
+  phone: phoneField,
   message: z.string().max(4000).optional().or(z.literal("")),
   source: z
     .enum(["CONTACT_FORM", "LEAD_MODAL", "PROPERTY", "WHATSAPP", "OTHER"])
@@ -19,16 +33,23 @@ const leadSchema = z.object({
 });
 
 const applicationSchema = z.object({
-  fullName: z.string().min(1).max(200),
-  email: z.string().email().optional().or(z.literal("")),
-  phone: z.string().max(40).optional().or(z.literal("")),
-  position: z.string().max(200).optional().or(z.literal("")),
-  experience: z.string().max(100).optional().or(z.literal("")),
+  fullName: z.string().trim().min(1, "Full name is required.").max(200),
+  email: emailField,
+  phone: phoneField,
+  position: z.string().trim().min(1, "Please select a position.").max(200),
+  experience: z.string().trim().min(1, "Years of experience is required.").max(100),
   portfolio: z.string().max(500).optional().or(z.literal("")),
-  message: z.string().max(4000).optional().or(z.literal("")),
+  portraitUrl: z
+    .string()
+    .trim()
+    .min(1, "A portrait photo is required.")
+    .max(500)
+    .refine((url) => url.includes("/uploads/"), "Upload a portrait photo."),
+  message: z.string().trim().min(12, "Tell us a little about yourself.").max(4000),
 });
 
-export function publicRouter() {
+export function publicRouter(env: Env) {
+  const uploader = createUploader(env);
   const r = Router();
 
   r.get("/properties", async (req, res, next) => {
@@ -165,18 +186,27 @@ export function publicRouter() {
     }
   });
 
+  r.post("/uploads/portrait", portraitLimiter, uploader.single("file"), (req, res, next) => {
+    if (!req.file) {
+      next(new AppError(400, "NO_FILE", "Choose a portrait photo."));
+      return;
+    }
+    res.status(201).json({ url: uploadUrl(env, req.file.filename) });
+  });
+
   r.post("/applications", async (req, res, next) => {
     try {
       const body = applicationSchema.parse(req.body);
       const application = await prisma.application.create({
         data: {
           fullName: body.fullName,
-          email: body.email ?? "",
-          phone: body.phone ?? "",
-          position: body.position ?? "",
-          experience: body.experience ?? "",
+          email: body.email,
+          phone: body.phone,
+          position: body.position,
+          experience: body.experience,
           portfolio: body.portfolio ?? "",
-          message: body.message ?? "",
+          portraitUrl: body.portraitUrl,
+          message: body.message,
         },
       });
       notifyApplicationCreated(application);
@@ -192,8 +222,8 @@ export function publicRouter() {
       const lead = await prisma.lead.create({
         data: {
           name: body.name,
-          email: body.email ?? "",
-          phone: body.phone ?? "",
+          email: body.email,
+          phone: body.phone,
           message: body.message ?? "",
           source: body.source ?? "CONTACT_FORM",
           propertyId: body.propertyId ?? undefined,

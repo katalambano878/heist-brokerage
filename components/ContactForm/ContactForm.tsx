@@ -44,7 +44,9 @@ export function ContactForm() {
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email.trim())) {
       next.email = "Enter a valid email address.";
     }
-    if (!values.phone.trim()) next.phone = "Please enter a phone number.";
+    if (values.phone.replace(/\D/g, "").length < 9) {
+      next.phone = "Enter a valid phone number.";
+    }
     if (values.message.trim().length < 12) {
       next.message = "Add a few more details (at least 12 characters).";
     }
@@ -81,7 +83,7 @@ export function ContactForm() {
     <form className={styles.form} onSubmit={onSubmit} noValidate>
       <div className={styles.row}>
         <label className={styles.field}>
-          <span className={styles.label}>Full name</span>
+          <span className={styles.label}>Full name *</span>
           <input
             className={styles.input}
             name="name"
@@ -97,7 +99,7 @@ export function ContactForm() {
           ) : null}
         </label>
         <label className={styles.field}>
-          <span className={styles.label}>Email</span>
+          <span className={styles.label}>Email *</span>
           <input
             className={styles.input}
             type="email"
@@ -116,7 +118,7 @@ export function ContactForm() {
       </div>
       <div className={styles.row}>
         <label className={styles.field}>
-          <span className={styles.label}>Phone</span>
+          <span className={styles.label}>Phone *</span>
           <input
             className={styles.input}
             type="tel"
@@ -133,7 +135,7 @@ export function ContactForm() {
           ) : null}
         </label>
         <label className={styles.field}>
-          <span className={styles.label}>You are looking to</span>
+          <span className={styles.label}>You are looking to *</span>
           <select
             className={styles.input}
             name="intent"
@@ -153,7 +155,7 @@ export function ContactForm() {
         </label>
       </div>
       <label className={styles.field}>
-        <span className={styles.label}>Message</span>
+        <span className={styles.label}>Message *</span>
         <textarea
           className={styles.textarea}
           name="message"

@@ -298,7 +298,15 @@ ${emailButton("View in admin", adminUrl)}`,
 export function adminEmailApplication(
   app: Pick<
     Application,
-    "id" | "fullName" | "email" | "phone" | "position" | "experience" | "portfolio" | "message"
+    | "id"
+    | "fullName"
+    | "email"
+    | "phone"
+    | "position"
+    | "experience"
+    | "portfolio"
+    | "portraitUrl"
+    | "message"
   >,
 ): { subject: string; html: string } {
   const adminUrl = `${getAdminUrl()}/applications`;
@@ -315,7 +323,9 @@ export function adminEmailApplication(
   ${emailInfoRow("Phone", escapeHtml(safe(app.phone) || "—"))}
   ${emailInfoRow("Experience", escapeHtml(safe(app.experience) || "—"))}
   ${emailInfoRow("Portfolio", app.portfolio ? `<a href="${escapeHtml(app.portfolio)}" style="color:#2d6a5e;">${escapeHtml(app.portfolio)}</a>` : "—")}
+  ${emailInfoRow("Portrait", app.portraitUrl ? `<a href="${escapeHtml(app.portraitUrl)}" style="color:#2d6a5e;">View photo</a>` : "—")}
 </table>
+${app.portraitUrl ? `<p style="margin:16px 0;"><img src="${escapeHtml(app.portraitUrl)}" alt="Applicant portrait" width="160" style="width:160px;height:213px;object-fit:cover;border-radius:12px;display:block;" /></p>` : ""}
 ${msg ? `<div style="background:#f9fafb;border-left:4px solid #2d6a5e;padding:14px 16px;margin:16px 0;"><p style="margin:0;font-size:14px;color:#374151;">${msg}</p></div>` : ""}
 ${emailButton("Review application", adminUrl)}`,
       `New application from ${app.fullName}`,
@@ -332,7 +342,7 @@ export function adminEmailRecipients(event: NotificationEvent): string[] {
     process.env.NOTIFY_EMAIL_GENERAL ?? "ssamirah@heistbrokerage.com";
 
   if (event === "APPLICATION") {
-    return uniqueEmails([hr, general]);
+    return uniqueEmails([hr, corporate, general]);
   }
 
   return uniqueEmails([corporate, general]);

@@ -230,6 +230,8 @@ model Application {
   position   String            @default("")
   experience String            @default("")
   portfolio  String            @default("")
+  /// Portrait photo uploaded with the application
+  portraitUrl String           @default("")
   message    String            @default("")
   status     ApplicationStatus @default(NEW)
   createdAt  DateTime          @default(now())

@@ -64,6 +64,9 @@ export function BrochureGate({
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email.trim())) {
       next.email = "Enter a valid email";
     }
+    if (values.phone.replace(/\D/g, "").length < 9) {
+      next.phone = "Enter a valid phone number";
+    }
     setErrors(next);
     return Object.keys(next).length === 0;
   };
@@ -178,7 +181,7 @@ export function BrochureGate({
                         </p>
 
                         <label className={styles.field}>
-                          <span className={styles.label}>Full name</span>
+                          <span className={styles.label}>Full name *</span>
                           <input
                             className={styles.input}
                             name="fullName"
@@ -193,7 +196,7 @@ export function BrochureGate({
                         </label>
 
                         <label className={styles.field}>
-                          <span className={styles.label}>Email</span>
+                          <span className={styles.label}>Email *</span>
                           <input
                             className={styles.input}
                             type="email"
@@ -209,9 +212,7 @@ export function BrochureGate({
                         </label>
 
                         <label className={styles.field}>
-                          <span className={styles.label}>
-                            Phone <span className={styles.optional}>(optional)</span>
-                          </span>
+                          <span className={styles.label}>Phone *</span>
                           <input
                             className={styles.input}
                             type="tel"
@@ -219,7 +220,11 @@ export function BrochureGate({
                             autoComplete="tel"
                             value={values.phone}
                             onChange={set("phone")}
+                            aria-invalid={errors.phone ? true : undefined}
                           />
+                          {errors.phone ? (
+                            <span className={styles.error}>{errors.phone}</span>
+                          ) : null}
                         </label>
 
                         {submitError ? (

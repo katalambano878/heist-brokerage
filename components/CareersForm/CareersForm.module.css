@@ -160,3 +160,67 @@ select.input {
   line-height: 1.7;
   color: var(--color-text-muted);
 }
+
+.portraitRow {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.portraitFrame {
+  width: 108px;
+  aspect-ratio: 3 / 4;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border: 1px dashed var(--color-border);
+  border-radius: 12px;
+  background: var(--color-bg);
+}
+
+.portraitFrame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.portraitHint {
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  text-align: center;
+  padding: 0.4rem;
+}
+
+.portraitCopy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.portraitCopy p {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+
+.portraitBtn {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 0.9rem;
+  font-size: 0.82rem;
+  font-weight: 650;
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+}
+
+.portraitBtn input {
+  display: none;
+}

@@ -21,6 +21,7 @@ type Application = {
   experience: string;
   portfolio: string;
   message: string;
+  portraitUrl?: string;
   status: Status;
   createdAt: string;
 };
@@ -140,6 +141,13 @@ export function ApplicationsPage({ embedded = false }: { embedded?: boolean }) {
       {selected ? (
         <Modal title={`Application — ${selected.fullName}`} onClose={() => setSelected(null)} wide>
           <div>
+            {selected.portraitUrl ? (
+              <img
+                src={selected.portraitUrl}
+                alt={`${selected.fullName} portrait`}
+                style={{ width: 120, height: 160, objectFit: "cover", borderRadius: 12, marginBottom: 16 }}
+              />
+            ) : null}
             <p className="section-label">Details</p>
             <dl className="detail-list">
               <div><dt>Position</dt><dd>{selected.position || "General application"}</dd></div>

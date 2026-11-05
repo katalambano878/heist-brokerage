@@ -48,9 +48,17 @@ export function SaveBuyForm() {
     if (!values.fullName.trim()) next.fullName = "Full name is required.";
     if (!values.gender) next.gender = "Please select your gender.";
     if (!values.phone.trim()) next.phone = "Phone number is required.";
+    if (!values.nationality.trim()) next.nationality = "Nationality is required.";
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email.trim())) {
       next.email = "Enter a valid email address.";
     }
+    if (values.phone.replace(/\D/g, "").length < 9) {
+      next.phone = "Enter a valid phone number.";
+    }
+    if (values.whatsapp.replace(/\D/g, "").length < 9) {
+      next.whatsapp = "WhatsApp number is required.";
+    }
+    if (!values.incomeRange) next.incomeRange = "Monthly income is required.";
     setErrors(next);
     return Object.keys(next).length === 0;
   };
@@ -155,13 +163,17 @@ export function SaveBuyForm() {
         </label>
 
         <label className={styles.field}>
-          <span className={styles.label}>Nationality</span>
+          <span className={styles.label}>
+            Nationality <span className={styles.required}>*</span>
+          </span>
           <input
             className={styles.input}
             name="nationality"
             value={values.nationality}
             onChange={set("nationality")}
+            aria-invalid={errors.nationality ? true : undefined}
           />
+          {errors.nationality && <span className={styles.error}>{errors.nationality}</span>}
         </label>
 
         <label className={styles.field}>
@@ -181,14 +193,18 @@ export function SaveBuyForm() {
         </label>
 
         <label className={styles.field}>
-          <span className={styles.label}>WhatsApp Number</span>
+          <span className={styles.label}>
+            WhatsApp Number <span className={styles.required}>*</span>
+          </span>
           <input
             className={styles.input}
             type="tel"
             name="whatsapp"
             value={values.whatsapp}
             onChange={set("whatsapp")}
+            aria-invalid={errors.whatsapp ? true : undefined}
           />
+          {errors.whatsapp && <span className={styles.error}>{errors.whatsapp}</span>}
         </label>
 
         <label className={styles.field}>
@@ -208,12 +224,15 @@ export function SaveBuyForm() {
         </label>
 
         <label className={`${styles.field} ${styles.fieldFull}`}>
-          <span className={styles.label}>Monthly Income Range</span>
+          <span className={styles.label}>
+            Monthly Income Range <span className={styles.required}>*</span>
+          </span>
           <select
             className={styles.input}
             name="incomeRange"
             value={values.incomeRange}
             onChange={set("incomeRange")}
+            aria-invalid={errors.incomeRange ? true : undefined}
           >
             <option value="">Select</option>
             <option value="below-3000">Below GHS 3,000</option>
@@ -222,6 +241,7 @@ export function SaveBuyForm() {
             <option value="10000-20000">GHS 10,000 – 20,000</option>
             <option value="above-20000">Above GHS 20,000</option>
           </select>
+          {errors.incomeRange && <span className={styles.error}>{errors.incomeRange}</span>}
         </label>
       </div>
 

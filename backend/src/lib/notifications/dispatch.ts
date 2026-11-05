@@ -83,7 +83,15 @@ async function notifyCustomerApplication(
 async function notifyAdminApplication(
   app: Pick<
     Application,
-    "id" | "fullName" | "email" | "phone" | "position" | "experience" | "portfolio" | "message"
+    | "id"
+    | "fullName"
+    | "email"
+    | "phone"
+    | "position"
+    | "experience"
+    | "portfolio"
+    | "portraitUrl"
+    | "message"
   >,
 ): Promise<void> {
   const emails = adminEmailRecipients("APPLICATION");

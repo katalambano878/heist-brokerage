@@ -40,8 +40,8 @@ export function LeadModal({ open, onClose }: LeadModalProps) {
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!name.trim() || !email.trim() || !phone.trim()) {
-      setError("Please enter your name, email and phone number.");
+    if (!name.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim()) || phone.replace(/\D/g, "").length < 9) {
+      setError("Name, a valid email, and a phone number are all required.");
       return;
     }
     setError(null);
@@ -159,7 +159,7 @@ export function LeadModal({ open, onClose }: LeadModalProps) {
             </p>
             <form className={styles.form} onSubmit={onSubmit} noValidate>
               <label className={styles.field}>
-                <span className={styles.label}>Full name</span>
+                <span className={styles.label}>Full name *</span>
                 <input
                   className={styles.input}
                   type="text"
@@ -170,7 +170,7 @@ export function LeadModal({ open, onClose }: LeadModalProps) {
                 />
               </label>
               <label className={styles.field}>
-                <span className={styles.label}>Email</span>
+                <span className={styles.label}>Email *</span>
                 <input
                   className={styles.input}
                   type="email"
@@ -181,7 +181,7 @@ export function LeadModal({ open, onClose }: LeadModalProps) {
                 />
               </label>
               <label className={styles.field}>
-                <span className={styles.label}>Phone number</span>
+                <span className={styles.label}>Phone number *</span>
                 <input
                   className={styles.input}
                   type="tel"
@@ -195,7 +195,7 @@ export function LeadModal({ open, onClose }: LeadModalProps) {
                 />
               </label>
               <label className={styles.field}>
-                <span className={styles.label}>You are looking to</span>
+                <span className={styles.label}>You are looking to *</span>
                 <select
                   className={styles.input}
                   name="intent"

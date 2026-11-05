@@ -24,7 +24,7 @@ export function errorHandler(
     res.status(400).json({
       error: {
         code: "VALIDATION_ERROR",
-        message: "Invalid request",
+        message: err.issues[0]?.message ?? "Invalid request",
         details: err.flatten(),
       },
     });

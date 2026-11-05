@@ -25,3 +25,16 @@ export async function postJson<T = unknown>(
   }
   return json as T;
 }
+
+export async function postForm<T = unknown>(path: string, body: FormData): Promise<T> {
+  const res = await fetch(`${API_BASE}${path}`, { method: "POST", body });
+  const text = await res.text();
+  const json = text ? JSON.parse(text) : {};
+  if (!res.ok) {
+    const msg =
+      (json as { error?: { message?: string } })?.error?.message ??
+      res.statusText;
+    throw new Error(msg);
+  }
+  return json as T;
+}

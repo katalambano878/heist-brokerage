@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { postJson } from "@/lib/publicApi";
+import { postForm, postJson } from "@/lib/publicApi";
 import { careerOpenings } from "@/lib/data";
 import styles from "./CareersForm.module.css";
 
@@ -45,6 +45,10 @@ export function CareersForm({ defaultPosition, hideHeading }: CareersFormProps) 
   );
   const [status, setStatus] = useState<"idle" | "submitting" | "done">("idle");
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [portraitUrl, setPortraitUrl] = useState("");
+  const [portraitPreview, setPortraitPreview] = useState("");
+  const [portraitError, setPortraitError] = useState<string | null>(null);
+  const [uploadingPortrait, setUploadingPortrait] = useState(false);
 
   const set =
     (key: keyof FormState) =>
@@ -61,13 +65,51 @@ export function CareersForm({ defaultPosition, hideHeading }: CareersFormProps) 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email.trim())) {
       next.email = "Enter a valid email address.";
     }
-    if (!values.phone.trim()) next.phone = "Phone number is required.";
+    if (values.phone.replace(/\D/g, "").length < 9) {
+      next.phone = "Enter a valid phone number.";
+    }
     if (!values.position) next.position = "Please select a position.";
+    if (!values.experience) next.experience = "Years of experience is required.";
+    if (uploadingPortrait) {
+      setPortraitError("Wait for the photo to finish uploading.");
+    } else if (!portraitUrl) {
+      setPortraitError("A portrait photo is required.");
+    } else {
+      setPortraitError(null);
+    }
     if (values.message.trim().length < 12) {
       next.message = "Tell us a little about yourself (at least 12 characters).";
     }
     setErrors(next);
-    return Object.keys(next).length === 0;
+    return Object.keys(next).length === 0 && Boolean(portraitUrl) && !uploadingPortrait;
+  };
+
+  const onPortrait = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    e.target.value = "";
+    if (!file) return;
+    if (!["image/jpeg", "image/png", "image/webp", "image/avif"].includes(file.type)) {
+      setPortraitError("Use a JPEG, PNG, or WebP photo.");
+      return;
+    }
+    if (file.size > 8 * 1024 * 1024) {
+      setPortraitError("Photo must be under 8 MB.");
+      return;
+    }
+    setPortraitError(null);
+    setPortraitPreview(URL.createObjectURL(file));
+    setUploadingPortrait(true);
+    try {
+      const body = new FormData();
+      body.append("file", file);
+      const uploaded = await postForm<{ url: string }>("/api/v1/uploads/portrait", body);
+      setPortraitUrl(uploaded.url);
+    } catch (err) {
+      setPortraitUrl("");
+      setPortraitError(err instanceof Error ? err.message : "Photo upload failed.");
+    } finally {
+      setUploadingPortrait(false);
+    }
   };
 
   const onSubmit = async (e: FormEvent) => {
@@ -83,6 +125,7 @@ export function CareersForm({ defaultPosition, hideHeading }: CareersFormProps) 
         position: values.position,
         experience: values.experience,
         portfolio: values.portfolio.trim(),
+        portraitUrl,
         message: values.message.trim(),
       });
       setStatus("done");
@@ -134,6 +177,35 @@ export function CareersForm({ defaultPosition, hideHeading }: CareersFormProps) 
           </p>
         </>
       )}
+
+      <div className={`${styles.field} ${styles.fieldFull}`} style={{ marginBottom: "1rem" }}>
+        <span className={styles.label}>
+          Portrait photo <span className={styles.required}>*</span>
+        </span>
+        <div className={styles.portraitRow}>
+          <div className={styles.portraitFrame}>
+            {portraitPreview ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={portraitPreview} alt="Portrait preview" />
+            ) : (
+              <span className={styles.portraitHint}>3:4 portrait</span>
+            )}
+          </div>
+          <div className={styles.portraitCopy}>
+            <p>Upload a clear head-and-shoulders photo. A portrait frame works best.</p>
+            <label className={styles.portraitBtn}>
+              {uploadingPortrait ? "Uploading…" : portraitUrl ? "Replace photo" : "Choose photo"}
+              <input
+                type="file"
+                accept="image/jpeg,image/png,image/webp,image/avif"
+                onChange={onPortrait}
+                disabled={uploadingPortrait}
+              />
+            </label>
+          </div>
+        </div>
+        {portraitError ? <span className={styles.error}>{portraitError}</span> : null}
+      </div>
 
       <div className={styles.grid}>
         <label className={styles.field}>
@@ -214,12 +286,15 @@ export function CareersForm({ defaultPosition, hideHeading }: CareersFormProps) 
         </label>
 
         <label className={styles.field}>
-          <span className={styles.label}>Years of Experience</span>
+          <span className={styles.label}>
+            Years of Experience <span className={styles.required}>*</span>
+          </span>
           <select
             className={styles.input}
             name="experience"
             value={values.experience}
             onChange={set("experience")}
+            aria-invalid={errors.experience ? true : undefined}
           >
             <option value="">Select</option>
             <option value="Less than 1 year">Less than 1 year</option>
@@ -228,6 +303,7 @@ export function CareersForm({ defaultPosition, hideHeading }: CareersFormProps) 
             <option value="5 – 10 years">5 – 10 years</option>
             <option value="10+ years">10+ years</option>
           </select>
+          {errors.experience && <span className={styles.error}>{errors.experience}</span>}
         </label>
 
         <label className={styles.field}>
