@@ -18,8 +18,9 @@ const schema = z.object({
   COOLIFY_DEPLOY_URL: z.string().default(""),
   /** Bearer token for the Coolify deploy endpoint */
   COOLIFY_DEPLOY_TOKEN: z.string().default(""),
-  /** Resend — transactional email (https://resend.com) */
-  RESEND_API_KEY: z.string().optional(),
+  /** Postal HTTP API on big-vps (https://postal.zoepayhub.com) */
+  POSTAL_API_URL: z.string().optional(),
+  POSTAL_API_KEY: z.string().optional(),
   EMAIL_FROM: z.string().optional(),
   SITE_URL: z.string().optional(),
   ADMIN_URL: z.string().optional(),

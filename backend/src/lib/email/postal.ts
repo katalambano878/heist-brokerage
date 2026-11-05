@@ -1,5 +1,3 @@
-import { Resend } from "resend";
-
 const BRAND = {
   name: "Heist Brokerage & Construction",
   color: "#2d6a5e",
@@ -7,24 +5,31 @@ const BRAND = {
   colorLight: "#e8f5f0",
 };
 
-let client: Resend | null = null;
+const DEFAULT_POSTAL_URL = "https://postal.zoepayhub.com";
 
-function getClient(): Resend | null {
-  const key = process.env.RESEND_API_KEY;
-  if (!key) return null;
-  if (!client) client = new Resend(key);
-  return client;
+function postalUrl(): string | null {
+  const raw = process.env.POSTAL_API_URL?.trim() || DEFAULT_POSTAL_URL;
+  return raw.replace(/\/+$/, "");
 }
 
 export function isEmailConfigured(): boolean {
-  return Boolean(process.env.RESEND_API_KEY);
+  return Boolean(process.env.POSTAL_API_KEY?.trim());
+}
+
+function unquote(value: string): string {
+  const trimmed = value.trim();
+  if (
+    (trimmed.startsWith("'") && trimmed.endsWith("'")) ||
+    (trimmed.startsWith('"') && trimmed.endsWith('"'))
+  ) {
+    return trimmed.slice(1, -1).trim();
+  }
+  return trimmed;
 }
 
 export function getEmailFrom(): string {
-  return (
-    process.env.EMAIL_FROM ??
-    "Heist Brokerage <noreply@heistbrokerage.com>"
-  );
+  const raw = process.env.EMAIL_FROM?.trim();
+  return unquote(raw || "Heist Brokerage <noreply@heistbrokerage.com>");
 }
 
 export function getSiteUrl(): string {
@@ -95,28 +100,44 @@ export async function sendEmail(opts: {
   html: string;
   replyTo?: string;
 }): Promise<EmailResult> {
-  const resend = getClient();
-  if (!resend) {
-    console.warn("[email] RESEND_API_KEY not configured — skipping");
+  const base = postalUrl();
+  const key = process.env.POSTAL_API_KEY?.trim();
+  if (!base || !key) {
+    console.warn("[email] POSTAL_API_KEY not configured — skipping");
     return { ok: false, error: "Email not configured" };
   }
 
+  const to = (Array.isArray(opts.to) ? opts.to : [opts.to]).filter(Boolean);
   try {
-    const { data, error } = await resend.emails.send({
-      from: getEmailFrom(),
-      to: opts.to,
-      subject: opts.subject,
-      html: opts.html,
-      replyTo: opts.replyTo,
+    const response = await fetch(`${base}/api/v1/send/message`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Server-API-Key": key,
+      },
+      body: JSON.stringify({
+        to,
+        from: getEmailFrom(),
+        reply_to: opts.replyTo,
+        subject: opts.subject,
+        html_body: opts.html,
+      }),
+      signal: AbortSignal.timeout(10_000),
     });
-
-    if (error) {
-      console.error("[email] Failed:", error.message);
-      return { ok: false, error: error.message };
+    const data = (await response.json().catch(() => null)) as {
+      status?: string;
+      data?: { message_id?: string; message?: string; messages?: Record<string, { id?: number }> };
+    } | null;
+    if (!response.ok || data?.status !== "success") {
+      const detail = data?.data?.message || `HTTP ${response.status}`;
+      console.error("[email] Postal rejected send:", detail);
+      return { ok: false, error: detail };
     }
-
+    const id =
+      data?.data?.message_id ??
+      Object.values(data?.data?.messages ?? {})[0]?.id?.toString();
     console.log("[email] Sent:", opts.subject);
-    return { ok: true, id: data?.id };
+    return { ok: true, id };
   } catch (err) {
     const msg = err instanceof Error ? err.message : "Email send failed";
     console.error("[email] Error:", msg);

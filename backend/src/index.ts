@@ -51,8 +51,8 @@ app.use("/api/v1", apiLimiter);
 app.use("/api/v1", healthRouter());
 app.use("/api/v1/auth", authRouter(env));
 app.use("/api/v1", publicRouter(env));
-if (!env.RESEND_API_KEY) {
-  console.warn("[email] RESEND_API_KEY is not set — company notification emails will be skipped");
+if (!env.POSTAL_API_KEY) {
+  console.warn("[email] POSTAL_API_KEY is not set — company notification emails will be skipped");
 }
 
 app.use("/api/v1/admin/dashboard", adminDashboardRouter(env));

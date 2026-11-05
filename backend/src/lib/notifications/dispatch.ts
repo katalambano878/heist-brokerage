@@ -1,5 +1,5 @@
 import type { Application, Lead } from "@prisma/client";
-import { sendEmail } from "../email/resend.js";
+import { sendEmail } from "../email/postal.js";
 import { sendSms } from "../sms/moolre.js";
 import {
   adminEmailApplication,

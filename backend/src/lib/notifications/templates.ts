@@ -5,7 +5,7 @@ import {
   emailLayout,
   getAdminUrl,
   getSiteUrl,
-} from "../email/resend.js";
+} from "../email/postal.js";
 
 /** Normalized event type used for template selection. */
 export type NotificationEvent =
