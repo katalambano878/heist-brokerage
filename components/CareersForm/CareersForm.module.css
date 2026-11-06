@@ -43,6 +43,11 @@
   grid-column: 1 / -1;
 }
 
+.hint {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+}
+
 .label {
   font-size: 0.82rem;
   font-weight: 600;

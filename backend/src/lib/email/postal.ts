@@ -92,6 +92,18 @@ export function emailButton(text: string, href: string): string {
 </tr></table>`;
 }
 
+function htmlToText(html: string): string {
+  return html
+    .replace(/<style[\s\S]*?<\/style>/gi, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 export type EmailResult = { ok: boolean; id?: string; error?: string };
 
 export async function sendEmail(opts: {
@@ -121,6 +133,9 @@ export async function sendEmail(opts: {
         reply_to: opts.replyTo,
         subject: opts.subject,
         html_body: opts.html,
+        plain_body: htmlToText(opts.html),
+        track_opens: false,
+        track_links: false,
       }),
       signal: AbortSignal.timeout(10_000),
     });

@@ -334,18 +334,14 @@ ${emailButton("Review application", adminUrl)}`,
 }
 
 /** Which team inbox receives admin alerts for each event. */
-export function adminEmailRecipients(event: NotificationEvent): string[] {
+export function adminEmailRecipients(_event: NotificationEvent): string[] {
   const corporate =
     process.env.NOTIFY_EMAIL_CORPORATE ?? "corporate@heistbrokerage.com";
   const hr = process.env.NOTIFY_EMAIL_HR ?? "hr@heistbrokerage.com";
   const general =
     process.env.NOTIFY_EMAIL_GENERAL ?? "ssamirah@heistbrokerage.com";
 
-  if (event === "APPLICATION") {
-    return uniqueEmails([hr, corporate, general]);
-  }
-
-  return uniqueEmails([corporate, general]);
+  return uniqueEmails([hr, corporate, general]);
 }
 
 /** Staff phone numbers that receive SMS alerts (Moolre). */

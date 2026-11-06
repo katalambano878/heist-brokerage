@@ -936,10 +936,18 @@ const defaultExclusiveListings: ExclusiveListing[] = [
   },
 ];
 
+const brochureFallbacks = new Map(
+  defaultExclusiveListings.map((listing) => [listing.slug, listing.brochureUrl]),
+);
+
 export const exclusiveListings: ExclusiveListing[] = pick(
   generated.exclusiveListings,
   defaultExclusiveListings,
-);
+).map((listing) => ({
+  ...listing,
+  brochureUrl:
+    listing.brochureUrl?.trim() || brochureFallbacks.get(listing.slug) || "",
+}));
 
 export type BlogPost = {
   slug: string;

@@ -37,6 +37,47 @@ export function createUploader(env: Env) {
   });
 }
 
+const DOCUMENT_EXT: Record<string, string> = {
+  "application/pdf": ".pdf",
+  "application/msword": ".doc",
+  "application/vnd.openxmlformats-officedocument.wordprocessingml.document": ".docx",
+};
+
+function documentExtension(file: { mimetype: string; originalname: string }): string | null {
+  if (DOCUMENT_EXT[file.mimetype]) return DOCUMENT_EXT[file.mimetype];
+  if (file.mimetype !== "application/octet-stream" && file.mimetype !== "") return null;
+  const name = file.originalname.toLowerCase();
+  if (name.endsWith(".pdf")) return ".pdf";
+  if (name.endsWith(".docx")) return ".docx";
+  if (name.endsWith(".doc")) return ".doc";
+  return null;
+}
+
+/** PDF or Word CV uploads. Separate from image uploads so portraits stay images only. */
+export function createDocumentUploader(env: Env) {
+  fs.mkdirSync(env.UPLOAD_DIR, { recursive: true });
+
+  const storage = multer.diskStorage({
+    destination: (_req, _file, cb) => cb(null, env.UPLOAD_DIR),
+    filename: (_req, file, cb) => {
+      const id = crypto.randomBytes(8).toString("hex");
+      cb(null, `${Date.now()}-${id}${documentExtension(file) ?? ".bin"}`);
+    },
+  });
+
+  return multer({
+    storage,
+    limits: { fileSize: 12 * 1024 * 1024 },
+    fileFilter: (_req, file, cb) => {
+      if (!documentExtension(file)) {
+        cb(new AppError(400, "INVALID_FILE", "Upload a PDF or Word file."));
+        return;
+      }
+      cb(null, true);
+    },
+  });
+}
+
 export function uploadUrl(env: Env, filename: string): string {
   return `${env.PUBLIC_API_URL}/uploads/${path.basename(filename)}`;
 }

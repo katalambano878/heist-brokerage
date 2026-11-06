@@ -8,6 +8,14 @@ export const authLimiter = rateLimit({
   message: { error: { code: "RATE_LIMIT", message: "Too many attempts" } },
 });
 
+export const cvLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 8,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: { code: "RATE_LIMIT", message: "Too many CV uploads. Try again shortly." } },
+});
+
 export const portraitLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 8,

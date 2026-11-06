@@ -2,13 +2,14 @@ import { Router } from "express";
 import { z } from "zod";
 import type { Env } from "../config/env.js";
 import { prisma } from "../lib/prisma.js";
-import { createUploader, uploadUrl } from "../lib/uploads.js";
+import { portfolioProblem } from "../lib/portfolio.js";
+import { createDocumentUploader, createUploader, uploadUrl } from "../lib/uploads.js";
 import {
   notifyApplicationCreated,
   notifyLeadCreated,
 } from "../lib/notifications/index.js";
 import { AppError } from "../middleware/errorHandler.js";
-import { portraitLimiter } from "../middleware/rateLimit.js";
+import { cvLimiter, portraitLimiter } from "../middleware/rateLimit.js";
 
 const emailField = z.string().trim().email("Enter a valid email address.");
 const phoneField = z
@@ -38,7 +39,14 @@ const applicationSchema = z.object({
   phone: phoneField,
   position: z.string().trim().min(1, "Please select a position.").max(200),
   experience: z.string().trim().min(1, "Years of experience is required.").max(100),
-  portfolio: z.string().max(500).optional().or(z.literal("")),
+  portfolio: z
+    .string()
+    .trim()
+    .min(1, "A CV is required.")
+    .max(500)
+    .refine((value) => portfolioProblem(value) === null, (value) => ({
+      message: portfolioProblem(value) ?? "A CV is required.",
+    })),
   portraitUrl: z
     .string()
     .trim()
@@ -50,6 +58,7 @@ const applicationSchema = z.object({
 
 export function publicRouter(env: Env) {
   const uploader = createUploader(env);
+  const documents = createDocumentUploader(env);
   const r = Router();
 
   r.get("/properties", async (req, res, next) => {
@@ -184,6 +193,14 @@ export function publicRouter(env: Env) {
     } catch (e) {
       next(e);
     }
+  });
+
+  r.post("/uploads/cv", cvLimiter, documents.single("file"), (req, res, next) => {
+    if (!req.file) {
+      next(new AppError(400, "NO_FILE", "Choose a PDF or Word file."));
+      return;
+    }
+    res.status(201).json({ url: uploadUrl(env, req.file.filename) });
   });
 
   r.post("/uploads/portrait", portraitLimiter, uploader.single("file"), (req, res, next) => {

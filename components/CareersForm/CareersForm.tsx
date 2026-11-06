@@ -3,6 +3,7 @@
 import { useState, type FormEvent } from "react";
 import { postForm, postJson } from "@/lib/publicApi";
 import { careerOpenings } from "@/lib/data";
+import { portfolioProblem } from "@/lib/portfolio";
 import styles from "./CareersForm.module.css";
 
 type FormState = {
@@ -49,6 +50,8 @@ export function CareersForm({ defaultPosition, hideHeading }: CareersFormProps) 
   const [portraitPreview, setPortraitPreview] = useState("");
   const [portraitError, setPortraitError] = useState<string | null>(null);
   const [uploadingPortrait, setUploadingPortrait] = useState(false);
+  const [cvName, setCvName] = useState("");
+  const [uploadingCv, setUploadingCv] = useState(false);
 
   const set =
     (key: keyof FormState) =>
@@ -77,11 +80,59 @@ export function CareersForm({ defaultPosition, hideHeading }: CareersFormProps) 
     } else {
       setPortraitError(null);
     }
+    const cvProblem = uploadingCv
+      ? "Wait for the CV to finish uploading."
+      : portfolioProblem(values.portfolio);
+    if (cvProblem) next.portfolio = cvProblem;
     if (values.message.trim().length < 12) {
       next.message = "Tell us a little about yourself (at least 12 characters).";
     }
     setErrors(next);
-    return Object.keys(next).length === 0 && Boolean(portraitUrl) && !uploadingPortrait;
+    return (
+      Object.keys(next).length === 0 &&
+      Boolean(portraitUrl) &&
+      !uploadingPortrait &&
+      !uploadingCv
+    );
+  };
+
+  const onCv = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    e.target.value = "";
+    if (!file) return;
+    const name = file.name.toLowerCase();
+    if (!/\.(pdf|docx?)$/.test(name)) {
+      setErrors((current) => ({
+        ...current,
+        portfolio: "Upload a PDF or Word file.",
+      }));
+      return;
+    }
+    if (file.size > 12 * 1024 * 1024) {
+      setErrors((current) => ({
+        ...current,
+        portfolio: "CV must be under 12 MB.",
+      }));
+      return;
+    }
+    setUploadingCv(true);
+    try {
+      const body = new FormData();
+      body.append("file", file);
+      const uploaded = await postForm<{ url: string }>("/api/v1/uploads/cv", body);
+      setCvName(file.name);
+      setValues((current) => ({ ...current, portfolio: uploaded.url }));
+      setErrors((current) => ({ ...current, portfolio: undefined }));
+    } catch (err) {
+      setCvName("");
+      setValues((current) => ({ ...current, portfolio: "" }));
+      setErrors((current) => ({
+        ...current,
+        portfolio: err instanceof Error ? err.message : "CV upload failed.",
+      }));
+    } finally {
+      setUploadingCv(false);
+    }
   };
 
   const onPortrait = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -306,16 +357,32 @@ export function CareersForm({ defaultPosition, hideHeading }: CareersFormProps) 
           {errors.experience && <span className={styles.error}>{errors.experience}</span>}
         </label>
 
-        <label className={styles.field}>
-          <span className={styles.label}>CV / Portfolio Link</span>
+        <label className={`${styles.field} ${styles.fieldFull}`}>
+          <span className={styles.label}>
+            CV / Portfolio <span className={styles.required}>*</span>
+          </span>
+          <input
+            className={styles.input}
+            type="file"
+            name="cv"
+            accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+            onChange={onCv}
+          />
+          {cvName ? <span className={styles.hint}>Uploaded {cvName}</span> : null}
           <input
             className={styles.input}
             type="url"
             name="portfolio"
-            placeholder="https://… (LinkedIn, Drive, or website)"
-            value={values.portfolio}
-            onChange={set("portfolio")}
+            placeholder="Or a Google Drive or PDF link"
+            value={cvName ? "" : values.portfolio}
+            onChange={(e) => {
+              setCvName("");
+              set("portfolio")(e);
+            }}
+            aria-invalid={errors.portfolio ? true : undefined}
           />
+          <span className={styles.hint}>PDF, Word, or a Google Drive link. LinkedIn and website links are not accepted.</span>
+          {errors.portfolio && <span className={styles.error}>{errors.portfolio}</span>}
         </label>
 
         <label className={`${styles.field} ${styles.fieldFull}`}>

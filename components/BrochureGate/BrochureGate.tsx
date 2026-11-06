@@ -91,7 +91,12 @@ export function BrochureGate({
     }
   };
 
-  const previewSrc = `${brochureUrl}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`;
+  const fileUrl = brochureUrl.trim();
+  const canDownload =
+    fileUrl.startsWith("/brochures/") || /\.pdf($|\?)/i.test(fileUrl);
+  const previewSrc = canDownload
+    ? `${fileUrl}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`
+    : undefined;
 
   return (
     <>
@@ -131,11 +136,13 @@ export function BrochureGate({
 
                 <div className={styles.body}>
                   <div className={styles.previewWrap}>
-                    <iframe
-                      className={styles.preview}
-                      src={previewSrc}
-                      title={`${title} brochure preview`}
-                    />
+                    {previewSrc ? (
+                      <iframe
+                        className={styles.preview}
+                        src={previewSrc}
+                        title={`${title} brochure preview`}
+                      />
+                    ) : null}
                     {status !== "unlocked" ? (
                       <div className={styles.previewVeil} aria-hidden>
                         <svg viewBox="0 0 24 24" width="34" height="34" fill="none">
@@ -159,8 +166,9 @@ export function BrochureGate({
                           Thanks{values.fullName ? `, ${values.fullName.split(" ")[0]}` : ""}.
                           Your brochure is ready to download.
                         </p>
+                        {canDownload ? (
                         <a
-                          href={brochureUrl}
+                          href={fileUrl}
                           download
                           target="_blank"
                           rel="noopener noreferrer"
@@ -171,6 +179,11 @@ export function BrochureGate({
                           </svg>
                           Download {title} brochure
                         </a>
+                        ) : (
+                          <p className={styles.lead}>
+                            The brochure file is not available right now. Please contact Heist and we will send it to you.
+                          </p>
+                        )}
                       </div>
                     ) : (
                       <form className={styles.form} onSubmit={onSubmit} noValidate>
