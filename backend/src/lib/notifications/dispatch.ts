@@ -54,7 +54,6 @@ async function notifyAdminLead(
       to: emails,
       subject: adminMail.subject,
       html: adminMail.html,
-      replyTo: lead.email?.trim() || undefined,
     });
   }
 
@@ -102,7 +101,6 @@ async function notifyAdminApplication(
       to: emails,
       subject: adminMail.subject,
       html: adminMail.html,
-      replyTo: app.email?.trim() || undefined,
     });
   }
 

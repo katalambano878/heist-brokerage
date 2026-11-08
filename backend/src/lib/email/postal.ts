@@ -54,13 +54,12 @@ function escapeHtml(value: string): string {
     .replace(/"/g, "&quot;");
 }
 
-export function emailLayout(body: string, preheader?: string): string {
+export function emailLayout(body: string, _preheader?: string): string {
   const siteUrl = getSiteUrl();
   return `<!DOCTYPE html>
 <html lang="en">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>${BRAND.name}</title>
-${preheader ? `<span style="display:none;max-height:0;overflow:hidden;">${escapeHtml(preheader)}</span>` : ""}
 </head>
 <body style="margin:0;padding:0;background:#f3f4f6;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f3f4f6;">
@@ -94,13 +93,19 @@ export function emailButton(text: string, href: string): string {
 
 function htmlToText(html: string): string {
   return html
-    .replace(/<style[\s\S]*?<\/style>/gi, " ")
-    .replace(/<[^>]+>/g, " ")
+    .replace(/<style[\s\S]*?<\/style>/gi, "")
+    .replace(/<br\s*\/?>/gi, "\n")
+    .replace(/<\/p>/gi, "\n\n")
+    .replace(/<\/h[1-6]>/gi, "\n\n")
+    .replace(/<\/tr>/gi, "\n")
+    .replace(/<\/div>/gi, "\n")
+    .replace(/<[^>]+>/g, "")
     .replace(/&nbsp;/g, " ")
     .replace(/&amp;/g, "&")
     .replace(/&lt;/g, "<")
     .replace(/&gt;/g, ">")
-    .replace(/\s+/g, " ")
+    .replace(/[ \t]+\n/g, "\n")
+    .replace(/\n{3,}/g, "\n\n")
     .trim();
 }
 
@@ -119,40 +124,53 @@ export async function sendEmail(opts: {
     return { ok: false, error: "Email not configured" };
   }
 
-  const to = (Array.isArray(opts.to) ? opts.to : [opts.to]).filter(Boolean);
+  const recipients = (Array.isArray(opts.to) ? opts.to : [opts.to]).filter(Boolean);
+  const fromDomain = getEmailFrom().split("@").pop()?.replace(/>.*/, "").toLowerCase();
+  const replyTo = opts.replyTo?.trim();
+  const replyDomain = replyTo?.split("@").pop()?.toLowerCase();
+  // A reply address on another domain, especially Gmail, is a common spam signal.
+  const alignedReplyTo = replyTo && replyDomain === fromDomain ? replyTo : undefined;
+
+  let lastId: string | undefined;
   try {
-    const response = await fetch(`${base}/api/v1/send/message`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-Server-API-Key": key,
-      },
-      body: JSON.stringify({
-        to,
-        from: getEmailFrom(),
-        reply_to: opts.replyTo,
-        subject: opts.subject,
-        html_body: opts.html,
-        plain_body: htmlToText(opts.html),
-        track_opens: false,
-        track_links: false,
-      }),
-      signal: AbortSignal.timeout(10_000),
-    });
-    const data = (await response.json().catch(() => null)) as {
-      status?: string;
-      data?: { message_id?: string; message?: string; messages?: Record<string, { id?: number }> };
-    } | null;
-    if (!response.ok || data?.status !== "success") {
-      const detail = data?.data?.message || `HTTP ${response.status}`;
-      console.error("[email] Postal rejected send:", detail);
-      return { ok: false, error: detail };
+    for (const recipient of recipients) {
+      const response = await fetch(`${base}/api/v1/send/message`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Server-API-Key": key,
+        },
+        body: JSON.stringify({
+          to: [recipient],
+          from: getEmailFrom(),
+          reply_to: alignedReplyTo,
+          subject: opts.subject,
+          html_body: opts.html,
+          plain_body: htmlToText(opts.html),
+          track_opens: false,
+          track_links: false,
+        }),
+        signal: AbortSignal.timeout(10_000),
+      });
+      const data = (await response.json().catch(() => null)) as {
+        status?: string;
+        data?: {
+          message_id?: string;
+          message?: string;
+          messages?: Record<string, { id?: number }>;
+        };
+      } | null;
+      if (!response.ok || data?.status !== "success") {
+        const detail = data?.data?.message || `HTTP ${response.status}`;
+        console.error("[email] Postal rejected send:", detail);
+        return { ok: false, error: detail };
+      }
+      lastId =
+        data?.data?.message_id ??
+        Object.values(data?.data?.messages ?? {})[0]?.id?.toString();
     }
-    const id =
-      data?.data?.message_id ??
-      Object.values(data?.data?.messages ?? {})[0]?.id?.toString();
     console.log("[email] Sent:", opts.subject);
-    return { ok: true, id };
+    return { ok: true, id: lastId };
   } catch (err) {
     const msg = err instanceof Error ? err.message : "Email send failed";
     console.error("[email] Error:", msg);
