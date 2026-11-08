@@ -71,6 +71,17 @@ export function adminUsersRouter(env: Env) {
   r.patch("/:id", ...superOnly, async (req, res, next) => {
     try {
       const body = updateSchema.parse(req.body);
+      const existing = await prisma.adminUser.findUnique({
+        where: { id: String(req.params.id) },
+      });
+      if (!existing) throw new AppError(404, "NOT_FOUND", "User not found");
+      if (body.password && existing.role !== "SUPER_ADMIN") {
+        throw new AppError(
+          403,
+          "PASSWORD_LOCKED",
+          "Staff passwords are fixed and cannot be changed",
+        );
+      }
       const data: Record<string, unknown> = {
         name: body.name,
         role: body.role,

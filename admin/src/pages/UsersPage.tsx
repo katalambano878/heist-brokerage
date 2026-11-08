@@ -71,7 +71,9 @@ export function UsersPage() {
             name: draft.name || undefined,
             role: draft.role,
             active: draft.active,
-            ...(draft.password ? { password: draft.password } : {}),
+            ...(editing.role === "SUPER_ADMIN" && draft.password
+              ? { password: draft.password }
+              : {}),
           }),
         });
       }
@@ -95,6 +97,7 @@ export function UsersPage() {
   }
 
   const modalOpen = creating || editing !== null;
+  const passwordLocked = editing !== null && editing.role !== "SUPER_ADMIN";
 
   return (
     <div>
@@ -204,16 +207,26 @@ export function UsersPage() {
                 <option value="SUPER_ADMIN">Super Admin</option>
               </select>
             </div>
-            <div className="field" style={{ marginBottom: "1rem" }}>
-              <label>{creating ? "Password" : "New password (leave blank to keep)"}</label>
-              <input
-                type="password"
-                minLength={8}
-                required={creating}
-                value={draft.password}
-                onChange={(e) => setDraft((d) => ({ ...d, password: e.target.value }))}
-              />
-            </div>
+            {passwordLocked ? (
+              <p className="hint" style={{ marginBottom: "1rem" }}>
+                This password is fixed. Staff cannot change it.
+              </p>
+            ) : (
+              <div className="field" style={{ marginBottom: "1rem" }}>
+                <label>{creating ? "Password" : "New password (leave blank to keep)"}</label>
+                <input
+                  type="password"
+                  minLength={8}
+                  required={creating}
+                  autoComplete={creating ? "new-password" : "off"}
+                  value={draft.password}
+                  onChange={(e) => setDraft((d) => ({ ...d, password: e.target.value }))}
+                />
+                {creating && draft.role !== "SUPER_ADMIN" ? (
+                  <p className="hint">Staff cannot change this password after the account is created.</p>
+                ) : null}
+              </div>
+            )}
             {!creating ? (
               <label className="check-row" style={{ marginBottom: "1rem" }}>
                 <input

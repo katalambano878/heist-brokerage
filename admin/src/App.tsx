@@ -128,6 +128,12 @@ function RequireAuth({ children }: { children: ReactNode }) {
   return <Shell>{children}</Shell>;
 }
 
+function RequireSuperAdmin({ children }: { children: ReactNode }) {
+  const user = getSessionUser();
+  if (user?.role !== "SUPER_ADMIN") return <Navigate to="/" replace />;
+  return <>{children}</>;
+}
+
 export function App() {
   return (
     <Routes>
@@ -143,7 +149,7 @@ export function App() {
       <Route path="/services" element={<RequireAuth><ServicesPage /></RequireAuth>} />
       <Route path="/testimonials" element={<RequireAuth><TestimonialsPage /></RequireAuth>} />
       <Route path="/settings" element={<RequireAuth><SettingsPage /></RequireAuth>} />
-      <Route path="/users" element={<RequireAuth><UsersPage /></RequireAuth>} />
+      <Route path="/users" element={<RequireAuth><RequireSuperAdmin><UsersPage /></RequireSuperAdmin></RequireAuth>} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
